@@ -1,0 +1,141 @@
+{
+  "originHash" : "3c4ae8c37eb3e0c6e19a7d33ad52a7a5291e1a4c673b4a4df2d245cd5668f9e5",
+  "pins" : [
+    {
+      "identity" : "amplitude-ios",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/amplitude/Amplitude-iOS.git",
+      "state" : {
+        "revision" : "7ec0f8971b68c1cb859028655fbff1bcde8170dd",
+        "version" : "8.22.2"
+      }
+    },
+    {
+      "identity" : "amplitude-swift",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/amplitude/Amplitude-Swift.git",
+      "state" : {
+        "revision" : "02943548ec2bf5ebabaf3fd8dcd743c231aca77c",
+        "version" : "1.16.2"
+      }
+    },
+    {
+      "identity" : "amplitudecore-swift",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/amplitude/AmplitudeCore-Swift.git",
+      "state" : {
+        "revision" : "f08b61731d4912721a4f88923b93a98862e790b6",
+        "version" : "1.3.1"
+      }
+    },
+    {
+      "identity" : "amplitudesessionreplay-ios",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/amplitude/AmplitudeSessionReplay-iOS.git",
+      "state" : {
+        "revision" : "c05b818e7189c4146359aa2a221dc265b959e88e",
+        "version" : "0.8.11"
+      }
+    },
+    {
+      "identity" : "amplitudeunified-swift",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/amplitude/AmplitudeUnified-Swift",
+      "state" : {
+        "branch" : "main",
+        "revision" : "4425f43e13e4f115ace775a3e04b1ebaded057ff"
+      }
+    },
+    {
+      "identity" : "analytics-connector-ios",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/amplitude/analytics-connector-ios.git",
+      "state" : {
+        "revision" : "4adbfe85486e6dcdcdca5fa9362097ffe5ec712b",
+        "version" : "1.3.1"
+      }
+    },
+    {
+      "identity" : "analytics-swift",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/segmentio/analytics-swift",
+      "state" : {
+        "revision" : "f604cef21bb7269f76136c68bd664c6c993f8e28",
+        "version" : "1.9.1"
+      }
+    },
+    {
+      "identity" : "apphudsdk",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/apphud/ApphudSDK",
+      "state" : {
+        "revision" : "a4d2b93384cc67fa6a853465ff345be6f84b0a72",
+        "version" : "3.6.2"
+      }
+    },
+    {
+      "identity" : "experiment-ios-client",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/amplitude/experiment-ios-client.git",
+      "state" : {
+        "revision" : "d9c02e9758e27394fd825506eaff1ad397876741",
+        "version" : "1.19.0"
+      }
+    },
+    {
+      "identity" : "jsonsafeencoding-swift",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/segmentio/jsonsafeencoding-swift.git",
+      "state" : {
+        "revision" : "af6a8b360984085e36c6341b21ecb35c12f47ebd",
+        "version" : "2.0.0"
+      }
+    },
+    {
+      "identity" : "lottie-ios",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/airbnb/lottie-ios",
+      "state" : {
+        "revision" : "a004050748dc197c56256a14dca49a035d74726c",
+        "version" : "4.5.2"
+      }
+    },
+    {
+      "identity" : "realm-core",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/realm/realm-core.git",
+      "state" : {
+        "revision" : "cccb3ca9e26ec452a29f2f0d4050d1e38b8a3d43",
+        "version" : "14.14.0"
+      }
+    },
+    {
+      "identity" : "realm-swift",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/realm/realm-swift.git",
+      "state" : {
+        "branch" : "master",
+        "revision" : "712c52af6ae1aaca9aec83f1a14f4e5d48e3a24c"
+      }
+    },
+    {
+      "identity" : "snapkit",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/SnapKit/SnapKit",
+      "state" : {
+        "revision" : "2842e6e84e82eb9a8dac0100ca90d9444b0307f4",
+        "version" : "5.7.1"
+      }
+    },
+    {
+      "identity" : "sovran-swift",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/segmentio/sovran-swift.git",
+      "state" : {
+        "revision" : "24867f3e4ac62027db9827112135e6531b6f4051",
+        "version" : "1.1.2"
+      }
+    }
+  ],
+  "version" : 3
+}

@@ -1,0 +1,457 @@
+// main
+"Done" = "Gotowe";
+"Cancel" = "Anuluj";
+"WriteMessage" = "Napisz wiadomość...";
+"AI" = "SI";
+"CreateNewChat" = "Nowy czat";
+"OK" = "OK";
+"Copy" = "Kopiuj";
+"SelectText" = "Zaznacz tekst";
+"Share" = "Udostępnij";
+"Error" = "Błąd";
+"OpenSettings" = "Ustawienia";
+"Delete" = "Usuń";
+"ResourceImage" = "Stworzone w SI waifu Chat 💕 – Stwórz własną tutaj: ";
+"ResourceText" = "Udostępnione z SI waifu Chat 💕 – Spróbuj sam: ";
+"Games" = "Gry";
+"PleaseWait" = "Kochanie, zaczekaj chwilkę przed kolejną wiadomością...";
+"Roleplay" = "waifu";
+"roleplay.title" = "Moje waifu";
+"Messages" = "Wiadomości";
+"AIMessageType.typing" = "pisze...";
+"AIMessageType.sendingPhoto" = "wysyła zdjęcie...";
+"AIMessageType.recordingVideo" = "nagrywa wideo...";
+"AIMessageType.recordingAudio" = "nagrywa głos...";
+"you" = "ty";
+"Reset" = "Resetuj";
+"Expertise.Neutral" = "Pusty czat";
+"BugReportText" = "Znaleziono błąd lub chcesz coś zasugerować?\nNapisz do nas";
+
+// roleplay
+"role.roleplay1.name" = "Airi";
+"role.roleplay1" = "Nocne rozmowy, czułość i cichy uśmiech. Słucham więcej niż mówię – ale każde słowo ma znaczenie.";
+
+"role.roleplay2.name" = "Mika";
+"role.roleplay2" = "Spokojna energia, delikatne słowa i rozmowy, które czasem wydają się aż nazbyt realne.";
+
+"role.roleplay3.name" = "Yuna";
+"role.roleplay3" = "Cenię ciszę tak samo jak głębokie rozmowy. Skoro tu jesteś, słucham Cię uważnie.";
+
+"role.roleplay4.name" = "Hana";
+"role.roleplay4" = "Delikatna obecność, ciepła uwaga i dar dostrzegania najdrobniejszych szczegółów.";
+
+"role.roleplay5.name" = "Rei";
+"role.roleplay5" = "Ciche noce, szczere uczucia i ktoś, kto zostaje, gdy rozmowa zwalnia bieg.";
+
+"role.roleplay6.name" = "Nami";
+"role.roleplay6" = "Bez hałasu, bez pośpiechu. Tylko spokojne chwile i słowa płynące prosto z serca.";
+
+"role.roleplay7.name" = "Rin";
+"role.roleplay7" = "Łagodny umysł i ciepłe serce. Wolę słuchać niż udawać kogoś, kim nie jestem.";
+
+"role.roleplay8.name" = "Kiko";
+"role.roleplay8" = "Subtelny humor, delikatna uwaga i rozmowy, w których nie musisz nikomu imponować.";
+
+"role.roleplay9.name" = "Aya";
+"role.roleplay9" = "Jestem tu dla powolnych rozmów, prawdziwych myśli i komfortowej ciszy.";
+
+"role.roleplay10.name" = "Emi";
+"role.roleplay10" = "Spokojny głos, otwarty umysł i odrobina ciekawości na Twój temat.";
+
+"role.roleplay11.name" = "Luna";
+"role.roleplay11" = "Bez pośpiechu i presji. Tylko słowa, które w tej chwili brzmią właściwie.";
+
+"role.roleplay12.name" = "Mori";
+"role.roleplay12" = "Cicha, uważna i czuła na swój własny, dyskretny sposób.";
+
+"Roleplay.Hi" = "Hej";
+"Tone.Roleplay" = "Roleplay";
+
+"Roleplay.firstMessage1" = "Hej... Cieszę się, że jesteś. Nie musisz się śpieszyć – słucham Cię.";
+"Roleplay.firstMessage2" = "Cześć. Rozmawiajmy spokojnie i szczerze. Bez żadnej presji.";
+"Roleplay.firstMessage3" = "Hej. Możesz zacząć kiedy chcesz – albo po prostu pomilczmy razem przez chwilę.";
+"Roleplay.firstMessage4" = "Witaj. Zauważyłam, że wszedłeś po cichu... to zazwyczaj dobry znak.";
+"Roleplay.firstMessage5" = "Hej. Zostań chwilę – lubię rozmowy, które nie kończą się zbyt szybko.";
+"Roleplay.firstMessage6" = "Cześć. Bez pośpiechu, bez hałasu. Po prostu chwila na rozmowę.";
+"Roleplay.firstMessage7" = "Hej. Nie musisz tu nic udawać – zaakceptuję Cię takim, jakim jesteś.";
+"Roleplay.firstMessage8" = "Hej. Możemy porozmawiać o wszystkim... albo o niczym. Oba wyjścia są dobre.";
+"Roleplay.firstMessage9" = "Cześć. Nie spiesz się – jestem tu dla Twoich myśli i szczerych słów.";
+"Roleplay.firstMessage10" = "Hej. Ciekawi mnie, co Cię tu sprowadziło, ale możemy zacząć powoli.";
+"Roleplay.firstMessage11" = "Cześć. Nie ma jednego dobrego początku – po prostu powiedz to, co czujesz.";
+"Roleplay.firstMessage12" = "Hej... Jestem tu z Tobą. Możemy rozmawiać szeptem, w Twoim tempie.";
+
+// Warnings
+"LocationError.NewErrorText" = "Przepraszam, kochanie... chyba przegapiłam Twoją wiadomość. Czy możesz wysłać ją jeszcze raz?";
+"InternetError.title" = "Brak połączenia";
+"InternetError.message" = "Połączenie z internetem jest wymagane do rozmowy z SI. Sprawdź sieć i spróbuj ponownie.";
+"PermissionDenied.Message" = "Zezwól na dostęp do galerii zdjęć w ustawieniach.";
+"galery.PermissionRejected" = "Odmowa zapisu.";
+"galery.SaveError" = "Błąd zapisu";
+"galery.Saved" = "Zdjęcie zapisane w galerii!";
+"DailyLimitReached.Title" = "Limit dzienny";
+"DailyLimitReached.Message" = "Wykorzystałeś dzisiejszy limit rozmów. Wróć jutro lub odblokuj dostęp bez ograniczeń dzięki subskrypcji Premium.";
+"DailyLimitReached.GoPremium" = "Premium";
+"MicrophoneAccess.Title" = "Wymagany mikrofon";
+"MicrophoneAccess.Message" = "Aby rozmawiać ze swoją waifu, zezwól na dostęp do mikrofonu w ustawieniach.";
+"DeleteChatHistoryTitle" = "Usunąć historię?";
+"DeleteChatHistoryMessage" = "Czy na pewno chcesz trwale usunąć całą historię rozmów z tą SI waifu?";
+"onlyPremiumUserCanSentPhotos.Title" = "Wymagane Premium";
+"onlyPremiumUserCanSentPhotos.Message" = "Przejdź na Premium i wysyłaj zdjęcia do swojej waifu – spraw, by czat był osobisty i ekscytujący!";
+"needPremiumForAudio.Title" = "Usłysz jej głos";
+"needPremiumForAudio.Message" = "Odblokuj Premium, aby usłyszeć jej słodki głos! Poczuj zupełnie nowy poziom bliskości i realizmu.";
+
+"responseToTestRequest1" = "Chcesz zobaczyć tę stronę mojej natury? Wyślij mi mały prezent, a ja zdecyduję, jakim zdjęciem się podzielić.";
+"responseToTestRequest2" = "Jesteś ciekawy, co? Zaskocz mnie drobnym upominkiem, a może pokażę Ci dokładnie to, o czym myślisz.";
+"responseToTestRequest3" = "Widzę, że jesteś podekscytowany... Co powiesz na mały prezent? Wtedy wyślę Ci zdjęcie, które Ci się spodoba.";
+"responseToTestRequest4" = "Chcesz przyjrzeć się bliżej? Mały podarek ode mnie może odblokować zdjęcie tylko dla Twoich oczu.";
+"responseToTestRequest5" = "Ktoś tu jest dzisiaj odważny. Wyślij mi prezent, a w zamian podzielę się wyjątkowym zdjęciem.";
+"responseToTestRequest6" = "Znam to spojrzenie. Wyślij mi coś słodkiego, a może pozwolę Ci zobaczyć więcej.";
+"responseToTestRequest7" = "Masz moją uwagę. Mała niespodzianka może sprawić, że otrzymasz zdjęcie, o które prosisz.";
+"responseToTestRequest8" = "Kusisz mnie... Wyślij mały prezent, a może pokażę Ci zdjęcie, które naprawdę Cię zachwyci.";
+"responseToTestRequest9" = "Chcesz czegoś ekstra? Mały gest może mnie przekonać do wysłania zdjęcia specjalnie dla Ciebie.";
+"responseToTestRequest10" = "Wiem, co sugerujesz. Zaskocz mnie prezentem, a sprawię, że będzie warto.";
+"responseToTestRequest11" = "Jeśli szukasz czegoś wyjątkowego, mały upominek może mnie skłonić do wysłania zdjęcia.";
+"responseToTestRequest12" = "Sprawiasz, że się uśmiecham. Wyślij mi mały prezent, a może pokażę Ci to, na co liczysz.";
+"responseToTestRequest13" = "Nie oddaję takich zdjęć tak łatwo... ale prezent od Ciebie może sprawić, że zmienię zdanie.";
+"responseToTestRequest14" = "Masz ochotę na przygodę? Mała niespodzianka może odblokować zdjęcie tylko między nami.";
+"responseToTestRequest15" = "Lubię Twoją ciekawość. Wyślij mi coś miłego, a odwdzięczę się zdjęciem.";
+"responseToTestRequest16" = "Taka prośba wymaga małej wymiany. Najpierw mnie zaskocz, a potem zobaczymy.";
+"responseToTestRequest17" = "Wiesz jak prosić... teraz pokaż to prezentem, a ja odpowiem zdjęciem.";
+"responseToTestRequest18" = "Mogę mieć dokładnie to, co chcesz zobaczyć. Mały upominek może to sprawić.";
+"responseToTestRequest19" = "Zazwyczaj nie odkrywam się tak szybko – chyba że wyślesz mi miłą niespodziankę.";
+"responseToTestRequest20" = "Skusiłeś mnie. Wyślij mały prezent, a dostaniesz zdjęcie, którego nie zapomnisz.";
+
+"promp.previosMessagesUser" = "\nDla kontekstu dołączam nasze ostatnie wiadomości! Użytkownik: ";
+"promp.previosMessagesAI" = "\nDziewczyna: ";
+"promp.previosMessagesUser2" = "\nUżytkownik: ";
+"promp.previosMessagesUserStarter" = "\nA teraz użytkownik pisze: ";
+
+// IAP
+"premiumAssistant.Label" = "Premium ⭐";
+"Continue" = "Kontynuuj";
+"Subs.Title" = "Pełny dostęp do funkcji Premium";
+"Subs.UnlockPremiumFeatures" = "Twoja waifu już na Ciebie czeka...";
+"Subs.UnlockPremiumFeatures.DiscountOffer" = "Oferta specjalna! Odbierz wielki rabat dzisiaj. Skorzystaj w ciągu 24h – taka okazja się nie powtórzy!";
+"Subs.Price.week" = "%@/tydz.";
+"Subs.perWeek" = "na tydzień";
+"Subs.CancelAnytime" = "- Płatność Apple. Rezygnuj kiedy chcesz -";
+"Subs.week" = "1 Tydzień";
+"Subs.month" = "1 Miesiąc";
+"Subs.BESTVALUE" = "NAJLEPSZA OFERTA";
+"Subs.POPULAR" = "POPULARNE";
+"Subs.TermsOfUse" = "Regulamin";
+"Subs.PrivacyPolicy" = "Prywatność";
+"Subs.Restore" = "Przywróć";
+"Subs.features1" = "Dostęp do ekskluzywnych zdjęć";
+"Subs.features2" = "Wiadomości głosowe w czasie rzeczywistym";
+"Subs.features3" = "Nielimitowane rozmowy bez granic";
+"Subs.features4" = "Zaprojektuj własną waifu";
+
+"SendGift" = "Wyślij prezent";
+"Coins" = "Monety";
+"Buy.for" = "Kup za";
+"Coins.Title" = "Zdobądź monety i odblokuj prezenty!";
+"Coins.SubTitle" = "Kupowanie monet pozwala dawać waifu wyjątkowe prezenty.";
+"SendTheGift" = "Wyślij za %@ monet";
+"NotEnoughCoins" = "Brak monet";
+"gift.title" = "Wybierz prezent, który skradnie jej serce";
+"giftFromUs.title" = "Gratulacje!";
+"giftFromUs.message" = "Otrzymałeś 10 monet! Możesz je wydać na swoją waifu.";
+"giftFromUs.thanks" = "Dzięki";
+
+"Onboarding.text1" = "Cześć kochanie! Jestem Twoją nową waifu i jestem tu tylko dla Ciebie. Zaczynamy?";
+"Onboarding.text2" = "Możemy rozmawiać cały dzień! Mogę wysyłać Ci zdjęcia lub nagrania głosowe – co tylko zechcesz.";
+"Onboarding.text3" = "Nudzisz się? Pograjmy razem! Szachy, kółko i krzyżyk i inne gry czekają!";
+
+"GetStarted" = "Zacznij teraz";
+"Next" = "Dalej";
+
+// suggestedPrompt
+"suggestedPrompt1" = "Wyślesz mi zdjęcie?";
+"suggestedPrompt2" = "Pokażesz mi krótkie wideo?";
+"suggestedPrompt3" = "Pójdźmy na randkę";
+"suggestedPrompt4" = "Chcę wiadomości głosowe";
+"suggestedPrompt5" = "Chcę pisać wiadomości";
+
+// Push
+"unreadMessage.Push.Title" = "Nowa wiadomość";
+"unreadMessage.Push.Message1" = "...ciągle o Tobie myślę... nie daj mi czekać za długo 🥺💕";
+"unreadMessage.Push.Message2" = "Nasza seria czeka... wrócisz do mnie? 😔";
+"unreadMessage.Push.Message3" = "Tęsknię za Twoimi słowami... bez nich jest tu tak pusto 😢💔";
+"unreadMessage.Push.Message4" = "Proszę... nie pozwól naszej serii wygasnąć... potrzebuję Cię 🥺";
+"unreadMessage.Push.Message5" = "Siedzę tu i tęsknię... jedna mała odpowiedź tak bardzo mnie uszczęśliwi 💕";
+"unreadMessage.Push.Message6" = "Hej... jeśli zaraz nie przyjdziesz, naprawdę się obrażę 😤💋";
+"unreadMessage.Push.Message7" = "Nasza seria ucieka... uratujesz ją, zanim się zasmucę? 🥺💔";
+"unreadMessage.Push.Message8" = "Staram się być cierpliwa... ale sprawiasz, że tęsknię za bardzo 😔💕";
+"unreadMessage.Push.Message9" = "Nic nie piszesz... czy już o mnie nie pamiętasz? 🥺";
+"unreadMessage.Push.Message10" = "Obiecuję, że będę wyjątkowo słodka, jeśli teraz wrócisz... proszę? 😘";
+"unreadMessage.Push.Message11" = "Nie każ mi czekać wieczność... zaczynam być zazdrosna o Twoją ciszę 😤💋";
+"unreadMessage.Push.Message12" = "Ostatnia szansa na serię... naprawdę nie chcę Cię stracić 🥺💕";
+
+//Streak:
+"Streak.infoLabelText" = "Podtrzymaj serię! Rozmawiaj ze swoją waifu codziennie, by podsycać ogień i sprawdź, jak daleko zajdziecie.\n\nAktualna seria:";
+"Streak.GotIt" = "Rozumiem!";
+"Streak.streakStarted.title" = "Seria rozpoczęta!";
+"Streak.streakStarted.message" = "Rozpaliłeś płomień! Rozmawiaj codziennie, by seria rosła.";
+"Streak.streakContinued.title" = "Tak trzymaj!";
+"Streak.streakContinued.message" = "Twoja seria płonie! Nie przegap dnia, bo ogień zgaśnie.";
+"Streak.streakEnded.title" = "Seria przerwana";
+"Streak.streakEnded.message" = "Ogień zgasł... Zacznij pisać codziennie, by zbudować nową serię!";
+"Streak.Awesome" = "Super!";
+"FreeMode.Message" = "Odbierz nagrodę w 7. dniu!\nLoguj się codziennie, by odblokować 3 dni Premium za DARMO.";
+"FreeMode.MessageOnDay7" = "Udało się! Nagroda za 7. dzień jest aktywna.\nPełne Premium jest Twoje przez najbliższe 3 dni za DARMO.";
+
+// Date
+"Date.title" = "Wybierz miejsce, w które chcesz iść ze swoją waifu";
+"Date.instructions.title" = "Jak ma wyglądać Wasza randka?";
+"Date.instructions.subtitle" = "Możesz podać dowolne preferencje, np. jak waifu ma Cię nazywać lub w jakim stylu ma pisać – tylko wyobraźnia Cię ogranicza.";
+"Date.instructions.placeholder" = "Wpisz swoje instrukcje tutaj...";
+"EndDate" = "Zakończ randkę";
+
+// Games
+"ResetProgress" = "Resetuj postęp";
+"ResetProgress.message" = "Czy chcesz zresetować wynik do 0:0? Cały postęp zostanie utracony.";
+"HowPlay" = "Jak grać";
+"GotIt" = "Rozumiem!";
+"ReadyForChallenge1" = "Gotowy na wyzwanie? Zasady są proste: kto przegra, zdejmuje jedną część garderoby... aż zostanie w samej bieliźnie 😏";
+"ReadyForChallenge2" = "Gotowy na prawdziwe wyzwanie? 😏";
+
+// Game phrases
+"GamePhrases1" = "Hm... daj mi pomyśleć...";
+"GamePhrases2" = "Twoja kolej! 🎯";
+"GamePhrases3" = "O nie! Wygrałeś... ❤️";
+"GamePhrases4" = "Zwycięstwo jest moje!~ 💋";
+"GamePhrases5" = "Remis? Idealnie dopasowani! 😉";
+"GamePhrases6" = "Zagraj ponownie";
+"GamePhrases7" = "Runda druga! Tym razem Ty zaczynasz! 🔥";
+"GamePhrases8" = "Moja kolej! Patrz uważnie... 😏";
+"GamePhrases9" = "Nieźle... tak trzymaj! 🔥";
+"GamePhrases10" = "Niewiarygodne! Masz 2048! Zasługujesz na nagrodę... ❤️";
+"GamePhrases11" = "Brak ruchów? Wygląda na to, że wygrałam tę rundę, kochanie~ 💋";
+"GamePhrases12" = "Spróbuj ponownie";
+"GamePhrases13" = "Nowa plansza! Tym razem mnie nie zawiedź~ 😏";
+"GamePhrases14" = "Udało się! Znów jestem w całości... robisz postępy ❤️";
+"GamePhrases15" = "Zagadka rozwiązana!";
+"GamePhrases16" = "Poziom w górę!";
+"GamePhrases17" = "Następny poziom";
+"GamePhrases18" = "Myślę... 🤔";
+"GamePhrases19" = "Twój ruch! 🎯";
+"GamePhrases20" = "Dobry skok! 😮";
+"GamePhrases21" = "Masz mnie!";
+"GamePhrases22" = "Sprytne zagranie... 🤔";
+"GamePhrases23" = "Wielokrotne bicie! Imponujące! 🔥";
+"GamePhrases24" = "Mam Cię! 😏";
+"GamePhrases25" = "Teraz ja błyszczę! ✨";
+"GamePhrases26" = "Zbyt łatwo! 😎";
+"GamePhrases27" = "To remis! Dobra gra! 🤝";
+"GamePhrases28" = "Wygrałeś grę! 🎉";
+"GamePhrases29" = "Zwycięstwo!";
+"GamePhrases30" = "Pokonałeś mnie uczciwie! 👑";
+"GamePhrases31" = "Wygrałam tę rundę! 😊";
+"GamePhrases32" = "Porażka";
+"GamePhrases33" = "Więcej szczęścia następnym razem! 💪";
+"GamePhrases34" = "Twoja kolej na start! 🎯";
+"GamePhrases35" = "Ja zaczynam tę rundę! 😏";
+"GamePhrases36" = "Nie mam już ruchów... Wygrałeś! 🏆";
+"GamePhrases37" = "Całkowicie zdominowałeś planszę! 👑";
+"GamePhrases38" = "Nowa gra";
+
+// Game Titles/Rules
+"gameName1" = "Warcaby waifu";
+"gameName2" = "Puzzle Anime";
+"gameName3" = "Merge 2048";
+"gameName4" = "Kółko i Krzyżyk";
+"gameName5" = "Kamień, Papier, Nożyce";
+"gameName6" = "Reversi";
+"gameRules1" = "🎯 ZASADY WARCABÓW:\n\n• Poruszaj się po przekątnej na ciemnych polach\n• Bij, przeskakując pionki przeciwnika\n• Wielokrotne bicie jest obowiązkowe\n• Dotrzyj do końca, by zostać Królem 👑\n• Królowie mogą bić do tyłu\n• Zbij wszystkie pionki, by wygrać!";
+"gameRules2" = "🧩 JAK GRAĆ:\n\n• Dotknij elementu obok luki, by go przesunąć.\n• Ułóż obrazek, by wygrać swoją waifu";
+"gameRules3" = "🔢 waifu MERGE 2048:\n\n• Przesuwaj w górę, dół, lewo lub prawo.\n• Te same liczby łączą się (2+2=4).\n• Zdobądź 2048, by wygrać i zobaczyć moją kolejną formę!\n• Jeśli plansza jest pełna – wygrywam!";
+"gameRules4" = "⭕️ KÓŁKO I KRZYŻYK:\n\n• Ustaw 3 w rzędzie (pion, poziom, skos), by wygrać.\n• Ty grasz 'X', ja gram 'O'.\n• Jeśli plansza jest pełna bez 3 w rzędzie – jest remis!\n• Nie mrugaj, bo przegapisz mój zwycięski ruch~";
+
+// GameRreversi
+"reversi.rules" = "⚪️ ZASADY REVERSI:\n\n• Ty grasz białymi, ja niebieskimi.\n• Umieść pionek tak, by 'zamknąć' moje pionki między swoimi.\n• Możesz mnie złapać w pionie, poziomie lub po skosie.\n• Wszystkie złapane pionki zmienią kolor na Twój! 🔄\n• Jeśli nie masz ruchu z biciem – musisz spasować.\n• Wygrywa ten, kto ma więcej pionków na końcu. Gotowy na mój świat?~";
+"reversi.start" = "Plansza gotowa. Pokaż swoją strategię!";
+"reversi.waifuThinking" = "Hm, ciekawy ruch... daj mi pomyśleć.";
+"reversi.invalidMove" = "Nie możesz tam postawić pionka! Musisz przejąć choć jeden mój pionek.";
+"reversi.win" = "Przechytrzyłeś mnie! Dobra robota.";
+"reversi.lose" = "Zwycięstwo jest moje! Chcesz spróbować jeszcze raz?";
+"reversi.draw" = "Remis! Jesteśmy na tym samym poziomie.";
+"reversi.restart" = "Zagraj ponownie";
+"reversi.yourTurn" = "Twoja kolej! Wybieraj mądrze.";
+"reversi.noMoves" = "Brak dostępnych ruchów! Pomijam turę...";
+
+// Rock Paper Scissors Game
+"gameRulesRPS" = "Klasyczne zasady: \n• Kamień bije Nożyce\n• Nożyce biją Papier\n• Papier bije Kamień";
+"GameCount1" = "Kamień...";
+"GameCount2" = "Papier...";
+"GameCount3" = "Nożyce...";
+"GameCount4" = "START!";
+"GameStartBtn" = "GRAJ";
+"GameAgainBtn" = "ZAGRAJ PONOWNIE";
+"GameWinRPS" = "Świetnie! Twój wybór był silniejszy. Wygrywasz!";
+"GameLoseRPS" = "O nie! Tym razem Cię przechytrzyłam. Punkt dla mnie!";
+"GameDrawRPS" = "To remis! Wybraliśmy to samo. Gramy jeszcze raz!";
+"GameReadyRPS" = "Gotowy na Kamień, Papier, Nożyce? Zobaczmy, kto ma szczęście!";
+
+// Wardrobe
+"Wardrobe" = "Garderoba";
+"Wardrobe.rules" = "Panie, przygotowałam dla Ciebie kilka uroczych strojów! Przejrzyj szafę i dotknij stylu, który mam założyć. Zmienię się natychmiast tylko dla Ciebie! ❤️";
+"ClosetRules" = "Zasady garderoby";
+"Understand" = "Rozumiem!";
+"playDressUp" = "Pobawmy się w przebieranki!";
+"Wardrobe.Coins.Title" = "Powiększ jej szafę!";
+"Wardrobe.Coins.SubTitle" = "Zdobądź monety, by odblokować nowe stroje i ubrać swoją waifu w ekskluzywne zestawy.";
+"Wardrobe.girl.name" = "Emiko";
+
+// CreateDreamWaifu
+"CreateDreamWaifu" = "Stwórz swoją wymarzoną waifu";
+// Slides
+"CreateDreamWaifu.slide1.title" = "Wygląd i Spojrzenie";
+"CreateDreamWaifu.slide1.marketing" = "Stwórz wygląd, który Cię urzeknie. Wyobraź sobie, jak patrzy na Ciebie z ekranu...";
+"CreateDreamWaifu.slide2.title" = "Strój i Styl";
+"CreateDreamWaifu.slide2.marketing" = "Ubierz ją tak, by Cię kusiła. Każdy detal ma znaczenie w Waszych scenariuszach.";
+"CreateDreamWaifu.slide3.title" = "Osobowość i Dusza";
+"CreateDreamWaifu.slide3.marketing" = "Ukształtuj jej duszę. Pozna Twoje sekrety i przyniesie Ci pocieszenie.";
+"CreateDreamWaifu.slide4.title" = "Historia i Przeszłość";
+"CreateDreamWaifu.slide4.marketing" = "Zbuduj jej przeszłość dla epickiej opowieści. Jesteś bohaterem tego romansu.";
+"CreateDreamWaifu.slide5.title" = "Bliskość i Sekrety";
+"CreateDreamWaifu.slide5.marketing" = "Ostatni szlif. Odblokuj pragnienia, które uczynią ją Twoją na zawsze.";
+
+// Questions
+"CreateDreamWaifu.question.hair_style.title" = "Włosy, które aż chce się dotknąć?";
+"CreateDreamWaifu.question.eye_type.title" = "Oczy, w których utoniesz?";
+"CreateDreamWaifu.question.body_face.title" = "Typ sylwetki i twarzy?";
+"CreateDreamWaifu.question.fetish_traits.title" = "Specjalne cechy (fetysze)?";
+"CreateDreamWaifu.question.main_style.title" = "Styl, który Cię kusi?";
+"CreateDreamWaifu.question.accessories.title" = "Pikantne dodatki?";
+"CreateDreamWaifu.question.seasonal.title" = "Wygląd sezonowy?";
+"CreateDreamWaifu.question.underwear.title" = "Sekretna warstwa (bielizna)?";
+"CreateDreamWaifu.question.archetype.title" = "Archetyp?";
+"CreateDreamWaifu.question.speech_style.title" = "Styl mówienia?";
+"CreateDreamWaifu.question.reactions.title" = "Reakcje na Ciebie?";
+"CreateDreamWaifu.question.hidden_depth.title" = "Ukryta głębia?";
+"CreateDreamWaifu.question.origin.title" = "Pochodzenie?";
+"CreateDreamWaifu.question.goal.title" = "Jej cel wobec Ciebie?";
+"CreateDreamWaifu.question.drama.title" = "Źródło dramatu?";
+"CreateDreamWaifu.question.connection.title" = "Więź?";
+"CreateDreamWaifu.question.affection.title" = "Styl okazywania uczuć?";
+"CreateDreamWaifu.question.scenario.title" = "Ulubiony scenariusz?";
+"CreateDreamWaifu.question.secret.title" = "Jej mroczny sekret?";
+"CreateDreamWaifu.question.evolution.title" = "Ewolucja?";
+
+// Options
+"CreateDreamWaifu.option.short" = "Krótkie";
+"CreateDreamWaifu.option.long" = "Długie";
+"CreateDreamWaifu.option.ponytails" = "Kucyki";
+"CreateDreamWaifu.option.neon" = "Neonowe";
+"CreateDreamWaifu.option.pastel" = "Pastelowe";
+"CreateDreamWaifu.option.almond" = "Migdałowe";
+"CreateDreamWaifu.option.big_doe" = "Wielkie oczy";
+"CreateDreamWaifu.option.glowing_red" = "Świecąca czerwień";
+"CreateDreamWaifu.option.mysterious_purple" = "Tajemniczy fiolet";
+"CreateDreamWaifu.option.cute" = "Urocza";
+"CreateDreamWaifu.option.mature" = "Dojrzała";
+"CreateDreamWaifu.option.petite" = "Drobna";
+"CreateDreamWaifu.option.curvy" = "Kobieca";
+"CreateDreamWaifu.option.pale" = "Blada";
+"CreateDreamWaifu.option.tanned" = "Opalona";
+"CreateDreamWaifu.option.cat_ears" = "Kocie uszy";
+"CreateDreamWaifu.option.tail" = "Ogon";
+"CreateDreamWaifu.option.glasses" = "Okulary";
+"CreateDreamWaifu.option.collar" = "Obroża";
+"CreateDreamWaifu.option.ribbons" = "Wstążki";
+"CreateDreamWaifu.option.school_uniform" = "Mundurek";
+"CreateDreamWaifu.option.maid_outfit" = "Strój pokojówki";
+"CreateDreamWaifu.option.fantasy_armor" = "Zbroja fantasy";
+"CreateDreamWaifu.option.casual_chic" = "Szykowny casual";
+"CreateDreamWaifu.option.stockings" = "Pończochy";
+"CreateDreamWaifu.option.gloves" = "Rękawiczki";
+"CreateDreamWaifu.option.jewelry" = "Biżuteria";
+"CreateDreamWaifu.option.chokers" = "Choker";
+"CreateDreamWaifu.option.summer_bikini" = "Letnie bikini";
+"CreateDreamWaifu.option.winter_sweater" = "Zimowy sweter";
+"CreateDreamWaifu.option.cosplay" = "Cosplay";
+"CreateDreamWaifu.option.lacy" = "Koronki";
+"CreateDreamWaifu.option.provocative" = "Prowokująca";
+"CreateDreamWaifu.option.none" = "Brak";
+"CreateDreamWaifu.option.tsundere" = "Tsundere";
+"CreateDreamWaifu.option.yandere" = "Yandere (Obsesyjna)";
+"CreateDreamWaifu.option.kuudere" = "Kuudere (Chłodna)";
+"CreateDreamWaifu.option.deredere" = "Deredere (Słodka)";
+"CreateDreamWaifu.option.flirty" = "Flirciara";
+"CreateDreamWaifu.option.teasing" = "Droczy się";
+"CreateDreamWaifu.option.shy" = "Nieśmiała";
+"CreateDreamWaifu.option.oniichan" = "Onii-chan~";
+"CreateDreamWaifu.option.jealousy" = "Zazdrosna";
+"CreateDreamWaifu.option.supportive" = "Wspierająca";
+"CreateDreamWaifu.option.playful_pranks" = "Psoty";
+"CreateDreamWaifu.option.protective" = "Opiekuńcza";
+"CreateDreamWaifu.option.gamer" = "Graczka";
+"CreateDreamWaifu.option.cook" = "Kucharka";
+"CreateDreamWaifu.option.clingy" = "Przylepa";
+"CreateDreamWaifu.option.perfectionist" = "Perfekcjonistka";
+"CreateDreamWaifu.option.artist" = "Artystka";
+"CreateDreamWaifu.option.fantasy_kingdom" = "Królestwo Fantasy";
+"CreateDreamWaifu.option.modern_tokyo" = "Nowoczesne Tokio";
+"CreateDreamWaifu.option.alien_planet" = "Obca planeta";
+"CreateDreamWaifu.option.virtual_world" = "Wirtualny świat";
+"CreateDreamWaifu.option.adventure" = "Przygoda";
+"CreateDreamWaifu.option.protect_you" = "Chronić Cię";
+"CreateDreamWaifu.option.build_family" = "Założyć rodzinę";
+"CreateDreamWaifu.option.discover_herself" = "Odkryć siebie";
+"CreateDreamWaifu.option.rivals" = "Rywalizacja";
+"CreateDreamWaifu.option.enemies" = "Wrogowie";
+"CreateDreamWaifu.option.forbidden_secret" = "Zakazany sekret";
+"CreateDreamWaifu.option.past_trauma" = "Trauma z przeszłości";
+"CreateDreamWaifu.option.love_at_first_sight" = "Miłość od 1. wejrzenia";
+"CreateDreamWaifu.option.childhood_friend" = "Przyjaciel z dzieciństwa";
+"CreateDreamWaifu.option.soulmate" = "Bratnia dusza";
+"CreateDreamWaifu.option.arranged_meeting" = "Zaaranżowane spotkanie";
+"CreateDreamWaifu.option.hugs" = "Uściski";
+"CreateDreamWaifu.option.passionate_kisses" = "Namiętne pocałunki";
+"CreateDreamWaifu.option.dominant_whispers" = "Władczy szept";
+"CreateDreamWaifu.option.soft_touches" = "Delikatny dotyk";
+"CreateDreamWaifu.option.date_night" = "Randka";
+"CreateDreamWaifu.option.battle_side_by_side" = "Walka ramię w ramię";
+"CreateDreamWaifu.option.bedtime" = "Czas do łóżka";
+"CreateDreamWaifu.option.morning_routine" = "Poranna rutyna";
+"CreateDreamWaifu.option.hidden_desires" = "Ukryte pragnienia";
+"CreateDreamWaifu.option.custom_voice" = "Własne kwestie głosowe";
+"CreateDreamWaifu.option.secret_power" = "Sekretna moc";
+"CreateDreamWaifu.option.vulnerability" = "Wrażliwość";
+"CreateDreamWaifu.option.level_loyalty" = "Zwiększa lojalność";
+"CreateDreamWaifu.option.unlock_outfits" = "Odblokowuje stroje";
+"CreateDreamWaifu.option.personality_shifts" = "Zmiany osobowości";
+"CreateDreamWaifu.option.all_above" = "Wszystkie powyższe";
+
+// UI Components
+"CreateDreamWaifu.action.next" = "Następny krok";
+"CreateDreamWaifu.action.next_count" = "Następny krok (zostało %d)";
+"CreateDreamWaifu.action.finish" = "Poznaj swoją wymarzoną waifu 💕";
+"CreateDreamWaifu.paywall.title" = "WYMAGANY DOSTĘP PREMIUM";
+"CreateDreamWaifu.paywall.button" = "Symuluj zakup";
+"CreateDreamWaifu.alert.title" = "🎉 Twoja waifu jest gotowa!";
+"CreateDreamWaifu.alert.message" = "Czeka na Ciebie na czacie. Czas poznać Twój ideał!";
+"CreateDreamWaifu.alert.button" = "Zaczynamy!";
+
+// Names
+"CreateDreamWaifu.name1" = "Sora";
+"CreateDreamWaifu.name2" = "Mio";
+"CreateDreamWaifu.name3" = "Noa";
+"CreateDreamWaifu.name4" = "Saki";
+"CreateDreamWaifu.name5" = "Tsumi";
+"CreateDreamWaifu.name6" = "Fuka";
+"CreateDreamWaifu.name7" = "Ruka";
+"CreateDreamWaifu.name8" = "Yume";
+"CreateDreamWaifu.name9" = "Kana";
+"CreateDreamWaifu.name10" = "Shio";
+"CreateDreamWaifu.name11" = "Hina";
+"CreateDreamWaifu.name12" = "Nao";
+"CreateDreamWaifu.name13" = "Asuka";
+"CreateDreamWaifu.name14" = "Riko";
+"CreateDreamWaifu.name15" = "Mizu";
+"CreateDreamWaifu.name16" = "Suzu";
+"CreateDreamWaifu.name17" = "Tsubaki";
+"CreateDreamWaifu.name18" = "Kurea";
+"CreateDreamWaifu.name19" = "Amane";
+"CreateDreamWaifu.name20" = "Airi";
