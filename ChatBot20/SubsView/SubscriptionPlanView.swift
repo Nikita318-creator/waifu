@@ -76,7 +76,8 @@ class SubscriptionPlanView: UIView {
         contentStack.addArrangedSubview(priceStack)
         
         contentStack.snp.makeConstraints { make in
-            make.leading.trailing.equalToSuperview().inset(16)
+            make.leading.equalToSuperview().inset(16)
+            make.trailing.equalTo(checkmarkImageView.snp.leading).offset(-12)
             make.centerY.equalToSuperview()
         }
         
