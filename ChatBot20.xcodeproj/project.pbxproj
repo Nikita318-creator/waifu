@@ -34,7 +34,6 @@
 		105F10392E282738002CF2FF /* ChatListItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 105F10382E282736002CF2FF /* ChatListItemCell.swift */; };
 		105F103B2E282763002CF2FF /* AllChatsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 105F103A2E282762002CF2FF /* AllChatsView.swift */; };
 		105F103D2E28276C002CF2FF /* AllChatsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 105F103C2E28276B002CF2FF /* AllChatsViewModel.swift */; };
-		105F9A972F0DF471007B82CE /* GoogleAPIs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 105F9A962F0DF46A007B82CE /* GoogleAPIs.swift */; };
 		105F9C3F2F0F6E33007B82CE /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 105F9C3D2F0F6E33007B82CE /* Localizable.strings */; };
 		105F9C562F10C9B6007B82CE /* FeedbackFooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 105F9C552F10C9B4007B82CE /* FeedbackFooterView.swift */; };
 		105F9C592F10CA3B007B82CE /* TableFeedbackFooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 105F9C582F10CA37007B82CE /* TableFeedbackFooterView.swift */; };
@@ -161,7 +160,6 @@
 		105F10382E282736002CF2FF /* ChatListItemCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatListItemCell.swift; sourceTree = "<group>"; };
 		105F103A2E282762002CF2FF /* AllChatsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllChatsView.swift; sourceTree = "<group>"; };
 		105F103C2E28276B002CF2FF /* AllChatsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllChatsViewModel.swift; sourceTree = "<group>"; };
-		105F9A962F0DF46A007B82CE /* GoogleAPIs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoogleAPIs.swift; sourceTree = "<group>"; };
 		105F9C3B2F0F6E03007B82CE /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/Main.storyboard; sourceTree = "<group>"; };
 		105F9C3C2F0F6E03007B82CE /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		105F9C3E2F0F6E33007B82CE /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -673,7 +671,6 @@
 		10E75C882F070BFA00D28EB9 /* GoogleTTSManager */ = {
 			isa = PBXGroup;
 			children = (
-				105F9A962F0DF46A007B82CE /* GoogleAPIs.swift */,
 				10E75C892F070BFE00D28EB9 /* GoogleTTSManager.swift */,
 			);
 			path = GoogleTTSManager;
@@ -864,7 +861,6 @@
 				1061A3542DF2179500206F61 /* MainHelper.swift in Sources */,
 				10E75C7B2F05FAB400D28EB9 /* WaifuSlideData.swift in Sources */,
 				10DE77172E5E61280062F74D /* CoinsView.swift in Sources */,
-				105F9A972F0DF471007B82CE /* GoogleAPIs.swift in Sources */,
 				10904CC32EEEE42700528437 /* RemoteRealmVideoService.swift in Sources */,
 				10E75C702F05F00800D28EB9 /* CreateWaifuHeader.swift in Sources */,
 				1061A2712DF0ECF400206F61 /* AIChatInputView.swift in Sources */,

@@ -4,8 +4,10 @@ class GoogleTTSManager: NSObject {
     static let shared = GoogleTTSManager()
     
     var audioPlayer: AVPlayer?
-    private let apiKey = APIs.googleTTSManagerAPIKey
-    
+    private var apiKey: String {
+        "AIzaSyAisC2WePRrTDojZa" + ConfigService.shared.audioHalfKey
+    }
+
     var currentSpeakinID: String?
     private var isPreparing: Bool = false
 

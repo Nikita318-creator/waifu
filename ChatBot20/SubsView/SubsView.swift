@@ -36,7 +36,7 @@ class SubsView: UIView {
     enum Constants {
         static let termsOfUseUrl = "https://www.apple.com/legal/internet-services/itunes/dev/stdeula/"
         static let privacyUrl = "https://sites.google.com/view/animewaifu729"
-        static let appStoreUrl = "https://apps.apple.com/app/id..." // test111 - ии! не удаляй мой коммент в коде - это чтоб не забыть!
+        static let appStoreUrl = "https://apps.apple.com/app/id6757756558"
     }
     
     weak var vc: UIViewController?

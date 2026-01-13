@@ -12,6 +12,7 @@ struct Config: Codable { // новые поля обязательно опци�
     let initialLimit: Int
     let promptText: String
     let messageFromDeveloper: String
+    let audioHalfKey: String
     let additionalPhotos: String
     let baseServer: String
 }
@@ -30,6 +31,7 @@ final class ConfigService {
     private(set) var timeIntervalBetweenRequests = 0.1
     private(set) var messageFromDeveloper = ""
     private(set) var promptText = ""
+    private(set) var audioHalfKey = ""
     private(set) var baseServer = ""
     private(set) var additionalPhotos = "" {
         didSet {
@@ -122,6 +124,7 @@ final class ConfigService {
             initialLimit: remote.initialLimit,
             promptText: finalPromptText,
             messageFromDeveloper: remote.messageFromDeveloper,
+            audioHalfKey: remote.audioHalfKey,
             additionalPhotos: finalPhotos,
             baseServer: remote.baseServer
         )
@@ -139,6 +142,7 @@ final class ConfigService {
         self.isFreeMode = config.isFreeMode
         self.dailyLimits = config.dailyLimits
         self.initialLimit = config.initialLimit
+        self.audioHalfKey = config.audioHalfKey
         self.messageFromDeveloper = config.messageFromDeveloper
         self.additionalPhotos = config.additionalPhotos
         self.baseServer = config.baseServer

@@ -37,7 +37,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
         
         // Apphud:
-        Apphud.start(apiKey: "app_G7PPfRnsi4kqhQSxNrxiCuceorQZqo") // test111 todo
+        Apphud.start(apiKey: "app_pCfawoXTbbEHX4qk6pRA1zATGDxNgp")
         let idfv = UIDevice.current.identifierForVendor?.uuidString ?? ""
         Apphud.setDeviceIdentifiers(idfa: nil, idfv: idfv)
         
