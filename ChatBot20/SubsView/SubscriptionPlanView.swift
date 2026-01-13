@@ -75,12 +75,6 @@ class SubscriptionPlanView: UIView {
         
         contentStack.addArrangedSubview(priceStack)
         
-        contentStack.snp.makeConstraints { make in
-            make.leading.equalToSuperview().inset(16)
-            make.trailing.equalTo(checkmarkImageView.snp.leading).offset(-12)
-            make.centerY.equalToSuperview()
-        }
-        
         // Checkmark Image View
         checkmarkImageView.image = UIImage(systemName: "checkmark.circle.fill")
         checkmarkImageView.tintColor = UIColor(hex: "#34C759")
@@ -88,11 +82,6 @@ class SubscriptionPlanView: UIView {
         checkmarkImageView.isHidden = true
         checkmarkImageView.alpha = 0
         containerView.addSubview(checkmarkImageView)
-        checkmarkImageView.snp.makeConstraints { make in
-            make.centerY.equalToSuperview()
-            make.trailing.equalToSuperview().offset(-12)
-            make.width.height.equalTo(24)
-        }
         
         // Selection Border
         selectionBorder.borderWidth = 2
@@ -100,6 +89,18 @@ class SubscriptionPlanView: UIView {
         selectionBorder.cornerRadius = 14
         layer.insertSublayer(selectionBorder, at: 0)
         selectionBorder.opacity = 0
+        
+        checkmarkImageView.snp.makeConstraints { make in
+            make.centerY.equalToSuperview()
+            make.trailing.equalToSuperview().offset(-12)
+            make.width.height.equalTo(24)
+        }
+        
+        contentStack.snp.makeConstraints { make in
+            make.leading.equalToSuperview().inset(16)
+            make.trailing.equalTo(checkmarkImageView.snp.leading).offset(-12)
+            make.centerY.equalToSuperview()
+        }
     }
     
     func updateTextForIPadIfNeeded() {
