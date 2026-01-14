@@ -561,7 +561,7 @@ extension SubsView {
                 case .failed:
                     self?.hideLoadingIndicator()
                 case .purchased, .restored:
-                    let productPlanID: String
+                    var productPlanID: String
                     switch productIdentifier {
                     case SubsIDs.weeklyPROSubsId:
                         productPlanID = "weeklyPRO"
@@ -574,7 +574,11 @@ extension SubsView {
                     default:
                         productPlanID = "unknown ???"
                     }
-                                        
+                    
+                    if MainHelper.shared.isDiscountOffer {
+                        productPlanID += " DiscountOffer"
+                    }
+                    
                     WebHookAnalyticsService.shared.sendAnalyticsReport(messageText: "PURCHASED!!! \(productPlanID) \((self?.isOnboarding ?? false) ? "from Onboarding" : "from limits")")
                     AnalyticService.shared.logEvent(name: "PURCHASED!!!", properties: ["productPlanID":"\(productPlanID)", "isOnboarding":"\(self?.isOnboarding ?? false)"])
 
