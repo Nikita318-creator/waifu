@@ -391,7 +391,7 @@ class SubsView: UIView {
         }
     }
     
-    @objc func yearlyButtonTapped() { // test111 проверить ценники правильно ли расчитывают месячную цену в неделю + проверить логику и UI DiscountOffer
+    @objc func yearlyButtonTapped() {
         let currentProductId: String
         if MainHelper.shared.isDiscountOffer {
             currentProductId = SubsIDs.monthlySubsId

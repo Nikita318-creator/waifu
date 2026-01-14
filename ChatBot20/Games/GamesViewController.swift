@@ -64,7 +64,7 @@ class GamesViewController: UIViewController {
     }
     
     @objc private func feedbackTapped() {
-        let email = "nikuvar77@gmail.com" // test111
+        let email = "mikitka2013u@gmail.com" // test111 пока эта почта пока не создал боевую под это приложение
         let subject = "Feedback: My Waifu App"
         let body = "\n\n--- Device Info ---\nModel: \(UIDevice.current.modelName)\nOS: \(UIDevice.current.systemVersion)"
         

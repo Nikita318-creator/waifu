@@ -52,8 +52,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     private func checkForDiscountOffer() {
         guard !IAPService.shared.hasActiveSubscription else { return }
         
-//        MainHelper.shared.isDiscountOffer = true // test111
-//        MainHelper.shared.needShowPaywallForDiscountOffer = true // test111
+//        MainHelper.shared.isDiscountOffer = true
+//        MainHelper.shared.needShowPaywallForDiscountOffer = true
         
         let defaults = UserDefaults.standard
         
