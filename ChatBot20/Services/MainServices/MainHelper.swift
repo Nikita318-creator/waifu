@@ -7,8 +7,18 @@ class MainHelper {
 
     var isFirstMessageInChat: Bool = false
     var isVoiceMessages: Bool = false
-    var isDiscountOffer: Bool = false
+    
+    var isDiscountOfferActive: Bool = false
+    var isDiscountOffer: Bool {
+        get {
+            return ConfigService.shared.isDiscountOfferAvailable && isDiscountOfferActive
+        }
+        set {
+            isDiscountOfferActive = newValue
+        }
+    }
     var needShowPaywallForDiscountOffer: Bool = false
+    
     var currentLanguage = ""
     var currentAIMessageType: AIMessageType = .typing
     var needOpenChatWithId: String?

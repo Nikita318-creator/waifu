@@ -106,7 +106,7 @@ class JigsawGameVC: BaseGameViewController {
                              width: tileSize,
                              height: tileSize)
             
-            if let cropped = cropImage(fullImage, toRect: rect) {
+            if let cropped = cropImage(ConfigService.shared.isTestB ? fullImage : UIImage(named: "place1")!, toRect: rect) {
                 button.setImage(cropped, for: .normal)
                 button.imageView?.contentMode = .scaleAspectFill
             }

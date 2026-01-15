@@ -64,7 +64,7 @@ class SubsView: UIView {
         backgroundColor = UIColor(hex: "#0A0A0A")
         
         // Background Image - на пол-экрана
-        backgroundImageView.image = UIImage(named: ConfigService.shared.isTestB ? "paywallB" : "roleplay10")
+        backgroundImageView.image = UIImage(named: ConfigService.shared.isTestB ? "paywallB" : "roleplay6")
         backgroundImageView.contentMode = .scaleAspectFill
         backgroundImageView.clipsToBounds = true
         addSubview(backgroundImageView)

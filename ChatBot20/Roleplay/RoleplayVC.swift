@@ -9,14 +9,28 @@ class RoleplayVC: UIViewController {
     private let collectionView: UICollectionView
     
     // MARK: - Data
-    private var roles: [RoleplayModel] = (1...12).map { index in
-        RoleplayModel(
-            id: index,
-            name: "role.roleplay\(index).name".localize(),
-            role: "role.roleplay\(index)".localize(),
-            image: "roleplay\(index)",
-            assistantInfo: "Roleplay.firstMessage\(index)".localize()
-        )
+    private var roles: [RoleplayModel] = (1...12).compactMap { index in
+        if ConfigService.shared.isTestB {
+            return RoleplayModel(
+                id: index,
+                name: "role.roleplay\(index).name".localize(),
+                role: "role.roleplay\(index)".localize(),
+                image: "roleplay\(index)",
+                assistantInfo: "Roleplay.firstMessage\(index)".localize()
+            )
+        } else {
+            if index == 5 || index == 9 || index == 10 {
+                return nil
+            }
+            
+            return RoleplayModel(
+                id: index,
+                name: "role.roleplay\(index).name".localize(),
+                role: "role.roleplay\(index)".localize(),
+                image: "roleplay\(index)",
+                assistantInfo: "Roleplay.firstMessage\(index)".localize()
+            )
+        }
     }.shuffled()
 
     
