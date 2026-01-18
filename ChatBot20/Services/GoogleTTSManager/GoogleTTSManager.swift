@@ -150,12 +150,14 @@ class GoogleTTSManager: NSObject {
         NotificationCenter.default.post(name: NSNotification.Name("updateAllAudioCellsOnStart"), object: nil)
     }
 
-    func stopSpeaking() {
+    func stopSpeaking(needNotifyOthers: Bool = true) {
         isPreparing = false
         NotificationCenter.default.removeObserver(self, name: .AVPlayerItemDidPlayToEndTime, object: nil)
         audioPlayer?.pause()
         audioPlayer = nil
-        handleFinished()
+        if needNotifyOthers {
+            handleFinished()
+        }
     }
 
     @objc private func playerDidFinishPlaying() {

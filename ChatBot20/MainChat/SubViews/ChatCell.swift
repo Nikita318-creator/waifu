@@ -600,7 +600,7 @@ class ChatCell: UITableViewCell {
             service.stopSpeaking()
             isSpeak = false
         } else {
-            service.stopSpeaking()
+            service.stopSpeaking(needNotifyOthers: false)
             service.currentSpeakinID = messageID
             service.speak(text: currentMessageText)
             isSpeak = true
