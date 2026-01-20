@@ -222,7 +222,7 @@ extension RoleplayVC: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: RoleplayCell.identifier, for: indexPath) as? RoleplayCell else {
-            fatalError("Failed to dequeue RoleplayCell")
+            return UICollectionViewCell()
         }
         
         let roleplay = roles[indexPath.row]

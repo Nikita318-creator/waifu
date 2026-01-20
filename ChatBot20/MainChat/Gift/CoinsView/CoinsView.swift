@@ -154,7 +154,7 @@ extension CoinsView: UICollectionViewDataSource {
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CoinsPackageCell.reuseIdentifier, for: indexPath) as? CoinsPackageCell else {
-            fatalError("Could not dequeue CoinsPackageCell")
+            return UICollectionViewCell()
         }
         let package = packages[indexPath.row]
         cell.loadingIAPHandler = { [weak self] isStarted in

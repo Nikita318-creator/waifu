@@ -28,7 +28,8 @@ class StreaksService {
         do {
             self.realm = try Realm()
         } catch {
-            fatalError("Failed to initialize Realm")
+            let fallbackConfig = Realm.Configuration(inMemoryIdentifier: "StreaksServiceFallbackRealm")
+            self.realm = try! Realm(configuration: fallbackConfig)
         }
     }
 

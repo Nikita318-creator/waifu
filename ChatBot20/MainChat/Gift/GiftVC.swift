@@ -189,7 +189,7 @@ extension GiftVC: UICollectionViewDataSource {
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: GiftCell.reuseIdentifier, for: indexPath) as? GiftCell else {
-            fatalError("Could not dequeue GiftCell")
+            return UICollectionViewCell()
         }
         let gift = giftItems[indexPath.row]
         cell.configure(with: gift)

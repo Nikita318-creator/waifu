@@ -57,7 +57,8 @@ class AssistantsService {
         do {
             self.realm = try Realm(configuration: config)
         } catch {
-            fatalError("Failed to initialize Realm: \(error)")
+            let fallbackConfig = Realm.Configuration(inMemoryIdentifier: "AssistantsServiceFallbackRealm")
+            self.realm = try! Realm(configuration: fallbackConfig)
         }
     }
     

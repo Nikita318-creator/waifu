@@ -21,14 +21,15 @@ class RemoteRealmPhotoService {
         let config = Realm.Configuration(
             schemaVersion: SchemaVersion.currentSchemaVersion,
             migrationBlock: { migration, oldSchemaVersion in
-             //
+             // Логика миграции
             }
         )
         
         do {
             self.realm = try Realm(configuration: config)
         } catch {
-            fatalError("Failed to open Realm: \(error.localizedDescription)")
+            let fallbackConfig = Realm.Configuration(inMemoryIdentifier: "PhotoServiceFallback")
+            self.realm = try! Realm(configuration: fallbackConfig)
         }
     }
     

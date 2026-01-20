@@ -295,7 +295,7 @@ extension CreateDreamWaifuVC: UICollectionViewDataSource, UICollectionViewDelega
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: DreamWaifuCell.identifier, for: indexPath) as? DreamWaifuCell else {
-            fatalError()
+            return UICollectionViewCell()
         }
         cell.configure(with: slides[indexPath.item], delegate: self)
         return cell

@@ -50,7 +50,8 @@ class MessageHistoryService {
         do {
             self.realm = try Realm(configuration: config)
         } catch {
-            fatalError("Failed to initialize Realm: \(error)")
+            let fallbackConfig = Realm.Configuration(inMemoryIdentifier: "MessageHistoryServiceFallbackRealm")
+            self.realm = try! Realm(configuration: fallbackConfig)
         }
     }
     

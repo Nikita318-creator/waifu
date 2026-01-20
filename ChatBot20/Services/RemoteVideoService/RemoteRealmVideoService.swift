@@ -22,7 +22,8 @@ class RemoteRealmVideoService {
         do {
             self.realm = try Realm(configuration: config)
         } catch {
-            fatalError("Failed to initialize Realm: \(error)")
+            let fallbackConfig = Realm.Configuration(inMemoryIdentifier: "CachedVideoFallbackRealm")
+            self.realm = try! Realm(configuration: fallbackConfig)
         }
     }
     
