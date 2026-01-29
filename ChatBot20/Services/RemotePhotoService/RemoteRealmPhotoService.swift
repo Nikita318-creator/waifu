@@ -1,5 +1,3 @@
-
-
 import Foundation
 import RealmSwift
 import UIKit
@@ -15,41 +13,50 @@ class RemoteRealmPhotoService {
     
     static let shared = RemoteRealmPhotoService()
     
-    private let realm: Realm
+    private let config: Realm.Configuration
+    
+    private var realm: Realm {
+        return try! Realm(configuration: config)
+    }
     
     private init() {
-        let config = Realm.Configuration(
+        let mainConfig = Realm.Configuration(
             schemaVersion: SchemaVersion.currentSchemaVersion,
             migrationBlock: { migration, oldSchemaVersion in
-             // Логика миграции
+                // Логика миграции
             }
         )
         
         do {
-            self.realm = try Realm(configuration: config)
+            _ = try Realm(configuration: mainConfig)
+            self.config = mainConfig
         } catch {
-            let fallbackConfig = Realm.Configuration(inMemoryIdentifier: "PhotoServiceFallback")
-            self.realm = try! Realm(configuration: fallbackConfig)
+            self.config = Realm.Configuration(inMemoryIdentifier: "PhotoServiceFallback")
         }
     }
     
-    /// Сохраняет изображение в базу данных
+    /// Сохраняет изображение в базу данных (теперь полностью в фоне)
     func saveImage(for urlString: String, with imageName: String, data: Data) {
-        let cachedImage = CachedImage()
-        cachedImage.urlString = urlString
-        cachedImage.imageName = imageName
-        cachedImage.imageData = data
+        let currentConfig = self.config
         
-        do {
-            try realm.write {
-                realm.add(cachedImage)
+        DispatchQueue.global(qos: .userInitiated).async {
+            let cachedImage = CachedImage()
+            cachedImage.urlString = urlString
+            cachedImage.imageName = imageName
+            cachedImage.imageData = data
+            
+            do {
+                let backgroundRealm = try Realm(configuration: currentConfig)
+                try backgroundRealm.write {
+                    backgroundRealm.add(cachedImage, update: .modified)
+                }
+            } catch {
+                print("Failed to save image to Realm: \(error.localizedDescription)")
             }
-        } catch {
-            print("Failed to save image to Realm: \(error.localizedDescription)")
         }
     }
     
-    /// Получает изображение из базы данных по имени
+    /// Получает изображение из базы данных по имени (безопасно для потоков)
     func getImage(by name: String) -> UIImage? {
         if let cachedImage = realm.objects(CachedImage.self).first(where: { $0.imageName == name }) {
             if let imageData = cachedImage.imageData {
@@ -66,27 +73,18 @@ class RemoteRealmPhotoService {
     
     /// Получает массив изображений из базы данных по части имени
     func getGroupImages(by name: String) -> [UIImage] {
-        // 1. Используем Realm.objects для получения коллекции объектов.
-        // 2. Используем .filter с NSPredicate для эффективного поиска по части имени
-        //    Realm оптимизирует этот поиск, и он будет быстрее, чем фильтрация на Swift
         let cachedImages = realm.objects(CachedImage.self).filter("imageName CONTAINS %@", name)
         
-        // 3. Создаем пустой массив для изображений
         var images: [UIImage] = []
-        
-        // 4. Проходимся по найденным объектам
         for cachedImage in cachedImages {
             if let imageData = cachedImage.imageData, let image = UIImage(data: imageData) {
-                // 5. Преобразуем данные в UIImage и добавляем в массив
                 images.append(image)
             }
         }
-        
-        // 6. Возвращаем итоговый массив
         return images
     }
     
-    /// Проверяет, существует ли изображение в кэше по имени
+    /// Проверяет, существует ли изображение в кэше по имени (безопасно для потоков)
     func isImageCached(by name: String) -> Bool {
         return realm.objects(CachedImage.self).first(where: { $0.imageName == name }) != nil
     }

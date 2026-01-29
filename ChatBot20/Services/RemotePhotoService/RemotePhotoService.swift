@@ -91,17 +91,12 @@ class RemotePhotoService {
                 print("Error downloading image: \(error?.localizedDescription ?? "unknown error")")
                 AnalyticService.shared.logEvent(name: "Error downloading image", properties: ["error: ":"\(error?.localizedDescription ?? "unknown error")"])
                 WebHookAnalyticsService.shared.sendAnalyticsReport(messageText: "Error downloading image: \(error?.localizedDescription ?? "unknown error")")
-                DispatchQueue.main.async {
-                    completion(nil)
-                }
+                completion(nil)
                 return
             }
 
             let image = UIImage(data: data)
-            
-            DispatchQueue.main.async {
-                completion(image)
-            }
+            completion(image)
         }.resume()
     }
 }
