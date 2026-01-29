@@ -87,16 +87,27 @@ class GoogleTTSManager: NSObject {
         request.httpMethod = "POST"
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")
         
+        var finalPitch = 4.0
+
+        if langCode == "zh" {
+            finalPitch = 2.0
+        } else if langCode == "ja" {
+            finalPitch = 3.0
+        } else {
+            finalPitch = 4.0
+        }
+        
+        let textToSpeech = text.replacingOccurrences(of: "~", with: "")
         let json: [String: Any] = [
-            "input": ["text": text],
+            "input": ["text": textToSpeech],
             "voice": [
                 "languageCode": langTag,
                 "name": voiceName
             ],
             "audioConfig": [
                 "audioEncoding": "MP3",
-                "pitch": 4.0,
-                "speakingRate": 1.05
+                "pitch": finalPitch,
+                "speakingRate": 1
             ]
         ]
         
