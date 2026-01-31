@@ -218,6 +218,7 @@
 		10904CBE2EEEDFF700528437 /* RemoteVideoService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteVideoService.swift; sourceTree = "<group>"; };
 		10904CC22EEEE42600528437 /* RemoteRealmVideoService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteRealmVideoService.swift; sourceTree = "<group>"; };
 		10C7DA162F2EB8FE00ACA897 /* AssistantDynamicService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssistantDynamicService.swift; sourceTree = "<group>"; };
+		10C7DA182F2EC99C00ACA897 /* th */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = th; path = th.lproj/Localizable.strings; sourceTree = "<group>"; };
 		10D1C4AB2E3FEC86005557CF /* UnreadMessagesService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnreadMessagesService.swift; sourceTree = "<group>"; };
 		10DE77142E5E5BAB0062F74D /* GiftVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GiftVC.swift; sourceTree = "<group>"; };
 		10DE77162E5E611B0062F74D /* CoinsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinsView.swift; sourceTree = "<group>"; };
@@ -793,6 +794,7 @@
 				it,
 				tr,
 				ur,
+				th,
 			);
 			mainGroup = 1061A1782DF0E9AD00206F61;
 			minimizedProjectReferenceProxies = 1;
@@ -945,6 +947,7 @@
 				105F9C4C2F0F6EEC007B82CE /* it */,
 				105F9C4D2F0F6F00007B82CE /* tr */,
 				105F9C4E2F0FE41A007B82CE /* ur */,
+				10C7DA182F2EC99C00ACA897 /* th */,
 			);
 			name = Localizable.strings;
 			sourceTree = "<group>";
