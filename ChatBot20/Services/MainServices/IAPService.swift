@@ -5,8 +5,8 @@ enum SubsIDs {
     static let weeklyPROSubsId = "weeklyPROSubsId"
     static let monthlyPROSubsId = "monthlyPROSubsId"
     
-    static let weeklySubsId =  "weeklySubsId2"
-    static let monthlySubsId = "monthlySubsId2"
+    static let weeklySubsId =  "weeklySubsIdNew"
+    static let monthlySubsId = "monthlySubsIdNew"
 }
 
 enum CoinsIDs {

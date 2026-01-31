@@ -437,8 +437,8 @@
 		1061A27A2DF0EE8600206F61 /* Services */ = {
 			isa = PBXGroup;
 			children = (
-				10C7DA152F2EB8FB00ACA897 /* AssistantDynamicService */,
 				108731692F01BF6500DD3177 /* MainServices */,
+				10C7DA152F2EB8FB00ACA897 /* AssistantDynamicService */,
 				10E75C912F07663C00D28EB9 /* CoinsService */,
 				10E75C8E2F07625900D28EB9 /* WebHookAnalyticsService */,
 				10E75C882F070BFA00D28EB9 /* GoogleTTSManager */,
