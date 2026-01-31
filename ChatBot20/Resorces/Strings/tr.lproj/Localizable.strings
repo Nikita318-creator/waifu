@@ -94,7 +94,7 @@
 "MicrophoneAccess.Title" = "Mikrofon Erişimi Gerekli";
 "MicrophoneAccess.Message" = "waifu'nla konuşmak için ayarlardan mikrofon erişimine izin ver.";
 "DeleteChatHistoryTitle" = "Sohbet geçmişi silinsin mi?";
-"DeleteChatHistoryMessage" = "Bu YZ waifu ile olan tüm sohbet geçmişini kalıcı olarak silmek istediğinden emin misin?";
+"DeleteChatHistoryMessage" = "Bu YZ Waifu ile olan tüm sohbet geçmişini kalıcı olarak silmek istediğinden emin misin? O, şimdiye kadar konuştuğunuz her şeyi unutacak.";
 "onlyPremiumUserCanSentPhotos.Title" = "Premium Gerekli";
 "onlyPremiumUserCanSentPhotos.Message" = "Premium'a yükselt ve YZ waifu'na fotoğraflar gönder — sohbetini kişisel ve heyecan verici kıl!";
 "needPremiumForAudio.Title" = "Sesini Duy";

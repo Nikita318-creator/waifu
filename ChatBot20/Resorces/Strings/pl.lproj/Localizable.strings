@@ -94,7 +94,7 @@
 "MicrophoneAccess.Title" = "Wymagany mikrofon";
 "MicrophoneAccess.Message" = "Aby rozmawiać ze swoją waifu, zezwól na dostęp do mikrofonu w ustawieniach.";
 "DeleteChatHistoryTitle" = "Usunąć historię?";
-"DeleteChatHistoryMessage" = "Czy na pewno chcesz trwale usunąć całą historię rozmów z tą SI waifu?";
+"DeleteChatHistoryMessage" = "Czy na pewno chcesz trwale usunąć całą historię czatu z tą AI Waifu? Ona zapomni o wszystkim, o czym kiedykolwiek rozmawialiście.";
 "onlyPremiumUserCanSentPhotos.Title" = "Wymagane Premium";
 "onlyPremiumUserCanSentPhotos.Message" = "Przejdź na Premium i wysyłaj zdjęcia do swojej waifu – spraw, by czat był osobisty i ekscytujący!";
 "needPremiumForAudio.Title" = "Usłysz jej głos";

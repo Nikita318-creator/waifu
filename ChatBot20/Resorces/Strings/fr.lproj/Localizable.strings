@@ -94,7 +94,7 @@
 "MicrophoneAccess.Title" = "Micro requis";
 "MicrophoneAccess.Message" = "Pour parler à ta waifu, autorise le micro dans les réglages.";
 "DeleteChatHistoryTitle" = "Supprimer l'historique ?";
-"DeleteChatHistoryMessage" = "Voulez-vous vraiment supprimer tout l'historique avec cette IA waifu ?";
+"DeleteChatHistoryMessage" = "Es-tu sûr de vouloir supprimer définitivement tout l'historique avec cette AI Waifu ? Elle oubliera absolument tout ce dont vous avez discuté.";
 "onlyPremiumUserCanSentPhotos.Title" = "Premium requis";
 "onlyPremiumUserCanSentPhotos.Message" = "Passe au Premium pour envoyer des photos à ta IA waifu — rends ton chat plus personnel и excitant !";
 "needPremiumForAudio.Title" = "Écoute sa voix";

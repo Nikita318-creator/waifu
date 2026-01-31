@@ -94,7 +94,7 @@
 "MicrophoneAccess.Title" = "माइक एक्सेस चाहिए";
 "MicrophoneAccess.Message" = "अपनी waifu से बात करने के लिए सेटिंग्स में माइक एक्सेस दें।";
 "DeleteChatHistoryTitle" = "चैट इतिहास हटाएं?";
-"DeleteChatHistoryMessage" = "क्या आप वाकई इस AI waifu के साथ पूरा चैट इतिहास हटाना चाहते हैं?";
+"DeleteChatHistoryMessage" = "क्या आप वाकई इस AI Waifu के साथ चैट इतिहास को स्थायी रूप से हटाना चाहते हैं? वह आपके द्वारा की गई हर बात भूल जाएगी।";
 "onlyPremiumUserCanSentPhotos.Title" = "प्रीमियम ज़रूरी है";
 "onlyPremiumUserCanSentPhotos.Message" = "प्रीमियम पर अपग्रेड करें और अपनी AI waifu को फोटो भेजें - अपनी चैट को और भी निजी बनाएँ!";
 "needPremiumForAudio.Title" = "उसकी आवाज़ सुनें";

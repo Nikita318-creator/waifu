@@ -94,7 +94,7 @@
 "MicrophoneAccess.Title" = "マイクの使用許可";
 "MicrophoneAccess.Message" = "俺の嫁と話すには、設定でマイクをオンにしてね。";
 "DeleteChatHistoryTitle" = "履歴を削除する？";
-"DeleteChatHistoryMessage" = "このAI俺の嫁との全履歴を消しちゃうの？ 本当にいいの？";
+"DeleteChatHistoryMessage" = "このAI Waifuとのチャット履歴をすべて削除してもよろしいですか？彼女はあなたと話したすべてを忘れてしまいます。";
 "onlyPremiumUserCanSentPhotos.Title" = "プレミアム限定";
 "onlyPremiumUserCanSentPhotos.Message" = "プレミアムにアップグレードして、AI俺の嫁に写真を送ろう！もっと親密で刺激的に！";
 "needPremiumForAudio.Title" = "彼女の声を聞く";

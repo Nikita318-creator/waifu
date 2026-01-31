@@ -94,7 +94,7 @@
 "MicrophoneAccess.Title" = "مطلوب الوصول للميكروفون";
 "MicrophoneAccess.Message" = "للتحدث مع waifu الخاصة بك، اسمح بالوصول للميكروفون من الإعدادات.";
 "DeleteChatHistoryTitle" = "حذف سجل الدردشة؟";
-"DeleteChatHistoryMessage" = "هل أنت متأكد من حذف سجل الدردشة بالكامل مع هذه الـ AI waifu نهائياً؟";
+"DeleteChatHistoryMessage" = "هل أنت متأكد أنك تريد حذف سجل الدردشة مع رفيقتك بالكامل؟ سوف تنسى الـ Waifu كل ما تحدثتم عنه تماماً.";
 "onlyPremiumUserCanSentPhotos.Title" = "مطلوب بريميوم";
 "onlyPremiumUserCanSentPhotos.Message" = "اشترك في بريميوم وأرسل صوراً إلى AI waifu – اجعل دردشتك شخصية ومثيرة!";
 "needPremiumForAudio.Title" = "اسمع صوتها";

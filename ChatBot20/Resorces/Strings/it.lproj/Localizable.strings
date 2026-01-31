@@ -94,7 +94,7 @@
 "MicrophoneAccess.Title" = "Accesso Microfono";
 "MicrophoneAccess.Message" = "Per parlare con la tua Waifu, abilita il microfono nelle Impostazioni.";
 "DeleteChatHistoryTitle" = "Elimina cronologia?";
-"DeleteChatHistoryMessage" = "Vuoi eliminare per sempre la chat con questa IA Waifu?";
+"DeleteChatHistoryMessage" = "Sei sicuro di voler eliminare definitivamente l'intera cronologia con questa AI Waifu? Lei dimenticherà ogni singola cosa di cui avete parlato.";
 "onlyPremiumUserCanSentPhotos.Title" = "Richiesto Premium";
 "onlyPremiumUserCanSentPhotos.Message" = "Passa a Premium per inviare foto alla tua IA Waifu — rendi tutto più personale e piccante!";
 "needPremiumForAudio.Title" = "Ascolta la sua Voce";

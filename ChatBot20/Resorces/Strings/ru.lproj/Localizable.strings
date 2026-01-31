@@ -94,7 +94,7 @@
 "MicrophoneAccess.Title" = "Нужен микрофон";
 "MicrophoneAccess.Message" = "Чтобы говорить с вайфу, разреши доступ к микрофону в Настройках.";
 "DeleteChatHistoryTitle" = "Удалить историю?";
-"DeleteChatHistoryMessage" = "Ты уверен, что хочешь навсегда стереть всю историю переписки с этой вайфу?";
+"DeleteChatHistoryMessage" = "Вы уверены, что хотите навсегда удалить всю историю чата с этой AI Вайфу? Она забудет всё, о чем вы когда-либо говорили.";
 "onlyPremiumUserCanSentPhotos.Title" = "Нужен Premium";
 "onlyPremiumUserCanSentPhotos.Message" = "Перейди на Premium, чтобы присылать фото своей вайфу и сделать чат по-настоящему личным!";
 "needPremiumForAudio.Title" = "Услышь её голос";

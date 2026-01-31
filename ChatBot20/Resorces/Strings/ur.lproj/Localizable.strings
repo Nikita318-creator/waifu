@@ -94,7 +94,7 @@
 "MicrophoneAccess.Title" = "مائیکروفون تک رسائی درکار ہے";
 "MicrophoneAccess.Message" = "اپنی Waifu سے بات کرنے کے لیے، سیٹنگز میں مائیکروفون کی اجازت دیں۔";
 "DeleteChatHistoryTitle" = "چیٹ ہسٹری ختم کریں؟";
-"DeleteChatHistoryMessage" = "کیا آپ واقعی اس اے آئی Waifu کے ساتھ تمام چیٹ ہسٹری مستقل طور پر ختم کرنا چاہتے ہیں؟";
+"DeleteChatHistoryMessage" = "کیا آپ واقعی اس Waifu کے ساتھ چیٹ کی تمام تاریخ کو مستقل طور پر حذف کرنا چاہتے ہیں؟ وہ آپ کے درمیان ہونے والی تمام باتیں بھول جائے گی۔";
 "onlyPremiumUserCanSentPhotos.Title" = "پریمیم درکار ہے";
 "onlyPremiumUserCanSentPhotos.Message" = "پریمیم میں اپ گریڈ کریں اور اپنی اے آئی Waifu کو تصاویر بھیجیں — اپنی چیٹ کو حقیقی اور دلچسپ بنائیں!";
 "needPremiumForAudio.Title" = "اس کی آواز سنیں";

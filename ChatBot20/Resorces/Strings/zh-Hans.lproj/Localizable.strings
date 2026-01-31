@@ -94,7 +94,7 @@
 "MicrophoneAccess.Title" = "需要麦克风权限";
 "MicrophoneAccess.Message" = "想听 人工老婆 的声音，请在设置中开启权限。";
 "DeleteChatHistoryTitle" = "删除聊天记录？";
-"DeleteChatHistoryMessage" = "确定要永久删除与这位 人工老婆 的所有记录吗？";
+"DeleteChatHistoryMessage" = "你确定要永久删除与这位 AI Waifu 的所有聊天记录吗？她会忘记你们之间聊过的一切。";
 "onlyPremiumUserCanSentPhotos.Title" = "需尊享权限";
 "onlyPremiumUserCanSentPhotos.Message" = "升级尊享会员即可发送照片给 人工老婆，让互动更亲密！";
 "needPremiumForAudio.Title" = "听听她的声音";
