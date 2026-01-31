@@ -74,6 +74,7 @@
 		10904BA52EED0D4700528437 /* AvatarsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10904BA42EED0D4600528437 /* AvatarsService.swift */; };
 		10904CBF2EEEE00400528437 /* RemoteVideoService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10904CBE2EEEDFF700528437 /* RemoteVideoService.swift */; };
 		10904CC32EEEE42700528437 /* RemoteRealmVideoService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10904CC22EEEE42600528437 /* RemoteRealmVideoService.swift */; };
+		10C7DA172F2EB8FF00ACA897 /* AssistantDynamicService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10C7DA162F2EB8FE00ACA897 /* AssistantDynamicService.swift */; };
 		10D1C4AC2E3FEC88005557CF /* UnreadMessagesService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10D1C4AB2E3FEC86005557CF /* UnreadMessagesService.swift */; };
 		10DE77152E5E5BB50062F74D /* GiftVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10DE77142E5E5BAB0062F74D /* GiftVC.swift */; };
 		10DE77172E5E61280062F74D /* CoinsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10DE77162E5E611B0062F74D /* CoinsView.swift */; };
@@ -216,6 +217,7 @@
 		10904BA42EED0D4600528437 /* AvatarsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvatarsService.swift; sourceTree = "<group>"; };
 		10904CBE2EEEDFF700528437 /* RemoteVideoService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteVideoService.swift; sourceTree = "<group>"; };
 		10904CC22EEEE42600528437 /* RemoteRealmVideoService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteRealmVideoService.swift; sourceTree = "<group>"; };
+		10C7DA162F2EB8FE00ACA897 /* AssistantDynamicService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssistantDynamicService.swift; sourceTree = "<group>"; };
 		10D1C4AB2E3FEC86005557CF /* UnreadMessagesService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnreadMessagesService.swift; sourceTree = "<group>"; };
 		10DE77142E5E5BAB0062F74D /* GiftVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GiftVC.swift; sourceTree = "<group>"; };
 		10DE77162E5E611B0062F74D /* CoinsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinsView.swift; sourceTree = "<group>"; };
@@ -434,6 +436,7 @@
 		1061A27A2DF0EE8600206F61 /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				10C7DA152F2EB8FB00ACA897 /* AssistantDynamicService */,
 				108731692F01BF6500DD3177 /* MainServices */,
 				10E75C912F07663C00D28EB9 /* CoinsService */,
 				10E75C8E2F07625900D28EB9 /* WebHookAnalyticsService */,
@@ -566,6 +569,14 @@
 				10904CBE2EEEDFF700528437 /* RemoteVideoService.swift */,
 			);
 			path = RemoteVideoService;
+			sourceTree = "<group>";
+		};
+		10C7DA152F2EB8FB00ACA897 /* AssistantDynamicService */ = {
+			isa = PBXGroup;
+			children = (
+				10C7DA162F2EB8FE00ACA897 /* AssistantDynamicService.swift */,
+			);
+			path = AssistantDynamicService;
 			sourceTree = "<group>";
 		};
 		10D1C4AA2E3FEC77005557CF /* UnreadMessagesService */ = {
@@ -847,6 +858,7 @@
 				108731782F01C22700DD3177 /* JigsawGameVC.swift in Sources */,
 				10DF26DD2E05F52F005402A9 /* OnbordingVC.swift in Sources */,
 				1061A27C2DF0EE8F00206F61 /* NetworkMonitor.swift in Sources */,
+				10C7DA172F2EB8FF00ACA897 /* AssistantDynamicService.swift in Sources */,
 				1061A1AB2DF0E9DD00206F61 /* AppDelegate.swift in Sources */,
 				105672082DFCE0F000ECF0DE /* AnaliticService.swift in Sources */,
 				10E75C8A2F070BFE00D28EB9 /* GoogleTTSManager.swift in Sources */,

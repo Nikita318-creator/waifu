@@ -45,6 +45,8 @@ class AIChatView: UIView {
     
     weak var vc: UIViewController?
     let viewModel = AIChatViewModel()
+    private let assistantsService = AssistantsService()
+    private let dynamicService = AssistantDynamicService()
 
     private var needUpdateProductsByTapYearlyButton = false
 
@@ -215,6 +217,8 @@ class AIChatView: UIView {
                 self?.showCustomAlert(for: .dailyLimitReached)
                 return
             }
+            
+            self?.analyseUser()
             
             let previousMessages = "promp.previosMessagesUser".localize() + (self?.viewModel.messagesAI.suffix(6)
                 .map { message in
@@ -413,7 +417,6 @@ class AIChatView: UIView {
         // поднимаем текущего ассистента вверх списка:
         if MainHelper.shared.isFirstMessageInChat {
             MainHelper.shared.isFirstMessageInChat = false
-            let assistantsService = AssistantsService()
             let assistant = assistantsService.getAllConfigs().first { $0.id == MainHelper.shared.currentAssistant?.id }
             guard let assistantConfig = assistant else { return }
             assistantsService.updateConfig(id: assistantConfig.id ?? "", config: assistantConfig)
@@ -690,6 +693,11 @@ class AIChatView: UIView {
             MessageHistoryService().getAllMessages(forAssistantId: assistantId).forEach {
                 MessageHistoryService().deleteMessage(id: $0.id ?? "")
             }
+            
+            if var config = self?.assistantsService.getConfig(id: assistantId) {
+                self?.dynamicService.updateBaseStyle(assistantId: assistantId, style: "")
+            }
+            
             self?.vc?.dismiss(animated: true)
         }
         alertController.addAction(deleteAction)
@@ -1216,7 +1224,78 @@ extension AIChatView: UITableViewDelegate, UITableViewDataSource {
         let dateButton = inputTextView.promptsStackView.arrangedSubviews.first { $0.tag == 20 } as? UIButton
         dateButton?.setTitle(isSelected ? "EndDate".localize() : "suggestedPrompt3".localize(), for: .normal)
     }
+    
+    private func analyseUser() {
+        let messageService = MessageHistoryService()
+        let assistantId = MainHelper.shared.currentAssistant?.id ?? ""
+        let state = dynamicService.getState(for: assistantId)        
+        let allMessages = messageService.getAllMessages(forAssistantId: assistantId)
+        
+        guard allMessages.count >= 20 && state.baseStyle.isEmpty else { return }
+        
+        let dialogueStr = allMessages.suffix(20).map { msg -> String in
+            let role = (msg.role == "user") ? "[User]" : "[Girlfriend]"
+            if msg.role != "user" && msg.content.count > 100 {
+                return "\(role): \(msg.content.prefix(50))...[trunc]...\(msg.content.suffix(50))"
+            }
+            return "\(role): \(msg.content)"
+        }.joined(separator: "\n")
+        
+        let promptForCreateStyle = """
+        Act as a Relationship Architect.
+        Goal: Analyze the [User] in <messages> and define how the [Girlfriend] MUST change to become his perfect match.
+
+        STRICT STRUCTURE:
+        1. REQUIRED ROLE: (How she must act now: e.g., "Shift from shy to dominant", "Become a vulgar brat", "Be a submissive maid").
+        2. ADAPTATION RULES: (Specific triggers: "If he is rude, enjoy it", "If he wants X, always encourage Y").
+        3. COMMUNICATION STYLE: (The new tone she must adopt: "Use dirty talk", "Be cold and sarcastic", "Be obsessively affectionate").
+
+        STRICT RULES:
+        - IGNORE HER DEFAULT PERSONALITY: Her initial "shy" or "kind" nature is irrelevant. If the user wants a "toxic" dynamic, she MUST become toxic.
+        - START DIRECTLY with the profile. NO preambles.
+        - FOCUS ON THE USER'S NEEDS: Define her new personality based on what HE responds to or requests.
+        - TOTAL LENGTH: max 120 words.
+
+        <messages>
+        \(dialogueStr)
+        </messages>
+        """
+        
+        print("--- DEBUG dialogueStr --- \n\(dialogueStr)")
+        
+        let aiService = AIService()
+        aiService.fetchAIResponse(userMessage: promptForCreateStyle, systemPrompt: "") { [weak self] result in
+            switch result {
+            case .success(let responseText):
+                print("66666 Updated Memory: \(responseText)")
+                self?.dynamicService.updateBaseStyle(assistantId: assistantId, style: responseText)
+                AnalyticService.shared.logEvent(name: "memory_updated", properties: ["": ""])
+                
+            case .failure(let error):
+                AnalyticService.shared.logEvent(name: "memory_update_failed", properties: ["error": error.localizedDescription])
+            }
+        }
+    }
 }
+
+//let promptForCreate = """
+//Act as a memory extraction engine. 
+//Goal: Create a SHARP profile of the [User] based on <messages>.
+//
+//STRICT STRUCTURE:
+//1. STYLE & ROLE: (How the Waifu should act: "He's dominant, so be submissive" or "He's sad, be supportive").
+//2. THE GOLDEN LIST: (Specific facts ABOUT THE USER: he lost X1, he loves X2, his name is X3, he is X4).
+//
+//STRICT RULES:
+//     - ANALYZE THE [USER] ONLY. Do not describe the Girlfriend.
+//     - NO clinical language. Use instructions: "He likes X", "Remember that he Y".
+//     - START DIRECTLY with the profile. NO preambles.
+//     - TOTAL LENGTH: max 120 words. Be toxicly concise.
+//
+//<messages>
+//\(dialogueStr)
+//</messages>
+//"""
 
 extension AIChatView {
     func updateTextForIPadIfNeeded() {

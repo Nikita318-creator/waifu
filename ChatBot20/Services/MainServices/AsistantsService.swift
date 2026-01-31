@@ -1,4 +1,3 @@
-
 import Foundation
 import RealmSwift
 
@@ -89,6 +88,7 @@ class AssistantsService {
                 object.expertise = config.expertise.rawValue.localize()
                 object.assistantInfo = config.assistantInfo
                 object.userInfo = config.userInfo
+                object.avatarImageName = config.avatarImageName
                 object.updatedAt = Date()
             }
             realm.refresh()
