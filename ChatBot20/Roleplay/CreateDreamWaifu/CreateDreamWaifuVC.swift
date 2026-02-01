@@ -142,12 +142,13 @@ class CreateDreamWaifuVC: UIViewController {
             AnalyticService.shared.logEvent(name: "CreateDreamWaifuVC Waifu Created!", properties: ["config":"\(config)"])
             
             let waifuDict = config["waifu_config"] as? [String: [String]] ?? [:]
-            let userInfo = waifuDict.compactMap { key, values -> String? in
-                guard let value = values.first else { return nil }
-                let readableKey = key.replacingOccurrences(of: "_", with: " ").capitalized
-                return "\(readableKey): \(value)"
-            }.joined(separator: ", ")
+//            let userInfo = waifuDict.compactMap { key, values -> String? in
+//                guard let value = values.first else { return nil }
+//                let readableKey = key.replacingOccurrences(of: "_", with: " ").capitalized
+//                return "\(readableKey): \(value)"
+//            }.joined(separator: ", ")
 
+            var userInfo = waifuDict["archetype"]?.first ?? "Classic"
             print("🤖 System Prompt Context: \(userInfo)")
             
             let assistantName = (1...20)
