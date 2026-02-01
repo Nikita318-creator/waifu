@@ -127,6 +127,8 @@ class CreateDreamWaifuVC: UIViewController {
             currentIndex += 1
             let indexPath = IndexPath(item: currentIndex, section: 0)
             collectionView.scrollToItem(at: indexPath, at: .centeredHorizontally, animated: true)
+            let cell = collectionView.visibleCells.first as? DreamWaifuCell
+            cell?.scrollView.setContentOffset(.zero, animated: true)
             updateProgress()
             updateButtonTitle()
             checkSlideCompletion()

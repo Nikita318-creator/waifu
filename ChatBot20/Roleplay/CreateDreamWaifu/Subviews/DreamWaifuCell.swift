@@ -4,7 +4,7 @@ import SnapKit
 class DreamWaifuCell: UICollectionViewCell {
     static let identifier = "DreamWaifuCell"
     
-    private let scrollView = UIScrollView()
+    let scrollView = UIScrollView()
     private let contentContainer = UIView()
     
     private let waifuImageView: UIImageView = {

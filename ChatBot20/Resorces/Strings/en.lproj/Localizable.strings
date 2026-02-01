@@ -305,6 +305,8 @@
 
 // CreateDreamWaifu
 "CreateDreamWaifu" = "Create your dream waifu";
+"CreateDreamWaifu.subtitle" = "Tap to design your ideal partner";
+
 // Slides
 "CreateDreamWaifu.slide1.title" = "Appearance & Gaze";
 "CreateDreamWaifu.slide1.marketing" = "Create the look that will captivate you forever. Imagine her looking at you from the screen...";
