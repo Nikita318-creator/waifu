@@ -56,7 +56,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 //        MainHelper.shared.needShowPaywallForDiscountOffer = true
         
         let defaults = UserDefaults.standard
-        
         let formatter = DateFormatter()
         formatter.dateFormat = "dd.MM.yyyy"
         
@@ -65,49 +64,42 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         let now = Date()
         let calendar = Calendar.current
-        
         let components = calendar.dateComponents([.day], from: firstLaunchDate, to: now)
         let daysSinceInstallation = components.day ?? 0
         
-        let offerKeys = ["discount_start_3", "discount_start_30", "discount_start_90"]
-                
-        // 3. Проверяем, не идет ли сейчас какой-то из уже активированных офферов (24 часа)
+        // Новые вехи
+        let milestones = [30, 7, 2]
+        
+        // 3. Генерируем ключи на основе milestones, чтобы не было расхождений
+        let offerKeys = milestones.map { "discount_start_\($0)" }
+        
+        // Проверяем, не идет ли сейчас какой-то из уже активированных офферов (24 часа)
         for key in offerKeys {
             if let startTime = defaults.object(forKey: key) as? Date {
                 let secondsInDay: TimeInterval = 24 * 60 * 60
                 if now.timeIntervalSince(startTime) < secondsInDay {
                     MainHelper.shared.isDiscountOffer = true
                     print("🔥 Discount Active! Under key: \(key)")
-                    return // Если нашли активный, дальше не проверяем
+                    return
                 }
             }
         }
         
-        // 4. Если активных нет, проверяем пора ли активировать новый
-        // Идем по списку: 90, потом 30, потом 3. Так если юзер зашел на 95 день,
-        // он получит 90-дневный оффер, если он еще не был использован.
-        
-        let milestones = [90, 30, 3]
-        
+        // 4. Проверяем пора ли активировать новый
         for milestone in milestones {
             let startKey = "discount_start_\(milestone)"
             let usedKey = "discount_used_\(milestone)"
             
-            // Если прошло нужное кол-во дней И этот конкретный оффер еще никогда не использовался
             if daysSinceInstallation >= milestone && !defaults.bool(forKey: usedKey) {
-                
-                // Активируем!
                 defaults.set(now, forKey: startKey)
-                defaults.set(true, forKey: usedKey) // Помечаем что "использован" (больше не активируется никогда)
+                defaults.set(true, forKey: usedKey)
                 
                 MainHelper.shared.isDiscountOffer = true
                 MainHelper.shared.needShowPaywallForDiscountOffer = true
                 print("✨ Milestone \(milestone) reached. Starting 24h discount.")
                 
-                // Логируем в аналитику активацию конкретной скидки
                 AnalyticService.shared.logEvent(name: "DiscountActivated", properties: ["milestone": "\(milestone)"])
-                
-                return // Выходим, за один раз активируем только один оффер
+                return
             }
         }
     }

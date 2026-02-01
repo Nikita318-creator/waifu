@@ -25,7 +25,7 @@ class MainHelper {
     
     private let lastReviewRequestKey = "lastReviewRequestDate"
     private let requestedReviewAfterLikeTappedKey = "requestedReviewAfterLikeTappedKey"
-    private let reviewCooldownDays: Double = 90
+    private let reviewCooldownDays: Double = 60
     var messagesSendCount: Int = 0
     
     // Ключи для UserDefaults
@@ -212,16 +212,5 @@ class MainHelper {
 
     func markReviewRequestedNow() {
         UserDefaults.standard.set(Date(), forKey: lastReviewRequestKey)
-    }
-    
-    func shouldRequestReviewAfterLikeTapped() -> Bool {
-        let defaults = UserDefaults.standard
-
-        if defaults.bool(forKey: requestedReviewAfterLikeTappedKey) {
-            return false
-        } else {
-            defaults.set(true, forKey: requestedReviewAfterLikeTappedKey)
-            return true
-        }
     }
 }
