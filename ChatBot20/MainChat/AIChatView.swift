@@ -272,6 +272,7 @@ class AIChatView: UIView {
                 viewModel.systemPrompt = baseRulePrompt + instructions + previousMessages
             } else {
                 self?.viewModel.systemPrompt = MainHelper.shared.getSystemPromptForCurrentAssistant() + previousMessages
+                self?.viewModel.systemPromptSafe = MainHelper.shared.getSystemPromptForCurrentAssistant(isSafe: true) + previousMessages
             }
 
             self?.viewModel.sendMessageViaCustomServer(text)
@@ -1283,6 +1284,7 @@ extension AIChatView: UITableViewDelegate, UITableViewDataSource {
                 AnalyticService.shared.logEvent(name: "waifu_evolved", properties: ["stage": "\(count)", "responseText": "\(responseText)"])
                 
             case .failure(let error):
+                AnalyticService.shared.logEvent(name: "waifu_evolved_failed", properties: ["": ""])
                 print("❌ 66666 Evolution failed: \(error.localizedDescription)")
                 // Флаг не ставим, значит при следующем сообщении функция попробует снова
             }
@@ -1328,6 +1330,7 @@ extension AIChatView: UITableViewDelegate, UITableViewDataSource {
                 
             case .failure(let error):
                 self?.needRepeatMemoryUpdate = true
+                AnalyticService.shared.logEvent(name: "waifu_memory_failed", properties: ["": ""])
                 print("❌ 66666 Update memory failed: \(error.localizedDescription)")
             }
         }
