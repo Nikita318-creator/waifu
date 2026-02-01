@@ -694,9 +694,7 @@ class AIChatView: UIView {
                 MessageHistoryService().deleteMessage(id: $0.id ?? "")
             }
             
-            if var config = self?.assistantsService.getConfig(id: assistantId) {
-                self?.dynamicService.updateBaseStyle(assistantId: assistantId, style: "")
-            }
+            self?.dynamicService.resetState(for: assistantId)
             
             self?.vc?.dismiss(animated: true)
         }
@@ -1228,11 +1226,18 @@ extension AIChatView: UITableViewDelegate, UITableViewDataSource {
     private func analyseUser() {
         let messageService = MessageHistoryService()
         let assistantId = MainHelper.shared.currentAssistant?.id ?? ""
-        let state = dynamicService.getState(for: assistantId)        
-        let allMessages = messageService.getAllMessages(forAssistantId: assistantId)
+        let state = dynamicService.getState(for: assistantId)
+        let allMessages = messageService.getAllMessages(forAssistantId: assistantId).filter {
+            return !($0.content.contains("[photo]") || $0.content.contains("[video]") || $0.content.contains("[restrict]") || $0.content.contains("suggestedPrompt1".localize()) || $0.content.contains("suggestedPrompt2".localize()))
+        }
+        let count = allMessages.count
         
-        guard allMessages.count >= 20 && state.baseStyle.isEmpty else { return }
-        
+        guard (count >= 6 && !state.updatedAfter6) ||
+                  (count >= 12 && !state.updatedAfter12) ||
+                  (count >= 20 && !state.updatedAfter20)
+        else { return }
+
+        // Формируем диалог (берем последние 20 для контекста)
         let dialogueStr = allMessages.suffix(20).map { msg -> String in
             let role = (msg.role == "user") ? "[User]" : "[Girlfriend]"
             if msg.role != "user" && msg.content.count > 100 {
@@ -1269,10 +1274,15 @@ extension AIChatView: UITableViewDelegate, UITableViewDataSource {
             case .success(let responseText):
                 print("66666 Updated Memory: \(responseText)")
                 self?.dynamicService.updateBaseStyle(assistantId: assistantId, style: responseText)
-                AnalyticService.shared.logEvent(name: "memory_updated", properties: ["": ""])
+                
+                // 2. ФИКСИРУЕМ ПРОГРЕСС (теперь запрос не повторится для этого этапа)
+                self?.dynamicService.markProgress(for: assistantId, messagesCount: count)
+                
+                AnalyticService.shared.logEvent(name: "waifu_evolved", properties: ["stage": "\(count)"])
                 
             case .failure(let error):
-                AnalyticService.shared.logEvent(name: "memory_update_failed", properties: ["error": error.localizedDescription])
+                print("❌ Evolution failed: \(error.localizedDescription)")
+                // Флаг не ставим, значит при следующем сообщении функция попробует снова
             }
         }
     }

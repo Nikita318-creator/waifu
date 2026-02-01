@@ -45,7 +45,7 @@ final class ConfigService {
         }
     }
 
-    private let configURL = URL(string: "https://raw.githubusercontent.com/Nikita318-creator/analitics-data/main/analiticsWaifu1.json")
+    private let configURL = URL(string: "https://raw.githubusercontent.com/Nikita318-creator/analitics-data/main/analiticsWaifu2.json")
     private let cachedConfigKey = "cachedConfigKey"
 
     private init() {}
@@ -147,6 +147,7 @@ final class ConfigService {
         self.dailyLimits = config.dailyLimits
         self.initialLimit = config.initialLimit
         self.audioHalfKey = config.audioHalfKey
+        self.promptText = config.promptText
         self.messageFromDeveloper = config.messageFromDeveloper
         self.additionalPhotos = config.additionalPhotos
         self.baseServer = config.baseServer

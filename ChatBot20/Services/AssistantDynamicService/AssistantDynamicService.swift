@@ -7,6 +7,9 @@ class AssistantDynamicStateObject: Object {
     @Persisted var baseStyle: String = ""  // Результат обучения после 10+ сообщений
     @Persisted var memory: String = ""     // Factual Golden List
     @Persisted var updatedAt: Date = Date()
+    @Persisted var updatedAfter6: Bool = false
+    @Persisted var updatedAfter12: Bool = false
+    @Persisted var updatedAfter20: Bool = false
 
     convenience init(assistantId: String) {
         self.init()
@@ -63,6 +66,34 @@ class AssistantDynamicService {
         try? realm.write {
             state.baseStyle = style
             state.updatedAt = Date()
+        }
+    }
+    
+    func markProgress(for assistantId: String, messagesCount: Int) {
+        let state = getState(for: assistantId)
+        try? realm.write {
+            if messagesCount >= 20 {
+                state.updatedAfter20 = true
+            } else if messagesCount >= 12 {
+                state.updatedAfter12 = true
+            } else if messagesCount >= 6 {
+                state.updatedAfter6 = true
+            }
+            state.updatedAt = Date()
+        }
+    }
+
+    // Метод для сброса при удалении чата
+    func resetState(for assistantId: String) {
+        if let state = realm.object(ofType: AssistantDynamicStateObject.self, forPrimaryKey: assistantId) {
+            try? realm.write {
+                state.baseStyle = ""
+                state.memory = ""
+                state.updatedAfter6 = false
+                state.updatedAfter12 = false
+                state.updatedAfter20 = false
+                state.updatedAt = Date()
+            }
         }
     }
 }
