@@ -1281,7 +1281,7 @@ extension AIChatView: UITableViewDelegate, UITableViewDataSource {
                 AnalyticService.shared.logEvent(name: "waifu_evolved", properties: ["stage": "\(count)"])
                 
             case .failure(let error):
-                print("❌ Evolution failed: \(error.localizedDescription)")
+                print("❌ 66666 Evolution failed: \(error.localizedDescription)")
                 // Флаг не ставим, значит при следующем сообщении функция попробует снова
             }
         }

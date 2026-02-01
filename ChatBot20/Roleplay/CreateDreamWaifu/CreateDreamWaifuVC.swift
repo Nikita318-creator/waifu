@@ -149,6 +149,9 @@ class CreateDreamWaifuVC: UIViewController {
 //            }.joined(separator: ", ")
 
             var userInfo = waifuDict["archetype"]?.first ?? "Classic"
+            if userInfo.contains("CreateDreamWaifu.option.spetialArchetype2".localize()) {
+                userInfo = "CreateDreamWaifu.option.spetialArchetypeDaddy".localize()
+            }
             print("🤖 System Prompt Context: \(userInfo)")
             
             let assistantName = (1...20)

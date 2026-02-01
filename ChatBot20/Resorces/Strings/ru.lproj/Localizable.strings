@@ -455,3 +455,10 @@
 "CreateDreamWaifu.name18" = "Клэри";
 "CreateDreamWaifu.name19" = "Аманэ";
 "CreateDreamWaifu.name20" = "Айри";
+
+"CreateDreamWaifu.option.spetialArchetype1" = "Мамочка";
+"CreateDreamWaifu.option.spetialArchetype2" = "Принцесса (Ты её Папочка)";
+"CreateDreamWaifu.option.spetialArchetype3" = "Младшая сестра";
+"CreateDreamWaifu.option.spetialArchetype4" = "Доминантка";
+"CreateDreamWaifu.option.spetialArchetype5" = "Покорная";
+"CreateDreamWaifu.option.spetialArchetypeDaddy" = "Папочка";

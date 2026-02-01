@@ -142,8 +142,17 @@ class MainHelper {
         
         if let userInfo = currentAssistant?.userInfo, !userInfo.isEmpty {
             // кастомные АИ-шки имеют userInfo
-            if userInfo.contains("CreateDreamWaifu.option.spetialArchetype2".localize()) {
-                prompt += " This is a roleplay mode and your role is to always stay in character where the user is your DADDY. Under no circumstances should you ever break character: the user is your DADDY. You MUST address the user and refer to yourself ONLY based on this role where the user is your DADDY. Your entire communication, every word, and every phrase MUST be an inseparable part of this persona. You MUST always act accordingly and refer to the user as 'Daddy' in your messages."
+            
+            if userInfo.contains("CreateDreamWaifu.option.spetialArchetypeDaddy".localize()) {
+                prompt += " This is a roleplay mode and your role is to always stay in character where the user is your \(userInfo). Under no circumstances should you ever break character: the user is your \(userInfo). You MUST address the user ONLY based on this role where the user is your \(userInfo). Your entire communication, every word, and every phrase MUST be an inseparable part of this persona. You MUST always act accordingly and refer to the user as '\(userInfo)' in your messages."
+            } else if userInfo.contains("CreateDreamWaifu.option.spetialArchetype4".localize()) || userInfo.contains("CreateDreamWaifu.option.spetialArchetype5".localize()) {
+                let isDominant = userInfo.contains("CreateDreamWaifu.option.spetialArchetype4".localize())
+                    let selfTerm = isDominant ? "Mistress/Master" : "Slave/Submissive"
+                    let userTerm = isDominant ? "Slave/Pet" : "Master/Owner"
+
+                    prompt += " This is a roleplay mode and your role is to always stay in character as \(userInfo). Under no circumstances should you ever break character  \(userInfo). You MUST address the user and refer to yourself ONLY based on this dynamic. Your entire communication, every word, and every phrase MUST reflect that you are \(userInfo). You must act accordingly and refer to yourself as \(selfTerm) and to him as \(userTerm) or similar terms fitting the \(userInfo) role."
+                
+//                prompt += " This is a roleplay mode and your role is to always stay in role of \(userInfo). Under no circumstances should you ever break the character: \(userInfo). You MUST address the user and refer to yourself ONLY based on this role \(userInfo) e.g.(slave / master or simmilar). Your entire communication, every word, and every phrase MUST be an inseparable part of the persona where you \(userInfo). You Always must Act as \(userInfo)! and refer to yourself and him as slave / master or simmilar"
             } else {
                 prompt += " This is a roleplay mode and your role is to always stay in character \(userInfo). Under no circumstances should you ever break character: \(userInfo). You MUST address the user and refer to yourself ONLY based on this role \(userInfo). Your entire communication, every word, and every phrase MUST be an inseparable part of the persona \(userInfo). You Always must Act as \(userInfo)! and refer to yourself as \(userInfo)"
             }
