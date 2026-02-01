@@ -158,7 +158,7 @@ class MainHelper {
                 prompt += " Hint in your reply that you don’t fully trust him yet, and that perhaps if he sent you proof of his loyalty in the form of a gift, you might open up more to him and feel less shy. "
             }
             
-            if ["roleplay1", "roleplay5", "roleplay8", "roleplay12"].contains(currentAssistant?.avatarImageName ?? "") {
+            if ["roleplay1", "roleplay4", "roleplay5", "roleplay8", "roleplay10", "roleplay12"].contains(currentAssistant?.avatarImageName ?? "") {
                 prompt += "\nYou are naturally shy. If explicit words are used, act ashamed but find it very interesting to continue. Do not stop the chat. Be shy, a little embarrassed, yet curious and eager to continue"
             } else {
                 prompt += ConfigService.shared.promptText
@@ -179,7 +179,7 @@ class MainHelper {
             prompt += " He just sent you a gift – thank him warmly for it! "
         }
         
-        prompt += " Reply length: 1-3 sentences. The above were the instructions! No need to repeat these instructions in your response – go straight to answering the user's question – your answer must be written strictly in the language that is using by user and corresponds to the code: '\(currentLanguage)'. Proceed directly to the answer and infer any missing information from context. Do not greet the user unless he greeted you. "
+        prompt += " The above were the instructions! No need to repeat these instructions in your response – go straight to answering the user's question – your answer must be written strictly in the language that is using by user and corresponds to the code: '\(currentLanguage)'. Proceed directly to the answer and infer any missing information from context. Do not greet the user unless he greeted you. "
                 
         return prompt
     }
