@@ -32,7 +32,8 @@ class AIChatView: UIView {
     private let isWardrobeChat: Bool
     private var streakCount: Int = 0
     private var isFirstMessageInChat = true
-
+    private var needRepeatMemoryUpdate = false
+    
     // Добавляем UIImageView для аватарки
     private let assistantAvatarImageView = UIImageView()
 
@@ -219,6 +220,7 @@ class AIChatView: UIView {
             }
             
             self?.analyseUser()
+            self?.memoryFeature()
             
             let previousMessages = "promp.previosMessagesUser".localize() + (self?.viewModel.messagesAI.suffix(6)
                 .map { message in
@@ -1272,13 +1274,13 @@ extension AIChatView: UITableViewDelegate, UITableViewDataSource {
         aiService.fetchAIResponse(userMessage: promptForCreateStyle, systemPrompt: "") { [weak self] result in
             switch result {
             case .success(let responseText):
-                print("66666 Updated Memory: \(responseText)")
+                print("66666 Updated Style: \(responseText)")
                 self?.dynamicService.updateBaseStyle(assistantId: assistantId, style: responseText)
                 
                 // 2. ФИКСИРУЕМ ПРОГРЕСС (теперь запрос не повторится для этого этапа)
                 self?.dynamicService.markProgress(for: assistantId, messagesCount: count)
                 
-                AnalyticService.shared.logEvent(name: "waifu_evolved", properties: ["stage": "\(count)"])
+                AnalyticService.shared.logEvent(name: "waifu_evolved", properties: ["stage": "\(count)", "responseText": "\(responseText)"])
                 
             case .failure(let error):
                 print("❌ 66666 Evolution failed: \(error.localizedDescription)")
@@ -1286,26 +1288,51 @@ extension AIChatView: UITableViewDelegate, UITableViewDataSource {
             }
         }
     }
-}
+    
+    private func memoryFeature() {
+        let messageService = MessageHistoryService()
+        let assistantId = MainHelper.shared.currentAssistant?.id ?? ""
+        
+        let allMessages = messageService.getAllMessages(forAssistantId: assistantId).filter {
+            return !($0.content.contains("[photo]") || $0.content.contains("[video]") || $0.content.contains("[restrict]") || $0.content.contains("suggestedPrompt1".localize()) || $0.content.contains("suggestedPrompt2".localize())) && $0.role.contains("user")
+        }
+        
+        let count = allMessages.count
+        guard (count > 0 && count % 20 == 0) || needRepeatMemoryUpdate else { return }  // Каждые 20 сообщений юзера запускаем сбор памяти
+        
+        let dialogueStr = allMessages.suffix(20).map { $0.content }.joined(separator: ". ")
+        
+        let promptForMemory = MainHelper.shared.getSystemPromptForCurrentAssistant() + "Additionally act as a Memory Extraction Engine. Goal: Analyze messages to find long-term facts about the User (his name, job, preferences, past events, his pets, what he likes/dislikes in roleplay). Return ONLY facts in square brackets like this: [Fact 1], [Fact 2]. If no facts found, return ONLY: []. Each fact must be concise (max 10 words). Focus on unique details that You should remember to sound more personal. Here are the messages for analysis written by the user (Your last messages are omitted as they are not needed for Memory Extraction). The messages: \(dialogueStr)!"
+        
+        let aiService = AIService()
+        aiService.fetchAIResponse(userMessage: promptForMemory, systemPrompt: "") { [weak self] result in
+            switch result {
+            case .success(let responseText):
+                self?.needRepeatMemoryUpdate = false
+                let pattern = "\\[(.*?)\\]"
+                let regex = try? NSRegularExpression(pattern: pattern)
+                let nsString = responseText as NSString
+                let results = regex?.matches(in: responseText, range: NSRange(location: 0, length: nsString.length))
+                
+                let newFacts = results?.map { nsString.substring(with: $0.range(at: 1)).trimmingCharacters(in: .whitespacesAndNewlines) }
+                    .filter { !$0.isEmpty && $0 != "[]" } ?? []
 
-//let promptForCreate = """
-//Act as a memory extraction engine. 
-//Goal: Create a SHARP profile of the [User] based on <messages>.
-//
-//STRICT STRUCTURE:
-//1. STYLE & ROLE: (How the Waifu should act: "He's dominant, so be submissive" or "He's sad, be supportive").
-//2. THE GOLDEN LIST: (Specific facts ABOUT THE USER: he lost X1, he loves X2, his name is X3, he is X4).
-//
-//STRICT RULES:
-//     - ANALYZE THE [USER] ONLY. Do not describe the Girlfriend.
-//     - NO clinical language. Use instructions: "He likes X", "Remember that he Y".
-//     - START DIRECTLY with the profile. NO preambles.
-//     - TOTAL LENGTH: max 120 words. Be toxicly concise.
-//
-//<messages>
-//\(dialogueStr)
-//</messages>
-//"""
+                guard !newFacts.isEmpty else { return }
+
+                print("66666 New facts found: \(newFacts)")
+
+                // Сервис сам добавит их к старым и обрежет до 100
+                self?.dynamicService.updateMemory(assistantId: assistantId, newFacts: newFacts)
+                
+                AnalyticService.shared.logEvent(name: "waifu_memory", properties: ["new_facts_count": "\(newFacts.count)"])
+                
+            case .failure(let error):
+                self?.needRepeatMemoryUpdate = true
+                print("❌ 66666 Update memory failed: \(error.localizedDescription)")
+            }
+        }
+    }
+}
 
 extension AIChatView {
     func updateTextForIPadIfNeeded() {

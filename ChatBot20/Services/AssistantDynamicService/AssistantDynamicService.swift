@@ -1,11 +1,10 @@
 import Foundation
 import RealmSwift
 
-// Новая модель для динамических данных (LTM - Long Term Memory)
 class AssistantDynamicStateObject: Object {
-    @Persisted(primaryKey: true) var assistantId: String // Совпадает с ID ассистента
-    @Persisted var baseStyle: String = ""  // Результат обучения после 10+ сообщений
-    @Persisted var memory: String = ""     // Factual Golden List
+    @Persisted(primaryKey: true) var assistantId: String
+    @Persisted var baseStyle: String = ""
+    @Persisted var memory: List<String> = List<String>()
     @Persisted var updatedAt: Date = Date()
     @Persisted var updatedAfter6: Bool = false
     @Persisted var updatedAfter12: Bool = false
@@ -51,11 +50,16 @@ class AssistantDynamicService {
         return newState
     }
 
-    // Обновление памяти (Golden List)
-    func updateMemory(assistantId: String, newMemory: String) {
+    func updateMemory(assistantId: String, newFacts: [String]) {
         let state = getState(for: assistantId)
         try? realm.write {
-            state.memory = newMemory
+            state.memory.append(objectsIn: newFacts)
+            
+            if state.memory.count > 100 {
+                let overflow = state.memory.count - 100
+                state.memory.removeFirst(overflow)
+            }
+            
             state.updatedAt = Date()
         }
     }
@@ -88,7 +92,7 @@ class AssistantDynamicService {
         if let state = realm.object(ofType: AssistantDynamicStateObject.self, forPrimaryKey: assistantId) {
             try? realm.write {
                 state.baseStyle = ""
-                state.memory = ""
+                state.memory = List<String>()
                 state.updatedAfter6 = false
                 state.updatedAfter12 = false
                 state.updatedAfter20 = false

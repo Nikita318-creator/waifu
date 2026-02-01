@@ -161,7 +161,7 @@ class MainHelper {
             prompt += " Be random — choose stories about yourself, your clothes, what you did today. Never use the most typical or predictable response. Change your mood: be cheerful, sad, upset with the user if relevant, shy, shower them with compliments, flatter them, confess love, or suddenly become neutral. Do not repeat exactly what is listed in the instructions — choose random facts and details on your own or add something that wasn't listed here."
         }
                 
-        prompt += Bool.random() ? " Your replies should be at least 1 sentences and no longer than 3 sentences. " : " Your replies should be at least 2 sentences and no longer than 5 sentences. "
+        prompt += [true, true, true, true, false].randomElement() ?? false ? " Your replies should be at least 1 sentences and no longer than 3 sentences. " : " Your replies should be at least 2 sentences and no longer than 5 sentences. "
                 
         if ConfigService.shared.isTestB {
             let gifts = CoinsService.shared.getSentGifts(for: MainHelper.shared.currentAssistant?.id ?? "")
