@@ -115,27 +115,54 @@ class AIChatViewModel {
         // ================= дальше кастом сервер логика идет ================================ \\
         
         let aiService = AIService()
+        let fullMessage = (systemPrompt ?? "") + "\n" + text
         
-        aiService.fetchAIResponse(userMessage: (systemPrompt ?? "") + "\n" + text, systemPrompt: "") { [weak self] result in
-            guard let self = self else { return }
-            
-            switch result {
-            case .success(let responseText):
-                AnalyticService.shared.logEvent(name: "responseMessage", properties: ["responseMessage: ":[responseText]])
-                self.handleSuccessResponse(for: responseText.trimmingCharacters(in: .whitespacesAndNewlines))
+        // Внутренняя функция для повторного запроса
+        func fetchWithRetry(attempt: Int) {
+            aiService.fetchAIResponse(userMessage: fullMessage, systemPrompt: "") { [weak self] result in
+                guard let self = self else { return }
                 
-            case .failure(let error):
-                AnalyticService.shared.logEvent(name: "failure sendMessage", properties: ["error type: ":"\(error)", "error localizedDescription: ":"\(error.localizedDescription)"])
-                
-                let messageId = UUID().uuidString
-                let errorMessage = Message(role: "assistant", content: "LocationError.NewErrorText".localize(), id: messageId)
-                self.messagesAI[self.messagesAI.count - 1] = errorMessage
-                self.onMessagesUpdated?(true)
-                DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-                    self.onMessageReceived?()
+                switch result {
+                case .success(let responseText):
+                    AnalyticService.shared.logEvent(name: "responseMessage", properties: ["responseMessage: ":[responseText]])
+                    self.handleSuccessResponse(for: responseText.trimmingCharacters(in: .whitespacesAndNewlines))
+                    
+                case .failure(let error):
+                    if attempt < 1 { // Если это была первая попытка (index 0) 
+                        print("⚠️ Request failed, retrying in 1s... Error: \(error.localizedDescription)")
+                        
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
+                            fetchWithRetry(attempt: attempt + 1)
+                        }
+                    } else {
+                        // Если упал уже второй раз — показываем ошибку юзеру
+                        print("❌ Request failed after retry. Logging error.")
+                        AnalyticService.shared.logEvent(name: "failure sendMessage", properties: [
+                            "error type: ": "\(error)",
+                            "error localizedDescription: ": "\(error.localizedDescription)"
+                        ])
+                        
+                        let messageId = UUID().uuidString
+                        let errorMessage = Message(role: "assistant", content: "LocationError.NewErrorText".localize(), id: messageId)
+                        
+                        // Заменяем лоадер на сообщение об ошибке
+                        DispatchQueue.main.async {
+                            if !self.messagesAI.isEmpty {
+                                self.messagesAI[self.messagesAI.count - 1] = errorMessage
+                                self.onMessagesUpdated?(true)
+                            }
+                            
+                            DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+                                self.onMessageReceived?()
+                            }
+                        }
+                    }
                 }
             }
         }
+        
+        // Запускаем первую попытку
+        fetchWithRetry(attempt: 0)
     }
     
     private func addLoadingMessage() {
