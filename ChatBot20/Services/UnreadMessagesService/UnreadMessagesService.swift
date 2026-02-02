@@ -28,4 +28,18 @@ class UnreadMessagesService {
         
         defaults.set(Date(), forKey: lastCheckedKey)
     }
+    
+    func needSetUnreadMessageInChats() -> Bool {
+        guard let lastDate = defaults.object(forKey: lastCheckedKey) as? Date else {
+            return false
+        }
+        
+        let timePassed = Date().timeIntervalSince(lastDate)
+        if timePassed >= (intervalHours - 10) { // 10 сек форы если слишком быстро тапнул по пушу вдруг!
+//        if timePassed >= intervalHours {
+            return true // Юзер был неактивен больше суток - нужно ставить анрид мессадж
+        }
+        
+        return false
+    }
 }

@@ -7,7 +7,7 @@ struct ChatModel {
     let lastMessage: String
     let lastMessageTime: String
     let assistantAvatar: String
-    let isPremium: Bool
+    var isUnread: Bool = false
 }
 
 class ChatListItemCell: UITableViewCell {
@@ -131,12 +131,12 @@ class ChatListItemCell: UITableViewCell {
         avatarImageView.image = UIImage(named: chat.assistantAvatar) ?? UIImage.loadCustomAvatar(for: chat.assistantAvatar)
         
         // Если премиум — добавляем золотистую рамку аватару
-        avatarContainer.layer.borderWidth = chat.isPremium ? 2 : 0
+        avatarContainer.layer.borderWidth = 2 // chat.isPremium ? 2 : 0
         avatarContainer.layer.borderColor = UIColor.systemOrange.cgColor
     }
     
-    func setUnread() {
-        unreadIndicator.isHidden = false
-        containerView.layer.borderColor = TelegramColors.primary.withAlphaComponent(0.4).cgColor
+    func setUnread(_ isUnread: Bool) {
+        unreadIndicator.isHidden = !isUnread
+        containerView.layer.borderColor = isUnread ? TelegramColors.primary.withAlphaComponent(0.4).cgColor : TelegramColors.separator.withAlphaComponent(0.5).cgColor
     }
 }

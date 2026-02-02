@@ -1370,7 +1370,7 @@ extension AIChatView: UITableViewDelegate, UITableViewDataSource {
                 // Сервис сам добавит их к старым и обрежет до 100
                 self?.dynamicService.updateMemory(assistantId: assistantId, newFacts: newFacts)
                 
-                AnalyticService.shared.logEvent(name: "waifu_memory", properties: ["new_facts_count": "\(newFacts.count)"])
+                AnalyticService.shared.logEvent(name: "waifu_memory", properties: ["new_facts_count": "\(newFacts.count)", "newFacts": "\(newFacts)"])
                 
             case .failure(let error):
                 self?.needRepeatMemoryUpdate = true

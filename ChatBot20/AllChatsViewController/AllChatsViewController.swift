@@ -34,6 +34,15 @@ class AllChatsViewController: UIViewController {
         return footer
     }()
     
+    init() {
+        super.init(nibName: nil, bundle: nil)
+        setupViewModel()
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     override func loadView() {
         view = allChatsView
     }
@@ -41,7 +50,7 @@ class AllChatsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupTableView()
-        setupViewModel()
+        viewModel.loadChats()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -68,6 +77,9 @@ class AllChatsViewController: UIViewController {
     }
 
     private func setupViewModel() {
+        viewModel.moveOnChatsTabHandler = { [weak self] in
+            self?.tabBarController?.selectedIndex = 0
+        }
         viewModel.onChatsUpdated = { [weak self] in
             DispatchQueue.main.async {
                 guard let self = self else { return }
@@ -82,7 +94,6 @@ class AllChatsViewController: UIViewController {
                 }
             }
         }
-        viewModel.loadChats()
     }
     
     @objc private func feedbackTapped() {
@@ -119,12 +130,20 @@ extension AllChatsViewController: UITableViewDataSource, UITableViewDelegate {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: ChatListItemCell.identifier, for: indexPath) as? ChatListItemCell else { return UITableViewCell() }
         let chat = viewModel.chat(at: indexPath)
         cell.configure(with: chat)
-
+        cell.setUnread(chat.isUnread)
+        
         return cell
     }
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let selectedAssistant = AssistantsService().getAllConfigs().first(where: { $0.id == viewModel.chat(at: indexPath).id })
+        var chat = viewModel.chat(at: indexPath)
+        
+        if chat.id == viewModel.unreadAssistantID {
+            chat.isUnread = false
+            viewModel.unreadAssistantID = ""
+        }
+        
+        let selectedAssistant = AssistantsService().getAllConfigs().first(where: { $0.id == chat.id })
         MainHelper.shared.currentAssistant = selectedAssistant
         MainHelper.shared.isFirstMessageInChat = true
         AnalyticService.shared.logEvent(name: "chat selected", properties: ["index:":"\(indexPath.row)", "name:":"\(selectedAssistant?.assistantName ?? "")"])
