@@ -98,7 +98,7 @@ class AllChatsViewController: UIViewController {
         
         feedbackAlert.onSendTapped = { [weak self] text in
             AnalyticService.shared.logEvent(name: "feedback_sent", properties: ["text":text])
-            WebHookAnalyticsService.shared.sendAnalyticsReport(messageText: text)
+            WebHookAnalyticsService.shared.sendAnalyticsReport(messageText: "Feedback Sent: \(text)")
             print("✅ Анонимный отзыв: \(text)")
             
             let toast = UIAlertController(title: nil, message: "FeedbackReceived".localize(), preferredStyle: .alert)

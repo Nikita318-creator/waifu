@@ -14,9 +14,10 @@ class FeedbackFooterView: UICollectionReusableView {
         
         addSubview(button)
         button.snp.makeConstraints { make in
-            make.top.equalToSuperview().offset(15)
-            make.bottom.equalToSuperview().offset(-25)
+            make.top.equalToSuperview().offset(20)
+            make.height.equalTo(100)
             make.leading.trailing.equalToSuperview().inset(40)
+            make.bottom.equalToSuperview().offset(-20)
         }
     }
     

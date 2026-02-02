@@ -14,8 +14,9 @@ class TableFeedbackFooterView: UIView {
         addSubview(button)
         button.snp.makeConstraints { make in
             make.top.equalToSuperview().offset(20)
-            make.bottom.equalToSuperview().offset(-40)
+            make.height.equalTo(100)
             make.leading.trailing.equalToSuperview().inset(40)
+            make.bottom.equalToSuperview().offset(-20)
         }
     }
 
@@ -25,7 +26,7 @@ class TableFeedbackFooterView: UIView {
         let titleText = "Feedback.HighlightText".localize()
         let attributes: [NSAttributedString.Key: Any] = [
             .font: UIFont.systemFont(ofSize: 16, weight: .regular),
-            .foregroundColor: UIColor.systemGray, // Нейтральный цвет, чтобы не отвлекать от чатов
+            .foregroundColor: UIColor.systemGray,
             .underlineStyle: NSUnderlineStyle.single.rawValue | NSUnderlineStyle.byWord.rawValue
         ]
         button.setAttributedTitle(NSAttributedString(string: titleText, attributes: attributes), for: .normal)
