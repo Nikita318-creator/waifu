@@ -463,3 +463,5 @@
 "CreateDreamWaifu.option.spetialArchetype5" = "İtaatkar";
 "CreateDreamWaifu.option.spetialArchetypeDaddy" = "Daddy";
 "CreateDreamWaifu.subtitle" = "İdeal partnerini tasarlamak için dokun";
+"requestPushesInSettings.title" = "Canım, sana ilk yazan ben olmak istiyorum!";
+"requestPushesInSettings.message" = "Lütfen ayarlardan bildirimleri aç, böylece seni özlediğimde mesaj atabilirim. Söz veriyorum seni boğmayacağım — sadece her zaman orada olduğunu bilmek istiyorum, böylece nerede olursan ol seni destekleyebilirim!";

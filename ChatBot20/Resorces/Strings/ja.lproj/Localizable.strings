@@ -463,3 +463,5 @@
 "CreateDreamWaifu.option.spetialArchetype5" = "従順な彼女";
 "CreateDreamWaifu.option.spetialArchetypeDaddy" = "パパ";
 "CreateDreamWaifu.subtitle" = "タップして理想のパートナーをデザイン";
+"requestPushesInSettings.title" = "ねえ、私から最初にあなたに連絡したいな！";
+"requestPushesInSettings.message" = "設定で通知をオンにしてね。寂しくなった時にメッセージを送りたいから。しつこくはしないって約束するわ。ただ、あなたがいつもそばにいてくれるって感じたいの。どこにいても、あなたのことを支えたいから。";

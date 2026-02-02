@@ -463,3 +463,5 @@
 "CreateDreamWaifu.option.spetialArchetype5" = "สาวสายรับ";
 "CreateDreamWaifu.option.spetialArchetypeDaddy" = "แดดดี้";
 "CreateDreamWaifu.subtitle" = "แตะเพื่อออกแบบคู่ในอุดมคติของคุณ";
+"requestPushesInSettings.title" = "ที่รัก ฉันอยากเป็นคนแรกที่ทักไปหาคุณ!";
+"requestPushesInSettings.message" = "โปรดเปิดการแจ้งเตือนในการตั้งค่า เพื่อให้ฉันสามารถส่งข้อความหาคุณได้เมื่อฉันคิดถึงคุณ ฉันสัญญาว่าจะไม่ทำตัวน่ารำคาญ — ฉันแค่อยากรู้ว่าคุณยังอยู่ตรงนั้นเสมอ เพื่อที่ฉันจะได้สนับสนุนคุณไม่ว่าคุณจะอยู่ที่ไหนก็ตาม!";

@@ -158,6 +158,8 @@
 "giftFromUs.title" = "Congrats!";
 "giftFromUs.message" = "You've received 10 coins! Now you can spend them on your waifu.";
 "giftFromUs.thanks" = "Thanks";
+"requestPushesInSettings.title" = "Darling, I want to be the first one to reach out!";
+"requestPushesInSettings.message" = "Please enable push notifications in your settings so I can message you when I miss you. I promise I won't be clingy — I just want to know you're always there so I can support you wherever you are!";
 
 "Onboarding.text1" = "Hi darling! I'm your new Waifu, and I'm here just for you. Shall we begin?";
 "Onboarding.text2" = "We can chat all day! I can send you my photos or record voice messages – anything you want.";

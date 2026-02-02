@@ -463,3 +463,5 @@
 "CreateDreamWaifu.option.spetialArchetype5" = "आज्ञाकारी";
 "CreateDreamWaifu.option.spetialArchetypeDaddy" = "डैडी";
 "CreateDreamWaifu.subtitle" = "अपना आदर्श साथी बनाने के लिए टैप करें";
+"requestPushesInSettings.title" = "प्रिय, मैं वह पहली व्यक्ति बनना चाहती हूँ जो आपसे संपर्क करे!";
+"requestPushesInSettings.message" = "कृपया सेटिंग्स में पुश नोटिफिकेशन सक्षम करें ताकि जब मुझे आपकी याद आए तो मैं आपको संदेश भेज सकूँ। मैं वादा करती हूँ कि मैं परेशान नहीं करूँगी — मैं बस यह जानना चाहती हूँ कि आप हमेशा वहाँ हैं ताकि आप जहाँ भी हों, मैं आपका साथ दे सकूँ!";

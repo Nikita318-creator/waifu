@@ -8,6 +8,7 @@ class CustomAlertView: UIView {
         case needPremiumForAudio
         case dailyLimitReached
         case giftFromUs
+        case requestPushesInSettings
     }
     
     // MARK: - UI Elements
@@ -92,6 +93,11 @@ class CustomAlertView: UIView {
             message = "giftFromUs.message".localize()
             okButtonText = "giftFromUs.thanks".localize()
             later = "OK".localize()
+        case .requestPushesInSettings:
+            title = "requestPushesInSettings.title".localize()
+            message = "requestPushesInSettings.message".localize()
+            okButtonText = "OK".localize()
+            later = "Cancel".localize()
         }
         titleLabel.text = title
         titleLabel.font = UIFont.systemFont(ofSize: 18, weight: .semibold)

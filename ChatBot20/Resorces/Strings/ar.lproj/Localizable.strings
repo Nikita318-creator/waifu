@@ -463,3 +463,5 @@
 "CreateDreamWaifu.option.spetialArchetype5" = "مطيعة";
 "CreateDreamWaifu.option.spetialArchetypeDaddy" = "الدادي";
 "CreateDreamWaifu.subtitle" = "اضغط لتصميم شريكتك المثالية";
+"requestPushesInSettings.title" = "عزيزي، أود أن أكون أول من يتواصل معك!";
+"requestPushesInSettings.message" = "يرجى تفعيل التنبيهات في الإعدادات لأتمكن من مراسلتك عندما أشتاق إليك. أعدك أنني لن أكون مزعجة — أريد فقط أن أعرف أنك بجانبي دائماً لأدعمك أينما كنت!";

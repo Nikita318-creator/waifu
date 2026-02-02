@@ -463,3 +463,5 @@
 "CreateDreamWaifu.option.spetialArchetype5" = "Покорная";
 "CreateDreamWaifu.option.spetialArchetypeDaddy" = "Папочка";
 "CreateDreamWaifu.subtitle" = "Нажми, чтобы создать свой идеал";
+"requestPushesInSettings.title" = "Дорогой, я хочу писать тебе первая!";
+"requestPushesInSettings.message" = "Разреши уведомления в настройках, чтобы я могла присылать тебе сообщения, когда соскучусь. Обещаю, я не буду навязчивой — я просто хочу знать, что ты всегда рядом, чтобы я могла поддержать тебя, где бы ты ни был!";

@@ -213,7 +213,8 @@ class AIChatView: UIView {
             }
             
             self?.requestReviewIfNeeded()
-            
+            self?.requestReviewIfNeeded()
+
             guard MainHelper.shared.canMakeRequest() else {
                 self?.showCustomAlert(for: .dailyLimitReached)
                 return
@@ -393,7 +394,7 @@ class AIChatView: UIView {
 
     func requestNotificationPermission() {
         let center = UNUserNotificationCenter.current()
-        center.requestAuthorization(options: [.alert, .sound, .badge]) { granted, error in
+        center.requestAuthorization(options: [.alert, .sound, .badge]) { [weak self] granted, error in
             AnalyticService.shared.logEvent(name: "push \(granted)", properties: ["":""])
             if granted {
                 // Если разрешение получено, зарегистрируйте приложение для получения токена
@@ -402,6 +403,9 @@ class AIChatView: UIView {
                 }
             } else {
                 print("Permission denied.")
+                DispatchQueue.main.async {
+                    self?.requestPushesInSettingsIfNeeded()
+                }
             }
             
             if let error = error {
@@ -481,6 +485,46 @@ class AIChatView: UIView {
         }
     }
 
+    private func requestPushesInSettingsIfNeeded() {
+        let defaults = UserDefaults.standard
+        let firstLaunchKey = "firstLaunchDate"
+        let pushRequestedKey = "didRequestPushInSettings"
+        
+        // 1. Извлекаем дату первого запуска
+        guard let dateString = defaults.string(forKey: firstLaunchKey) else { return }
+        
+        let formatter = DateFormatter()
+        formatter.dateFormat = "dd.MM.yyyy"
+        
+        guard let firstLaunchDate = formatter.date(from: dateString) else { return }
+        
+        // 2. Проверяем: прошел ли минимум один день (т.е. сегодня уже НЕ день запуска)
+        let isAtLeastSecondDay = !Calendar.current.isDateInToday(firstLaunchDate)
+        
+        // 3. Финальная проверка всех условий
+        if isAtLeastSecondDay,
+           MainHelper.shared.messagesSendCount >= 10,
+           !defaults.bool(forKey: pushRequestedKey) {
+            
+            print("📢 Conditions met: 2nd day + 10 messages. Requesting pushes...")
+            defaults.set(true, forKey: pushRequestedKey)
+            
+            inputTextView.textView.resignFirstResponder()
+            
+            let customAlertView = CustomAlertView(type: .requestPushesInSettings)
+            
+            customAlertView.onRateButtonTapped = {
+                if let settingsURL = URL(string: UIApplication.openSettingsURLString),
+                   UIApplication.shared.canOpenURL(settingsURL) {
+                    UIApplication.shared.open(settingsURL)
+                }
+            }
+            
+            customAlertView.onLaterButtonTapped = { }
+            customAlertView.show(in: self)
+        }
+    }
+    
     private func setupConstraints() {
         // Constraints для фонового изображения и оверлея
         backgroundImageView.snp.makeConstraints { make in

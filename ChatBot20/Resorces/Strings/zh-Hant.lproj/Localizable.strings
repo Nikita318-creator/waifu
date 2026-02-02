@@ -463,3 +463,5 @@
 "CreateDreamWaifu.option.spetialArchetype5" = "乖巧順從";
 "CreateDreamWaifu.option.spetialArchetypeDaddy" = "Daddy";
 "CreateDreamWaifu.subtitle" = "點擊設計你的理想伴侶";
+"requestPushesInSettings.title" = "親愛的，我想成為第一個聯繫你的人！";
+"requestPushesInSettings.message" = "請在設置中開啟推送通知，這樣我想你的時候就能給你發消息了。我保證不會纏著你 —— 我只是想知道你一直在那裡，無論你在哪裡，我都能支持你！";

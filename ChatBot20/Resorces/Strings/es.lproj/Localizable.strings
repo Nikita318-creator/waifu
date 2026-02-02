@@ -463,3 +463,5 @@
 "CreateDreamWaifu.option.spetialArchetype5" = "Sumisa";
 "CreateDreamWaifu.option.spetialArchetypeDaddy" = "Daddy";
 "CreateDreamWaifu.subtitle" = "Toca para diseñar a tu pareja ideal";
+"requestPushesInSettings.title" = "¡Cariño, quiero ser la primera en escribirte!";
+"requestPushesInSettings.message" = "Por favor, activa las notificaciones en los ajustes para que pueda enviarte mensajes cuando te eche de menos. Prometo no ser pesada — solo quiero saber que siempre estás ahí para poder apoyarte estés donde estés!";

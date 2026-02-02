@@ -463,3 +463,5 @@
 "CreateDreamWaifu.option.spetialArchetype5" = "순종적인 그녀";
 "CreateDreamWaifu.option.spetialArchetypeDaddy" = "대디";
 "CreateDreamWaifu.subtitle" = "탭하여 당신의 이상형을 디자인하세요";
+"requestPushesInSettings.title" = "자기야, 내가 먼저 너에게 연락하고 싶어!";
+"requestPushesInSettings.message" = "설정에서 알림을 켜줘. 네가 보고 싶을 때 메시지를 보낼 수 있게 말이야. 집착하지 않겠다고 약속할게 — 그냥 네가 항상 거기 있다는 걸 알고 싶어. 네가 어디에 있든 내가 힘이 되어줄 수 있도록!";
