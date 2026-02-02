@@ -16,7 +16,8 @@ class MessageHistoryServiceObject: Object {
     @Persisted var photoID: String
     @Persisted var createdAt: Date
     @Persisted var updatedAt: Date
-    
+    @Persisted var reaction: String?
+
     convenience init(message: Message, assistantId: String, id: String) {
         self.init()
         self.id = id
@@ -26,12 +27,21 @@ class MessageHistoryServiceObject: Object {
         self.isLoading = message.isLoading
         self.isVoiceMessage = message.isVoiceMessage
         self.photoID = message.photoID
+        self.reaction = message.reaction
         self.createdAt = Date()
         self.updatedAt = Date()
     }
     
     func toMessage() -> Message {
-        return Message(role: role, content: content, isLoading: isLoading, photoID: photoID, isVoiceMessage: isVoiceMessage, id: id)
+        return Message(
+            role: role,
+            content: content,
+            isLoading: isLoading,
+            photoID: photoID,
+            isVoiceMessage: isVoiceMessage,
+            id: id,
+            reaction: reaction
+        )
     }
 }
 
@@ -88,10 +98,20 @@ class MessageHistoryService {
                 object.role = message.role
                 object.content = message.content
                 object.isLoading = message.isLoading
+                object.reaction = message.reaction
+                object.photoID = message.photoID
+                object.isVoiceMessage = message.isVoiceMessage                
                 object.updatedAt = Date()
             }
         } catch {
             print("Failed to update message: \(error)")
+        }
+    }
+    
+    func updateReaction(id: String, reaction: String?) {
+        guard let object = realm.object(ofType: MessageHistoryServiceObject.self, forPrimaryKey: id) else { return }
+        try? realm.write {
+            object.reaction = reaction
         }
     }
     

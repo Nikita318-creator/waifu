@@ -8,6 +8,31 @@ import SnapKit
 class ChatCell: UITableViewCell {
     static let identifier = "ChatCell"
 
+    let reactions = [
+        (emoji: "❤️", id: "heart"),
+        (emoji: "👍", id: "up"),
+        (emoji: "👎", id: "down"),
+        (emoji: "😂", id: "laugh"),
+        (emoji: "😭", id: "cry"),
+        (emoji: "😡", id: "angry")
+    ]
+    
+    private let reactionContainer: UIView = {
+        let view = UIView()
+        view.backgroundColor = UIColor(white: 0.2, alpha: 1.0) // Темный фон реакции
+        view.layer.cornerRadius = 10
+        view.isHidden = true
+        return view
+    }()
+
+    private let reactionLabel: UILabel = {
+        let label = UILabel()
+        label.font = .systemFont(ofSize: 13)
+        return label
+    }()
+    
+    private var overlayView: UIView?
+
     private var loopingPlayerManager: LoopingPlayerManager?
 
     // MARK: - UI Elements
@@ -16,6 +41,7 @@ class ChatCell: UITableViewCell {
     private lazy var messageLabel: UITextView = {
         let messageTextView = UITextView()
         messageTextView.isEditable = false
+        messageTextView.isSelectable = false  // <-- вот эта строка вырубает выделение по long press
         messageTextView.isScrollEnabled = false
         messageTextView.dataDetectorTypes = .link
         messageTextView.backgroundColor = .clear
@@ -180,8 +206,9 @@ class ChatCell: UITableViewCell {
             make.width.height.equalTo(iconSize)
         }
         
-        let interaction = UIContextMenuInteraction(delegate: self)
-        messageContainerView.addInteraction(interaction)
+//        let interaction = UIContextMenuInteraction(delegate: self)
+//        messageContainerView.addInteraction(interaction)
+        setupLongPressForReactions()
         
         messageImageView.addSubview(blurryOverlayView)
         
@@ -190,14 +217,45 @@ class ChatCell: UITableViewCell {
         }
         
         setupAudioUI()
+        
+        contentView.addSubview(reactionContainer)
+        reactionContainer.addSubview(reactionLabel)
+        reactionLabel.snp.makeConstraints { make in
+            make.edges.equalToSuperview().inset(UIEdgeInsets(top: 2, left: 4, bottom: 2, right: 4))
+        }
     }
 
-    func configure(message: String, isUserMessage: Bool, photoID: String, needHideActionButtons: Bool, isVoiceMessage: Bool, id: String) {
+    func configure(message: String, isUserMessage: Bool, photoID: String, needHideActionButtons: Bool, isVoiceMessage: Bool, reaction: String?, id: String) {
         messageID = id
         isVideoCell = message.contains("[video]")
         loadingIndicator.stopAnimating()
         loadingIndicator.isHidden = true
         avatarView.isHidden = isUserMessage
+        
+        if let reactionId = reaction,
+           let emoji = reactions.first(where: { $0.id == reactionId })?.emoji {
+            
+            reactionContainer.isHidden = false
+            reactionLabel.text = emoji
+            
+            if isUserMessage {
+                reactionContainer.backgroundColor = TelegramColors.userMessageBackground
+            } else {
+                reactionContainer.backgroundColor = TelegramColors.assistantMessageBackground
+            }
+            
+            reactionContainer.snp.remakeConstraints { make in
+                make.bottom.equalTo(messageContainerView.snp.bottom).offset(6)
+                if isUserMessage {
+                    make.trailing.equalTo(messageContainerView.snp.trailing).offset(-8)
+                } else {
+                    make.leading.equalTo(messageContainerView.snp.leading).offset(8)
+                }
+                make.height.equalTo(22)
+            }
+        } else {
+            reactionContainer.isHidden = true
+        }
         
         if !isUserMessage {
             avatarView.image = UIImage(named: MainHelper.shared.currentAssistant?.avatarImageName ?? "") ?? UIImage.loadCustomAvatar(for: MainHelper.shared.currentAssistant?.avatarImageName ?? "")
@@ -556,6 +614,8 @@ class ChatCell: UITableViewCell {
         statusLabel.text = nil
         playIconImageView.isHidden = true
         blurryOverlayView.isHidden = true
+        reactionContainer.isHidden = true
+        reactionLabel.text = nil
     }
     
     private func configureAssistantVoiceMessage() {
@@ -678,153 +738,249 @@ extension ChatCell: AVPlayerViewControllerDelegate {
 }
 
 // MARK: - UIContextMenuInteractionDelegate
-extension ChatCell: UIContextMenuInteractionDelegate {
+extension ChatCell {
     
-    func contextMenuInteraction(_ interaction: UIContextMenuInteraction, configurationForMenuAtLocation location: CGPoint) -> UIContextMenuConfiguration? {
+    func setupLongPressForReactions() {
+        let longPress = UILongPressGestureRecognizer(target: self, action: #selector(handleLongPress(_:)))
+        longPress.minimumPressDuration = 0.5
+        messageContainerView.isUserInteractionEnabled = true
+        messageContainerView.addGestureRecognizer(longPress)
+    }
         
-        let snapshot = messageContainerView.snapshotView(afterScreenUpdates: true)
-        let originalSize = messageContainerView.bounds.size
+    @objc private func handleLongPress(_ gesture: UILongPressGestureRecognizer) {
+        guard gesture.state == .began,
+              let window = window,
+              let snapshot = messageContainerView.snapshotView(afterScreenUpdates: true)
+        else { return }
         
-        return UIContextMenuConfiguration(identifier: nil, previewProvider: { [weak self] in
-            guard let self = self else { return nil }
-            
-            let controller = UIViewController()
-            
-            // 1. ОБЩАЯ ПАНЕЛЬ С БЛЮРОМ (Как была)
-            let blurEffect = UIBlurEffect(style: .systemUltraThinMaterialDark)
-            let reactionsContainer = UIVisualEffectView(effect: blurEffect)
-            reactionsContainer.layer.cornerRadius = 25
-            reactionsContainer.clipsToBounds = true
-            
-            // 2. ОТДЕЛЬНЫЙ ФОН ЧИСТО ПОД СМАЙЛЫ (Внутри блюра)
-            let innerDarkBackground = UIView()
-            innerDarkBackground.backgroundColor = UIColor(white: 0, alpha: 0.9)
-            innerDarkBackground.layer.cornerRadius = 20
-            
-            let stackView = UIStackView()
-            stackView.axis = .horizontal
-            stackView.spacing = 10
-            stackView.distribution = .fillEqually
-            
-            let reactions = [
-                (emoji: "❤️", id: "heart"),
-                (emoji: "👍", id: "up"),
-                (emoji: "👎", id: "down"),
-                (emoji: "😂", id: "laugh"),
-                (emoji: "😭", id: "cry"),
-                (emoji: "😡", id: "angry")
-            ]
-            
-            reactions.forEach { item in
-                let btn = UIButton(type: .system)
-                btn.setTitle(item.emoji, for: .normal)
-                btn.titleLabel?.font = .systemFont(ofSize: 28)
-                btn.addAction(UIAction { [weak self] _ in
-                    guard let self = self else { return }
-                    UIImpactFeedbackGenerator(style: .medium).impactOccurred()
-                    AnalyticService.shared.logEvent(name: "UIContext Reaction Tap", properties: ["emoji_id": item.id])
-                    interaction.dismissMenu()
-                    self.reloadDataHandler?()
-                }, for: .touchUpInside)
-                stackView.addArrangedSubview(btn)
-            }
-            
-            controller.view.addSubview(reactionsContainer)
-            reactionsContainer.contentView.addSubview(innerDarkBackground) // Кладем фон на блюр
-            innerDarkBackground.addSubview(stackView) // Смайлы на фон
-            
-            if let snap = snapshot {
-                controller.view.addSubview(snap)
-                
-                snap.snp.makeConstraints { make in
-                    make.bottom.equalToSuperview()
-                    make.centerX.equalToSuperview()
-                    make.size.equalTo(originalSize)
+        let overlay = UIView(frame: window.bounds)
+        overlay.backgroundColor = .clear
+        
+        let blurEffect = UIBlurEffect(style: .systemUltraThinMaterialDark)
+        let blurView = UIVisualEffectView(effect: blurEffect)
+        blurView.frame = overlay.bounds
+        blurView.alpha = 0
+        overlay.addSubview(blurView)
+        
+        let tapToDismiss = UITapGestureRecognizer(target: self, action: #selector(dismissOverlay(_:)))
+        overlay.addGestureRecognizer(tapToDismiss)
+        
+        let cellFrameInWindow = messageContainerView.convert(messageContainerView.bounds, to: window)
+        
+        snapshot.frame = cellFrameInWindow
+        snapshot.layer.cornerRadius = messageContainerView.layer.cornerRadius
+        snapshot.clipsToBounds = true
+        snapshot.layer.shadowColor = UIColor.black.cgColor
+        snapshot.layer.shadowOpacity = 0.2
+        snapshot.layer.shadowOffset = CGSize(width: 0, height: 2)
+        snapshot.layer.shadowRadius = 6
+        overlay.addSubview(snapshot)
+        
+        // --- РАСЧЕТ ПОЗИЦИИ И ШИРИНЫ ---
+        let screenWidth = window.bounds.width
+        let screenHeight = window.bounds.height
+        let sidePadding: CGFloat = 24
+        let bottomPadding: CGFloat = 40 // Отступ от низа экрана
+        let topPadding: CGFloat = 60    // Отступ от верха экрана
+        let menuWidth: CGFloat = screenWidth * 0.52
+        
+        var targetCenterX = cellFrameInWindow.midX
+        if targetCenterX - (menuWidth / 2) < sidePadding {
+            targetCenterX = sidePadding + (menuWidth / 2)
+        }
+        if targetCenterX + (menuWidth / 2) > screenWidth - sidePadding {
+            targetCenterX = screenWidth - sidePadding - (menuWidth / 2)
+        }
+        
+        let reactionsWidthEstimate = CGFloat(reactions.count) * 40 + 80
+        var reactionsWidth = max(reactionsWidthEstimate, menuWidth * 0.9)
+        reactionsWidth = min(reactionsWidth, screenWidth - sidePadding * 2)
+        
+        // --- РЕАКЦИИ ---
+        let reactionsContainer = UIView()
+        reactionsContainer.backgroundColor = UIColor(white: 0.15, alpha: 0.95)
+        reactionsContainer.layer.cornerRadius = 28
+        overlay.addSubview(reactionsContainer)
+        
+        let reactionsStack = UIStackView()
+        reactionsStack.axis = .horizontal
+        reactionsStack.spacing = 20
+        reactionsStack.distribution = .fillProportionally
+        reactionsStack.alignment = .center
+        
+        for (index, item) in reactions.enumerated() {
+            let button = UIButton(type: .system)
+            button.setTitle(item.emoji, for: .normal)
+            button.titleLabel?.font = .systemFont(ofSize: 20) // Оставил как в твоем коде
+            button.titleLabel?.adjustsFontSizeToFitWidth = true
+            button.titleLabel?.minimumScaleFactor = 0.7
+            button.tag = index
+            button.addTarget(self, action: #selector(selectReaction(_:)), for: .touchUpInside)
+            reactionsStack.addArrangedSubview(button)
+        }
+        
+        reactionsContainer.addSubview(reactionsStack)
+        reactionsStack.snp.makeConstraints { make in
+            make.edges.equalToSuperview().inset(UIEdgeInsets(top: 10, left: 24, bottom: 10, right: 24))
+        }
+        
+        // --- МЕНЮ ДЕЙСТВИЙ ---
+        let actionsContainer = UIView()
+        actionsContainer.backgroundColor = UIColor(white: 0.15, alpha: 0.95)
+        actionsContainer.layer.cornerRadius = 18
+        actionsContainer.clipsToBounds = true
+        overlay.addSubview(actionsContainer)
+        
+        let actionsStack = UIStackView()
+        actionsStack.axis = .vertical
+        actionsStack.spacing = 0
+        
+        let actionsData: [(title: String, image: String, destructive: Bool, handler: () -> Void)] = [
+            ("Copy".localize(), "doc.on.doc", false, { [weak self] in
+                guard let self = self else { return }
+                AnalyticService.shared.logEvent(name: "UIContext Copy", properties: ["":""])
+                if !self.messageLabel.isHidden {
+                    UIPasteboard.general.string = self.messageLabel.text ?? " "
                 }
-                
-                reactionsContainer.snp.makeConstraints { make in
-                    make.bottom.equalTo(snap.snp.top).offset(-15)
-                    make.centerX.equalToSuperview()
-                    make.width.equalTo(300)
-                    make.height.equalTo(60)
+                self.dismissOverlay()
+            }),
+            ("SelectText".localize(), "text.cursor", false, { [weak self] in
+                guard let self = self else { return }
+                AnalyticService.shared.logEvent(name: "UIContext SelectText", properties: ["":""])
+                guard !self.messageLabel.isHidden else { return }
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+                    self.messageLabel.isSelectable = true
+                    self.messageLabel.becomeFirstResponder()
+                    if let textRange = self.messageLabel.textRange(from: self.messageLabel.beginningOfDocument, to: self.messageLabel.endOfDocument) {
+                        self.messageLabel.selectedTextRange = textRange
+                    }
                 }
-            }
-            
-            // Констрейнты для темного фона внутри блюра
-            innerDarkBackground.snp.makeConstraints { make in
-                make.edges.equalToSuperview().inset(5) // Небольшой отступ, чтобы блюр был виден по краям
-            }
-            
-            stackView.snp.makeConstraints { make in
-                make.edges.equalToSuperview().inset(UIEdgeInsets(top: 0, left: 10, bottom: 0, right: 10))
-            }
-            
-            controller.preferredContentSize = CGSize(width: max(300, originalSize.width),
-                                                     height: originalSize.height + 85)
-            return controller
-            
-        }) { [weak self] _ in
-            
-            // --- ТВОЙ ОРИГИНАЛЬНЫЙ КОД БЕЗ ИЗМЕНЕНИЙ ---
-            let deleteAction = UIAction(
-                title: "Delete".localize(),
-                image: UIImage(systemName: "trash"),
-                attributes: .destructive
-            ) { _ in
+                self.dismissOverlay()
+            }),
+            ("Share".localize(), "square.and.arrow.up", false, { [weak self] in
+                guard let self = self else { return }
+                AnalyticService.shared.logEvent(name: "UIContext Share", properties: ["":""])
+                var activityItems: [Any] = []
+                if let image = self.messageImageView.image, !self.messageImageView.isHidden {
+                    guard IAPService.shared.hasActiveSubscription else {
+                        self.showSubsHandler?()
+                        self.dismissOverlay()
+                        return
+                    }
+                    activityItems.append(image)
+                    activityItems.append("\("ResourceImage".localize()) \(SubsView.Constants.appStoreUrl)")
+                } else if let textToShare = self.messageLabel.text, !self.messageLabel.isHidden {
+                    activityItems.append(textToShare)
+                    activityItems.append("\("ResourceText".localize()) \(SubsView.Constants.appStoreUrl)")
+                }
+                if !activityItems.isEmpty, let vc = self.vc {
+                    let activityViewController = UIActivityViewController(activityItems: activityItems, applicationActivities: nil)
+                    activityViewController.popoverPresentationController?.sourceView = self.messageContainerView
+                    vc.present(activityViewController, animated: true, completion: nil)
+                }
+                self.dismissOverlay()
+            }),
+            ("Delete".localize(), "trash", true, { [weak self] in
                 guard let self = self else { return }
                 AnalyticService.shared.logEvent(name: "UIContext delete", properties: ["":""])
                 MessageHistoryService().deleteMessage(id: self.messageID)
                 self.reloadDataHandler?()
+                self.dismissOverlay()
+            })
+        ]
+        
+        for (index, data) in actionsData.enumerated() {
+            let button = createActionButton(title: data.title, imageName: data.image, destructive: data.destructive) { data.handler() }
+            actionsStack.addArrangedSubview(button)
+            if index < actionsData.count - 1 {
+                let separator = UIView()
+                separator.backgroundColor = UIColor(white: 0.3, alpha: 0.5)
+                separator.snp.makeConstraints { $0.height.equalTo(0.5) }
+                actionsStack.addArrangedSubview(separator)
             }
-            
-            return UIMenu(title: "", children: [
-                UIAction(title: "Copy".localize(), image: UIImage(systemName: "doc.on.doc")) { _ in
-                    AnalyticService.shared.logEvent(name: "UIContext Copy", properties: ["":""])
-                    if !(self?.messageLabel.isHidden ?? true) {
-                        UIPasteboard.general.string = self?.messageLabel.text ?? " "
-                    }
-                },
-                UIAction(title: "SelectText".localize(), image: UIImage(systemName: "text.cursor"), handler: { _ in
-                    AnalyticService.shared.logEvent(name: "UIContext SelectText", properties: ["":""])
-                    guard !(self?.messageLabel.isHidden ?? true) else { return }
-                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) { [weak self] in
-                        guard let self = self else { return }
-                        self.messageLabel.isSelectable = true
-                        self.messageLabel.becomeFirstResponder()
-
-                        if let textRange = self.messageLabel.textRange(
-                            from: self.messageLabel.beginningOfDocument,
-                            to: self.messageLabel.endOfDocument
-                        ) {
-                            self.messageLabel.selectedTextRange = textRange
-                        }
-                    }
-                }),
-                UIAction(title: "Share".localize(), image: UIImage(systemName: "square.and.arrow.up")) { _ in
-                    AnalyticService.shared.logEvent(name: "UIContext Share", properties: ["":""])
-                    
-                    var activityItems: [Any] = []
-                    if let image = self?.messageImageView.image, !(self?.messageImageView.isHidden ?? true) {
-                        guard IAPService.shared.hasActiveSubscription else {
-                            self?.showSubsHandler?()
-                            return
-                        }
-                        activityItems.append(image)
-                        activityItems.append("\("ResourceImage".localize()) \(SubsView.Constants.appStoreUrl)")
-                    } else if let textToShare = self?.messageLabel.text, !(self?.messageLabel.isHidden ?? true) {
-                        activityItems.append(textToShare)
-                        activityItems.append("\("ResourceText".localize()) \(SubsView.Constants.appStoreUrl)")
-                    }
-                    
-                    if !activityItems.isEmpty, let vc = self?.vc {
-                        let activityViewController = UIActivityViewController(activityItems: activityItems, applicationActivities: nil)
-                        activityViewController.popoverPresentationController?.sourceView = self?.messageContainerView
-                        vc.present(activityViewController, animated: true, completion: nil)
-                    }
-                },
-                deleteAction
-            ])
         }
+        
+        actionsContainer.addSubview(actionsStack)
+        actionsStack.snp.makeConstraints { make in
+            make.edges.equalToSuperview().inset(UIEdgeInsets(top: 4, left: 16, bottom: 4, right: 16))
+        }
+        
+        // --- УМНЫЕ КОНСТРЕЙНТЫ (ЧТОБЫ НЕ ВЫЛЕТАЛО ЗА ЭКРАН) ---
+        
+        reactionsContainer.snp.makeConstraints { make in
+            make.centerX.equalTo(overlay.snp.leading).offset(targetCenterX)
+            make.width.equalTo(reactionsWidth)
+            make.height.equalTo(60)
+            
+            // Пытаемся быть сверху сообщения
+            make.bottom.equalTo(snapshot.snp.top).offset(-16).priority(.high)
+            // Но не выше верхнего края экрана
+            make.top.greaterThanOrEqualTo(overlay.snp.top).offset(topPadding).priority(.required)
+        }
+        
+        actionsContainer.snp.makeConstraints { make in
+            make.centerX.equalTo(overlay.snp.leading).offset(targetCenterX)
+            make.width.equalTo(menuWidth)
+            
+            // Пытаемся быть снизу сообщения
+            make.top.equalTo(snapshot.snp.bottom).offset(16).priority(.high)
+            // НО: нижний край меню НЕ ДОЛЖЕН уходить за нижний край экрана (priority .required)
+            make.bottom.lessThanOrEqualTo(overlay.snp.bottom).offset(-bottomPadding).priority(.required)
+        }
+        
+        window.addSubview(overlay)
+        self.overlayView = overlay
+        
+        // --- АНИМАЦИЯ ---
+        let startTransform = CGAffineTransform(scaleX: 0.85, y: 0.85)
+        reactionsContainer.transform = startTransform
+        actionsContainer.transform = startTransform
+        reactionsContainer.alpha = 0
+        actionsContainer.alpha = 0
+        
+        UIView.animate(withDuration: 0.25) {
+            blurView.alpha = 1.0
+        }
+        
+        UIView.animate(withDuration: 0.45, delay: 0, usingSpringWithDamping: 0.75, initialSpringVelocity: 1.0, options: .curveEaseOut) {
+            reactionsContainer.transform = .identity
+            actionsContainer.transform = .identity
+            reactionsContainer.alpha = 1.0
+            actionsContainer.alpha = 1.0
+            snapshot.transform = CGAffineTransform(scaleX: 1.03, y: 1.03)
+        }
+    }
+    
+    @objc private func dismissOverlay(_ gesture: UITapGestureRecognizer? = nil) {
+        overlayView?.removeFromSuperview()
+        overlayView = nil
+        messageLabel.isSelectable = false  // <-- СБРОС ЗДЕСЬ, чтоб после любого закрытия текст не был selectable
+    }
+    
+    @objc private func selectReaction(_ sender: UIButton) {
+        let index = sender.tag
+        guard index >= 0 && index < reactions.count else { return }
+        let selected = reactions[index]
+        
+        UIImpactFeedbackGenerator(style: .medium).impactOccurred()
+        AnalyticService.shared.logEvent(name: "UIContext Reaction Tap", properties: ["emoji_id": selected.id])
+        MessageHistoryService().updateReaction(id: messageID, reaction: selected.id)
+        reloadDataHandler?()
+        dismissOverlay()
+    }
+    
+    private func createActionButton(title: String, imageName: String, destructive: Bool = false, handler: @escaping () -> Void) -> UIButton {
+        let button = UIButton(type: .system)
+        button.setTitle(title, for: .normal)
+        button.setImage(UIImage(systemName: imageName), for: .normal)
+        button.tintColor = destructive ? .systemRed : .white
+        button.setTitleColor(destructive ? .systemRed : .white, for: .normal)
+        button.contentHorizontalAlignment = .left
+        button.imageEdgeInsets = UIEdgeInsets(top: 0, left: -8, bottom: 0, right: 8)
+        button.titleEdgeInsets = UIEdgeInsets(top: 0, left: 12, bottom: 0, right: 0)
+        button.addAction(UIAction { _ in handler() }, for: .touchUpInside)
+        button.heightAnchor.constraint(equalToConstant: 48).isActive = true
+        return button
     }
 }
 

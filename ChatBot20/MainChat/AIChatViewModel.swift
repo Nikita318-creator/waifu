@@ -7,6 +7,7 @@ struct Message {
     var photoID: String = ""
     var isVoiceMessage: Bool = false
     var id: String? = nil
+    var reaction: String? = nil
 }
 
 struct AIMessage: Codable {

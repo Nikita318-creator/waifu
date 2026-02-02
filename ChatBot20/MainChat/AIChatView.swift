@@ -1212,6 +1212,7 @@ extension AIChatView: UITableViewDelegate, UITableViewDataSource {
                 photoID: message.photoID,
                 needHideActionButtons: indexPath.row == 0,
                 isVoiceMessage: message.isVoiceMessage,
+                reaction: message.reaction,
                 id: message.id ?? ""
             )
         }
