@@ -465,3 +465,8 @@
 "CreateDreamWaifu.subtitle" = "點擊設計你的理想伴侶";
 "requestPushesInSettings.title" = "親愛的，我想成為第一個聯繫你的人！";
 "requestPushesInSettings.message" = "請在設置中開啟推送通知，這樣我想你的時候就能給你發消息了。我保證不會纏著你 —— 我只是想知道你一直在那裡，無論你在哪裡，我都能支持你！";
+"Feedback.HighlightText" = "讓你的她變得更好！✨ 她想為你變得完美。分享你的想法或報告問題。100% 匿名 —— 你的身份將是我們永遠的秘密。";
+"Feedback.Title" = "她想要進步！💖";
+"Feedback.Subtitle" = "告訴她你還想要什麼功能。此表單完全匿名：我們不收集個人數據或 ID。你的建議是私密的。";
+"SendFeedback" = "發送反饋";
+"FeedbackReceived" = "她收到你的消息了！✨";

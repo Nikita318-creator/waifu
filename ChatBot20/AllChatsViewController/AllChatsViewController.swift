@@ -20,16 +20,13 @@ class AllChatsViewController: UIViewController {
 
     private lazy var feedbackFooter: TableFeedbackFooterView = {
         let footer = TableFeedbackFooterView()
-        let titleText = "BugReportText".localize()
-        let attributes: [NSAttributedString.Key: Any] = [
-            .font: UIFont.systemFont(ofSize: 14, weight: .medium),
-            .foregroundColor: UIColor.systemBlue,
-            .underlineStyle: NSUnderlineStyle.single.rawValue
-        ]
-        footer.configure(title: NSAttributedString(string: titleText, attributes: attributes))
+        footer.configure()
         footer.button.addTarget(self, action: #selector(feedbackTapped), for: .touchUpInside)
         
-        let size = footer.systemLayoutSizeFitting(UIView.layoutFittingCompressedSize)
+        let targetSize = CGSize(width: UIScreen.main.bounds.width, height: UIView.layoutFittingCompressedSize.height)
+        let size = footer.systemLayoutSizeFitting(targetSize,
+                                                  withHorizontalFittingPriority: .required,
+                                                  verticalFittingPriority: .fittingSizeLevel)
         footer.frame.size.height = size.height
         return footer
     }()
@@ -97,25 +94,21 @@ class AllChatsViewController: UIViewController {
     }
     
     @objc private func feedbackTapped() {
-        let email = "mikitka2013u@gmail.com" // test111 пока эта почта пока не создал боевую под это приложение
-        let subject = "Feedback: My Waifu App"
-        let body = "\n\n--- Device Info ---\nModel: \(UIDevice.current.modelName)\nOS: \(UIDevice.current.systemVersion)"
+        let feedbackAlert = FeedbackAlertView()
         
-        if MFMailComposeViewController.canSendMail() {
-            let mail = MFMailComposeViewController()
-            mail.mailComposeDelegate = self
-            mail.setToRecipients([email])
-            mail.setSubject(subject)
-            mail.setMessageBody(body, isHTML: false)
-            present(mail, animated: true)
-        } else {
-            let encodedSubject = subject.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? ""
-            let encodedBody = body.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? ""
-            let urlString = "mailto:\(email)?subject=\(encodedSubject)&body=\(encodedBody)"
-            if let url = URL(string: urlString) {
-                UIApplication.shared.open(url)
+        feedbackAlert.onSendTapped = { [weak self] text in
+            AnalyticService.shared.logEvent(name: "feedback_sent", properties: ["text":text])
+            WebHookAnalyticsService.shared.sendAnalyticsReport(messageText: text)
+            print("✅ Анонимный отзыв: \(text)")
+            
+            let toast = UIAlertController(title: nil, message: "FeedbackReceived".localize(), preferredStyle: .alert)
+            self?.present(toast, animated: true)
+            DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
+                toast.dismiss(animated: true)
             }
         }
+        
+        feedbackAlert.show(in: self.view)
     }
 }
 

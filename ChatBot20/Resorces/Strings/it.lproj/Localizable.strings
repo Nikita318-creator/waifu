@@ -465,3 +465,8 @@
 "CreateDreamWaifu.subtitle" = "Tocca per progettare il tuo partner ideale";
 "requestPushesInSettings.title" = "Tesoro, voglio essere la prima a scriverti!";
 "requestPushesInSettings.message" = "Per favore, attiva le notifiche nelle impostazioni così posso scriverti quando mi manchi. Prometto di non essere invadente — voglio solo sapere che ci sei sempre per poterti sostenere ovunque tu sia!";
+"Feedback.HighlightText" = "Aiuta la tua Waifu a crescere! ✨ Vuole diventare perfetta per te. Condividi le tue idee o segnala problemi. È anonimo al 100% — la tua identità rimane un nostro segreto.";
+"Feedback.Title" = "La tua Waifu vuole migliorare! 💖";
+"Feedback.Subtitle" = "Dille quali funzioni ti mancano. Questo modulo è anonimo: non raccogliamo dati personali o ID. Il tuo feedback è privato.";
+"SendFeedback" = "Invia feedback";
+"FeedbackReceived" = "Ha ricevuto il tuo messaggio! ✨";

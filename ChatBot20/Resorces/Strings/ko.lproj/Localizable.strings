@@ -465,3 +465,8 @@
 "CreateDreamWaifu.subtitle" = "탭하여 당신의 이상형을 디자인하세요";
 "requestPushesInSettings.title" = "자기야, 내가 먼저 너에게 연락하고 싶어!";
 "requestPushesInSettings.message" = "설정에서 알림을 켜줘. 네가 보고 싶을 때 메시지를 보낼 수 있게 말이야. 집착하지 않겠다고 약속할게 — 그냥 네가 항상 거기 있다는 걸 알고 싶어. 네가 어디에 있든 내가 힘이 되어줄 수 있도록!";
+"Feedback.HighlightText" = "당신의 최애가 성장하도록 도와주세요! ✨ 그녀는 당신을 위해 완벽해지고 싶어 합니다. 아이디어를 공유하거나 문제를 알려주세요. 100% 익명이며, 당신의 신원은 우리만의 비밀로 남습니다.";
+"Feedback.Title" = "당신의 그녀는 더 발전하고 싶어 합니다! 💖";
+"Feedback.Subtitle" = "부족한 기능이 무엇인지 그녀에게 알려주세요. 이 양식은 익명입니다. 개인 정보나 ID를 수집하지 않습니다. 피드백은 비공개로 유지됩니다.";
+"SendFeedback" = "피드백 보내기";
+"FeedbackReceived" = "그녀가 메시지를 받았어요! ✨";

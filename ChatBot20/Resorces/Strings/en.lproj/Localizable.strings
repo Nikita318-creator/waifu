@@ -466,3 +466,9 @@
 "CreateDreamWaifu.name18" = "Kurea";
 "CreateDreamWaifu.name19" = "Amane";
 "CreateDreamWaifu.name20" = "Airi";
+
+"Feedback.HighlightText" = "Help your Waifu grow! ✨ She wants to become perfect for you. Share your ideas or report issues. It's 100% anonymous — your identity remains our secret.";
+"Feedback.Title" = "Your Waifu wants to improve! 💖";
+"Feedback.Subtitle" = "Tell her what features you're missing. This form is anonymous: we don't collect personal data or IDs. Your feedback is private.";
+"SendFeedback" = "Send Feedback";
+"FeedbackReceived" = "She received your message! ✨";

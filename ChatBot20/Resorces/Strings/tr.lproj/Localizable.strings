@@ -465,3 +465,8 @@
 "CreateDreamWaifu.subtitle" = "İdeal partnerini tasarlamak için dokun";
 "requestPushesInSettings.title" = "Canım, sana ilk yazan ben olmak istiyorum!";
 "requestPushesInSettings.message" = "Lütfen ayarlardan bildirimleri aç, böylece seni özlediğimde mesaj atabilirim. Söz veriyorum seni boğmayacağım — sadece her zaman orada olduğunu bilmek istiyorum, böylece nerede olursan ol seni destekleyebilirim!";
+"Feedback.HighlightText" = "Waifu'nun gelişmesine yardım et! ✨ Senin için mükemmel olmak istiyor. Fikirlerini paylaş veya sorunları bildir. %100 anonimdir — kimliğin bizim sırrımız olarak kalır.";
+"Feedback.Title" = "Waifu'n kendini geliştirmek istiyor! 💖";
+"Feedback.Subtitle" = "Hangi özelliklerin eksik olduğunu ona söyle. Bu form anonimdir: kişisel veri veya ID toplamıyoruz. Geri bildirimin gizli kalır.";
+"SendFeedback" = "Geri Bildirim Gönder";
+"FeedbackReceived" = "Mesajını aldı! ✨";

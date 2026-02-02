@@ -8,23 +8,27 @@ class FeedbackFooterView: UICollectionReusableView {
     override init(frame: CGRect) {
         super.init(frame: frame)
         
-        // КРИТИЧНО для многострочности в кнопке
         button.titleLabel?.numberOfLines = 0
         button.titleLabel?.textAlignment = .center
         button.titleLabel?.lineBreakMode = .byWordWrapping
         
         addSubview(button)
         button.snp.makeConstraints { make in
-            // Делаем небольшие отступы, чтобы не липло к краям
-            make.top.equalToSuperview().offset(10)
-            make.bottom.equalToSuperview().offset(-20)
-            make.leading.trailing.equalToSuperview().inset(30)
+            make.top.equalToSuperview().offset(15)
+            make.bottom.equalToSuperview().offset(-25)
+            make.leading.trailing.equalToSuperview().inset(40)
         }
     }
     
     required init?(coder: NSCoder) { fatalError() }
     
-    func configure(title: NSAttributedString) {
-        button.setAttributedTitle(title, for: .normal)
+    func configure() {
+        let titleText = "Feedback.HighlightText".localize()
+        let attributes: [NSAttributedString.Key: Any] = [
+            .font: UIFont.systemFont(ofSize: 16, weight: .regular),
+            .foregroundColor: UIColor.systemGray, // Более нейтральный цвет для анонимности
+            .underlineStyle: NSUnderlineStyle.single.rawValue
+        ]
+        button.setAttributedTitle(NSAttributedString(string: titleText, attributes: attributes), for: .normal)
     }
 }

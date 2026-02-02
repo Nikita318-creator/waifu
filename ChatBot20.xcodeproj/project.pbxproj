@@ -76,6 +76,7 @@
 		10904CC32EEEE42700528437 /* RemoteRealmVideoService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10904CC22EEEE42600528437 /* RemoteRealmVideoService.swift */; };
 		10C7DA172F2EB8FF00ACA897 /* AssistantDynamicService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10C7DA162F2EB8FE00ACA897 /* AssistantDynamicService.swift */; };
 		10C7DA1A2F302FE300ACA897 /* OutfitCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10C7DA192F302FE100ACA897 /* OutfitCell.swift */; };
+		10C7DA1C2F30CFB800ACA897 /* FeedbackAlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10C7DA1B2F30CFB700ACA897 /* FeedbackAlertView.swift */; };
 		10D1C4AC2E3FEC88005557CF /* UnreadMessagesService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10D1C4AB2E3FEC86005557CF /* UnreadMessagesService.swift */; };
 		10DE77152E5E5BB50062F74D /* GiftVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10DE77142E5E5BAB0062F74D /* GiftVC.swift */; };
 		10DE77172E5E61280062F74D /* CoinsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10DE77162E5E611B0062F74D /* CoinsView.swift */; };
@@ -221,6 +222,7 @@
 		10C7DA162F2EB8FE00ACA897 /* AssistantDynamicService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssistantDynamicService.swift; sourceTree = "<group>"; };
 		10C7DA182F2EC99C00ACA897 /* th */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = th; path = th.lproj/Localizable.strings; sourceTree = "<group>"; };
 		10C7DA192F302FE100ACA897 /* OutfitCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OutfitCell.swift; sourceTree = "<group>"; };
+		10C7DA1B2F30CFB700ACA897 /* FeedbackAlertView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedbackAlertView.swift; sourceTree = "<group>"; };
 		10D1C4AB2E3FEC86005557CF /* UnreadMessagesService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnreadMessagesService.swift; sourceTree = "<group>"; };
 		10DE77142E5E5BAB0062F74D /* GiftVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GiftVC.swift; sourceTree = "<group>"; };
 		10DE77162E5E611B0062F74D /* CoinsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinsView.swift; sourceTree = "<group>"; };
@@ -520,6 +522,7 @@
 		1087316D2F01C0AA00DD3177 /* Subviews */ = {
 			isa = PBXGroup;
 			children = (
+				10C7DA1B2F30CFB700ACA897 /* FeedbackAlertView.swift */,
 				105F9C552F10C9B4007B82CE /* FeedbackFooterView.swift */,
 				10E75C6A2F05172C00D28EB9 /* BannerHeaderView.swift */,
 				1087316E2F01C0B200DD3177 /* GameCell.swift */,
@@ -857,6 +860,7 @@
 				10E75C992F077DEE00D28EB9 /* OnboardingCell.swift in Sources */,
 				105F103D2E28276C002CF2FF /* AllChatsViewModel.swift in Sources */,
 				1061A3402DF1FA5000206F61 /* AssistantConfig.swift in Sources */,
+				10C7DA1C2F30CFB800ACA897 /* FeedbackAlertView.swift in Sources */,
 				1017D5AE2EEF75C4009A32E2 /* LoopingPlayerManager.swift in Sources */,
 				10E75C902F07626C00D28EB9 /* WebHookAnalyticsService.swift in Sources */,
 				10E75C262F034DA900D28EB9 /* DatePlaceCell.swift in Sources */,
@@ -995,7 +999,7 @@
 				CODE_SIGN_ENTITLEMENTS = ChatBot20/ChatBot20.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 13;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = "";
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = ChatBot20/Info.plist;
@@ -1011,7 +1015,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 1.0.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.Shevchhuuk.aiwaifu.app;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -1033,7 +1037,7 @@
 				CODE_SIGN_ENTITLEMENTS = ChatBot20/ChatBot20.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 13;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = "";
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = ChatBot20/Info.plist;
@@ -1049,7 +1053,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 1.0.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.Shevchhuuk.aiwaifu.app;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
