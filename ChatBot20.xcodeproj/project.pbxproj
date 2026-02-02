@@ -75,6 +75,7 @@
 		10904CBF2EEEE00400528437 /* RemoteVideoService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10904CBE2EEEDFF700528437 /* RemoteVideoService.swift */; };
 		10904CC32EEEE42700528437 /* RemoteRealmVideoService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10904CC22EEEE42600528437 /* RemoteRealmVideoService.swift */; };
 		10C7DA172F2EB8FF00ACA897 /* AssistantDynamicService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10C7DA162F2EB8FE00ACA897 /* AssistantDynamicService.swift */; };
+		10C7DA1A2F302FE300ACA897 /* OutfitCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10C7DA192F302FE100ACA897 /* OutfitCell.swift */; };
 		10D1C4AC2E3FEC88005557CF /* UnreadMessagesService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10D1C4AB2E3FEC86005557CF /* UnreadMessagesService.swift */; };
 		10DE77152E5E5BB50062F74D /* GiftVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10DE77142E5E5BAB0062F74D /* GiftVC.swift */; };
 		10DE77172E5E61280062F74D /* CoinsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10DE77162E5E611B0062F74D /* CoinsView.swift */; };
@@ -219,6 +220,7 @@
 		10904CC22EEEE42600528437 /* RemoteRealmVideoService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteRealmVideoService.swift; sourceTree = "<group>"; };
 		10C7DA162F2EB8FE00ACA897 /* AssistantDynamicService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssistantDynamicService.swift; sourceTree = "<group>"; };
 		10C7DA182F2EC99C00ACA897 /* th */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = th; path = th.lproj/Localizable.strings; sourceTree = "<group>"; };
+		10C7DA192F302FE100ACA897 /* OutfitCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OutfitCell.swift; sourceTree = "<group>"; };
 		10D1C4AB2E3FEC86005557CF /* UnreadMessagesService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnreadMessagesService.swift; sourceTree = "<group>"; };
 		10DE77142E5E5BAB0062F74D /* GiftVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GiftVC.swift; sourceTree = "<group>"; };
 		10DE77162E5E611B0062F74D /* CoinsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinsView.swift; sourceTree = "<group>"; };
@@ -629,6 +631,7 @@
 		10E75C672F04FD9B00D28EB9 /* DressUpVC */ = {
 			isa = PBXGroup;
 			children = (
+				10C7DA192F302FE100ACA897 /* OutfitCell.swift */,
 				10E75C682F04FDA600D28EB9 /* DressUpVC.swift */,
 			);
 			path = DressUpVC;
@@ -886,6 +889,7 @@
 				107E02192E64E7600061D61A /* RoleplayVC.swift in Sources */,
 				1035BD952E592FB00053486C /* BubbleView.swift in Sources */,
 				10904BA52EED0D4700528437 /* AvatarsService.swift in Sources */,
+				10C7DA1A2F302FE300ACA897 /* OutfitCell.swift in Sources */,
 				108731802F01C43B00DD3177 /* BaseGameViewController.swift in Sources */,
 				10E75C692F04FDA700D28EB9 /* DressUpVC.swift in Sources */,
 				105F10372E28272D002CF2FF /* AllChatsViewController.swift in Sources */,

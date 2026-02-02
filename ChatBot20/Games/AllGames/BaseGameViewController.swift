@@ -46,7 +46,7 @@ class BaseGameViewController: UIViewController {
         setupBaseUI()
         setupCustomNavigationBar()
         
-        setWaifuMessage(ConfigService.shared.isTestB ? "ReadyForChallenge1".localize() : "ReadyForChallenge2".localize())
+        setWaifuMessage(ConfigService.shared.isGameText ? "ReadyForChallenge1".localize() : "ReadyForChallenge2".localize())
         
         print("\(self)")
         AnalyticService.shared.logEvent(name: "game opened", properties: ["type":"\(self)"])
