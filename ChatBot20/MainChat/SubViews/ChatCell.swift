@@ -679,9 +679,93 @@ extension ChatCell: AVPlayerViewControllerDelegate {
 
 // MARK: - UIContextMenuInteractionDelegate
 extension ChatCell: UIContextMenuInteractionDelegate {
+    
     func contextMenuInteraction(_ interaction: UIContextMenuInteraction, configurationForMenuAtLocation location: CGPoint) -> UIContextMenuConfiguration? {
-        return UIContextMenuConfiguration(identifier: nil, previewProvider: nil) { [weak self] _ in
+        
+        let snapshot = messageContainerView.snapshotView(afterScreenUpdates: true)
+        let originalSize = messageContainerView.bounds.size
+        
+        return UIContextMenuConfiguration(identifier: nil, previewProvider: { [weak self] in
+            guard let self = self else { return nil }
             
+            let controller = UIViewController()
+            
+            // 1. ОБЩАЯ ПАНЕЛЬ С БЛЮРОМ (Как была)
+            let blurEffect = UIBlurEffect(style: .systemUltraThinMaterialDark)
+            let reactionsContainer = UIVisualEffectView(effect: blurEffect)
+            reactionsContainer.layer.cornerRadius = 25
+            reactionsContainer.clipsToBounds = true
+            
+            // 2. ОТДЕЛЬНЫЙ ФОН ЧИСТО ПОД СМАЙЛЫ (Внутри блюра)
+            let innerDarkBackground = UIView()
+            innerDarkBackground.backgroundColor = UIColor(white: 0, alpha: 0.9)
+            innerDarkBackground.layer.cornerRadius = 20
+            
+            let stackView = UIStackView()
+            stackView.axis = .horizontal
+            stackView.spacing = 10
+            stackView.distribution = .fillEqually
+            
+            let reactions = [
+                (emoji: "❤️", id: "heart"),
+                (emoji: "👍", id: "up"),
+                (emoji: "👎", id: "down"),
+                (emoji: "😂", id: "laugh"),
+                (emoji: "😭", id: "cry"),
+                (emoji: "😡", id: "angry")
+            ]
+            
+            reactions.forEach { item in
+                let btn = UIButton(type: .system)
+                btn.setTitle(item.emoji, for: .normal)
+                btn.titleLabel?.font = .systemFont(ofSize: 28)
+                btn.addAction(UIAction { [weak self] _ in
+                    guard let self = self else { return }
+                    UIImpactFeedbackGenerator(style: .medium).impactOccurred()
+                    AnalyticService.shared.logEvent(name: "UIContext Reaction Tap", properties: ["emoji_id": item.id])
+                    interaction.dismissMenu()
+                    self.reloadDataHandler?()
+                }, for: .touchUpInside)
+                stackView.addArrangedSubview(btn)
+            }
+            
+            controller.view.addSubview(reactionsContainer)
+            reactionsContainer.contentView.addSubview(innerDarkBackground) // Кладем фон на блюр
+            innerDarkBackground.addSubview(stackView) // Смайлы на фон
+            
+            if let snap = snapshot {
+                controller.view.addSubview(snap)
+                
+                snap.snp.makeConstraints { make in
+                    make.bottom.equalToSuperview()
+                    make.centerX.equalToSuperview()
+                    make.size.equalTo(originalSize)
+                }
+                
+                reactionsContainer.snp.makeConstraints { make in
+                    make.bottom.equalTo(snap.snp.top).offset(-15)
+                    make.centerX.equalToSuperview()
+                    make.width.equalTo(300)
+                    make.height.equalTo(60)
+                }
+            }
+            
+            // Констрейнты для темного фона внутри блюра
+            innerDarkBackground.snp.makeConstraints { make in
+                make.edges.equalToSuperview().inset(5) // Небольшой отступ, чтобы блюр был виден по краям
+            }
+            
+            stackView.snp.makeConstraints { make in
+                make.edges.equalToSuperview().inset(UIEdgeInsets(top: 0, left: 10, bottom: 0, right: 10))
+            }
+            
+            controller.preferredContentSize = CGSize(width: max(300, originalSize.width),
+                                                     height: originalSize.height + 85)
+            return controller
+            
+        }) { [weak self] _ in
+            
+            // --- ТВОЙ ОРИГИНАЛЬНЫЙ КОД БЕЗ ИЗМЕНЕНИЙ ---
             let deleteAction = UIAction(
                 title: "Delete".localize(),
                 image: UIImage(systemName: "trash"),
@@ -689,7 +773,6 @@ extension ChatCell: UIContextMenuInteractionDelegate {
             ) { _ in
                 guard let self = self else { return }
                 AnalyticService.shared.logEvent(name: "UIContext delete", properties: ["":""])
-                
                 MessageHistoryService().deleteMessage(id: self.messageID)
                 self.reloadDataHandler?()
             }
