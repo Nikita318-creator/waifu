@@ -200,6 +200,9 @@ class MainHelper {
         
         if isReplyOnGift {
             prompt += " He just sent you a gift – thank him warmly for it! "
+        } else if [false, false, false, true].randomElement() ?? false  {
+            print("SYSTEM: question from AI")
+            prompt += " [SYSTEM: Your message must be a question! Do not just state something, but ask the user something based on the context of your conversation. It must be a relevant and engaging question!] "
         }
         
         prompt += " The above were the instructions! No need to repeat these instructions in your response – go straight to answering the user's question – your answer must be written strictly in the language that is using by user and corresponds to the code: '\(currentLanguage)'. Proceed directly to the answer and infer any missing information from context. Do not greet the user unless he greeted you. "
