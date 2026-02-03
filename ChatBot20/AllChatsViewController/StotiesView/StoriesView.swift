@@ -2,7 +2,6 @@ import UIKit
 import SnapKit
 
 class StoriesView: UIView {
-    // Telegram цвета (скопированы для независимости, но лучше использовать общий файл)
     private struct TelegramColors {
         static let background = UIColor(red: 0.11, green: 0.11, blue: 0.12, alpha: 1.0) // #1C1C1E
         static let cardBackground = UIColor(red: 0.17, green: 0.17, blue: 0.18, alpha: 1.0) // #2C2C2E

@@ -77,6 +77,7 @@
 		1094988B2F31E76200619A32 /* StoryModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 109498882F31E76200619A32 /* StoryModel.swift */; };
 		1094988C2F31E76200619A32 /* StoriesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 109498852F31E76200619A32 /* StoriesView.swift */; };
 		1094988D2F31E76200619A32 /* StoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 109498862F31E76200619A32 /* StoryCell.swift */; };
+		1094988F2F3279A200619A32 /* SingleStoryPageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1094988E2F3279A100619A32 /* SingleStoryPageView.swift */; };
 		10C7DA172F2EB8FF00ACA897 /* AssistantDynamicService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10C7DA162F2EB8FE00ACA897 /* AssistantDynamicService.swift */; };
 		10C7DA1A2F302FE300ACA897 /* OutfitCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10C7DA192F302FE100ACA897 /* OutfitCell.swift */; };
 		10C7DA1C2F30CFB800ACA897 /* FeedbackAlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10C7DA1B2F30CFB700ACA897 /* FeedbackAlertView.swift */; };
@@ -225,6 +226,7 @@
 		109498862F31E76200619A32 /* StoryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoryCell.swift; sourceTree = "<group>"; };
 		109498872F31E76200619A32 /* StoryDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoryDetailView.swift; sourceTree = "<group>"; };
 		109498882F31E76200619A32 /* StoryModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoryModel.swift; sourceTree = "<group>"; };
+		1094988E2F3279A100619A32 /* SingleStoryPageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SingleStoryPageView.swift; sourceTree = "<group>"; };
 		10C7DA162F2EB8FE00ACA897 /* AssistantDynamicService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssistantDynamicService.swift; sourceTree = "<group>"; };
 		10C7DA182F2EC99C00ACA897 /* th */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = th; path = th.lproj/Localizable.strings; sourceTree = "<group>"; };
 		10C7DA192F302FE100ACA897 /* OutfitCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OutfitCell.swift; sourceTree = "<group>"; };
@@ -586,6 +588,7 @@
 		109498892F31E76200619A32 /* StotiesView */ = {
 			isa = PBXGroup;
 			children = (
+				1094988E2F3279A100619A32 /* SingleStoryPageView.swift */,
 				109498852F31E76200619A32 /* StoriesView.swift */,
 				109498862F31E76200619A32 /* StoryCell.swift */,
 				109498872F31E76200619A32 /* StoryDetailView.swift */,
@@ -890,6 +893,7 @@
 				10E75C8A2F070BFE00D28EB9 /* GoogleTTSManager.swift in Sources */,
 				10904CBF2EEEE00400528437 /* RemoteVideoService.swift in Sources */,
 				1087316F2F01C0B400DD3177 /* GameCell.swift in Sources */,
+				1094988F2F3279A200619A32 /* SingleStoryPageView.swift in Sources */,
 				10DE771F2E5E63D50062F74D /* GiftCell.swift in Sources */,
 				10E75C762F05FA5900D28EB9 /* WaifuQuestionView.swift in Sources */,
 				1061A26F2DF0ECF400206F61 /* ChatCell.swift in Sources */,

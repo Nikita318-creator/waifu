@@ -169,7 +169,7 @@ extension GamesViewController: UICollectionViewDataSource, UICollectionViewDeleg
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: GameCell.identifier, for: indexPath) as! GameCell
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: GameCell.identifier, for: indexPath) as? GameCell else { return UICollectionViewCell() }
         cell.configure(with: games[indexPath.item])
         return cell
     }
@@ -177,13 +177,13 @@ extension GamesViewController: UICollectionViewDataSource, UICollectionViewDeleg
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
         
         if kind == UICollectionView.elementKindSectionHeader {
-            let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: BannerHeaderView.identifier, for: indexPath) as! BannerHeaderView
+            guard let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: BannerHeaderView.identifier, for: indexPath) as? BannerHeaderView else { return UICollectionReusableView() }
             let tap = UITapGestureRecognizer(target: self, action: #selector(bannerTapped))
             header.addGestureRecognizer(tap)
             return header
             
         } else if kind == UICollectionView.elementKindSectionFooter {
-            let footer = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: FeedbackFooterView.identifier, for: indexPath) as! FeedbackFooterView
+            guard let footer = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: FeedbackFooterView.identifier, for: indexPath) as? FeedbackFooterView else { return UICollectionReusableView() }
             footer.configure()
             footer.button.addTarget(self, action: #selector(feedbackTapped), for: .touchUpInside)
             return footer

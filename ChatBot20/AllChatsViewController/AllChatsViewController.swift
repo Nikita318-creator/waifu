@@ -98,7 +98,12 @@ class AllChatsViewController: UIViewController {
     }
 
     private func updateRows() {
-        rows = [.customHeader, .stories]
+        rows = [.customHeader]
+        
+        if ConfigService.shared.isTestB {
+            rows.append(.stories)
+        }
+        
         for i in 0..<viewModel.chats.count {
             rows.append(.chat(index: i))
         }

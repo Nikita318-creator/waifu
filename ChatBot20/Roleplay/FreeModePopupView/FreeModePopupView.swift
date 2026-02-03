@@ -212,7 +212,7 @@ class FreeModePopupView: UIView, UICollectionViewDataSource, UICollectionViewDel
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: DayCell.identifier, for: indexPath) as! DayCell
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: DayCell.identifier, for: indexPath) as? DayCell else { return UICollectionViewCell() }
         let day = indexPath.item + 1
         cell.configure(day: day, isCurrent: day == currentDay, isPast: day < currentDay)
         return cell

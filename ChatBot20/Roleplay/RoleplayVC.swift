@@ -268,7 +268,7 @@ extension RoleplayVC: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
         if kind == UICollectionView.elementKindSectionHeader {
-            let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: CreateWaifuHeader.identifier, for: indexPath) as! CreateWaifuHeader
+            guard let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: CreateWaifuHeader.identifier, for: indexPath) as? CreateWaifuHeader  else { return UICollectionReusableView() }
             
             header.isHidden = !ConfigService.shared.isTestB
             

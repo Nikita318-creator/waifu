@@ -275,7 +275,7 @@ extension DressUpVC: UICollectionViewDataSource, UICollectionViewDelegate {
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "OutfitCell", for: indexPath) as! OutfitCell
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "OutfitCell", for: indexPath) as? OutfitCell else { return UICollectionViewCell() }
         let outfitId = outfitOptions[indexPath.item]
         let isBought = isOutfitPurchased(id: outfitId)
         cell.configure(imageName: outfitId, price: outfitPrice, isPurchased: isBought)
