@@ -17,6 +17,7 @@ class AllChatsViewController: UIViewController {
     
     private let tableView = UITableView(frame: .zero, style: .plain)
     private let storiesView = StoriesView()
+    private var storyDetailView = StoryDetailView()
     private let viewModel = AllChatsViewModel()
     private var rows: [RowType] = []
 
@@ -47,6 +48,10 @@ class AllChatsViewController: UIViewController {
         setupNavigationBar()
         setupTableView()
         viewModel.loadChats()
+        
+        storiesView.onStoryTapped = { [weak self] story in
+            self?.presentStoryDetail(story: story)
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -113,6 +118,15 @@ class AllChatsViewController: UIViewController {
                 }
             }
         }
+    }
+    
+    private func presentStoryDetail(story: StoryModel) {
+        tabBarController?.tabBar.isHidden = true
+        storyDetailView.removeFromSuperview()
+        storyDetailView = StoryDetailView()
+        storyDetailView.configure(with: story)
+        storyDetailView.show(in: view)
+        storyDetailView.delegate = self
     }
     
     @objc private func feedbackTapped() {
@@ -214,4 +228,33 @@ extension AllChatsViewController: UITableViewDataSource, UITableViewDelegate {
 //            })
 //        }
 //    }
+}
+
+extension AllChatsViewController: StoryDetailViewDelegate {
+    func storyDetailViewDidClosed() {
+        tabBarController?.tabBar.isHidden = false
+    }
+    
+    func storyDetailViewDidRequestStartChat(currentStoryId: String) {
+// пока что пусто
+    }
+    
+    func storyDetailViewDidRequestNextStory(currentStoryId: String) {
+        storiesView.currentStoryIndex += 1
+        goToStory()
+    }
+    
+    func storyDetailViewDidRequestPreviousStory(currentStoryId: String) {
+        storiesView.currentStoryIndex -= 1
+        goToStory()
+    }
+    
+    private func goToStory() {
+        guard storiesView.stories.indices.contains(storiesView.currentStoryIndex) else {
+            storyDetailView.dismiss()
+            return
+        }
+        storiesView.stories[storiesView.currentStoryIndex].isViewed = true
+        presentStoryDetail(story: storiesView.stories[storiesView.currentStoryIndex])
+    }
 }

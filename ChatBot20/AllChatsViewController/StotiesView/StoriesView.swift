@@ -79,8 +79,12 @@ class StoriesView: UIView {
     func setupMockStories() {
         let seenIDs = MainHelper.shared.viewedStoriesId
         stories = [
-            StoryModel(id: "1", imageName: "roleplay3", detailImageName: "roleplay3", title: "Template.Girlfriend1".localize(), description: storiesTexts.randomElement() ?? "", isViewed: seenIDs.contains("1")),
-        ].shuffled()
+            StoryModel(id: "1", imageName: "paywallB", detailImageName: "paywallB", title: "", description: "Stories.Text1".localize(), isViewed: seenIDs.contains("1")),
+            StoryModel(id: "2", imageName: "onbordA3", detailImageName: "onbordA3", title: "", description: "Stories.Text2".localize(), isViewed: seenIDs.contains("2")),
+            StoryModel(id: "3", imageName: "roleplay1", detailImageName: "roleplay1", title: "", description: "Stories.Text3".localize(), isViewed: seenIDs.contains("3")),
+            StoryModel(id: "4", imageName: "roleplay4", detailImageName: "roleplay4", title: "", description: "Stories.Text4".localize(), isViewed: seenIDs.contains("4")),
+            StoryModel(id: "5", imageName: "roleplay5", detailImageName: "roleplay5", title: "", description: "Stories.Text5".localize(), isViewed: seenIDs.contains("5"))
+        ]
         stories.sort { !$0.isViewed && $1.isViewed }
     }
     
