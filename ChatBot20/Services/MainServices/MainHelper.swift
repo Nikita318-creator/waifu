@@ -8,6 +8,8 @@ class MainHelper {
     var isFirstMessageInChat: Bool = false
     var isVoiceMessages: Bool = false
     
+    var viewedStoriesId: [String] = []
+
     var isDiscountOfferActive: Bool = false
     var isDiscountOffer: Bool {
         get {

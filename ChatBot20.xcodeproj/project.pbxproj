@@ -74,6 +74,10 @@
 		10904BA52EED0D4700528437 /* AvatarsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10904BA42EED0D4600528437 /* AvatarsService.swift */; };
 		10904CBF2EEEE00400528437 /* RemoteVideoService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10904CBE2EEEDFF700528437 /* RemoteVideoService.swift */; };
 		10904CC32EEEE42700528437 /* RemoteRealmVideoService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10904CC22EEEE42600528437 /* RemoteRealmVideoService.swift */; };
+		1094988A2F31E76200619A32 /* StoryDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 109498872F31E76200619A32 /* StoryDetailView.swift */; };
+		1094988B2F31E76200619A32 /* StoryModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 109498882F31E76200619A32 /* StoryModel.swift */; };
+		1094988C2F31E76200619A32 /* StoriesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 109498852F31E76200619A32 /* StoriesView.swift */; };
+		1094988D2F31E76200619A32 /* StoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 109498862F31E76200619A32 /* StoryCell.swift */; };
 		10C7DA172F2EB8FF00ACA897 /* AssistantDynamicService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10C7DA162F2EB8FE00ACA897 /* AssistantDynamicService.swift */; };
 		10C7DA1A2F302FE300ACA897 /* OutfitCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10C7DA192F302FE100ACA897 /* OutfitCell.swift */; };
 		10C7DA1C2F30CFB800ACA897 /* FeedbackAlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10C7DA1B2F30CFB700ACA897 /* FeedbackAlertView.swift */; };
@@ -219,6 +223,10 @@
 		10904BA42EED0D4600528437 /* AvatarsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvatarsService.swift; sourceTree = "<group>"; };
 		10904CBE2EEEDFF700528437 /* RemoteVideoService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteVideoService.swift; sourceTree = "<group>"; };
 		10904CC22EEEE42600528437 /* RemoteRealmVideoService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteRealmVideoService.swift; sourceTree = "<group>"; };
+		109498852F31E76200619A32 /* StoriesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoriesView.swift; sourceTree = "<group>"; };
+		109498862F31E76200619A32 /* StoryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoryCell.swift; sourceTree = "<group>"; };
+		109498872F31E76200619A32 /* StoryDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoryDetailView.swift; sourceTree = "<group>"; };
+		109498882F31E76200619A32 /* StoryModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoryModel.swift; sourceTree = "<group>"; };
 		10C7DA162F2EB8FE00ACA897 /* AssistantDynamicService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssistantDynamicService.swift; sourceTree = "<group>"; };
 		10C7DA182F2EC99C00ACA897 /* th */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = th; path = th.lproj/Localizable.strings; sourceTree = "<group>"; };
 		10C7DA192F302FE100ACA897 /* OutfitCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OutfitCell.swift; sourceTree = "<group>"; };
@@ -336,6 +344,7 @@
 				105F9C572F10CA29007B82CE /* Subviews */,
 				105F103C2E28276B002CF2FF /* AllChatsViewModel.swift */,
 				105F10362E28272C002CF2FF /* AllChatsViewController.swift */,
+				109498892F31E76200619A32 /* StotiesView */,
 			);
 			path = AllChatsViewController;
 			sourceTree = "<group>";
@@ -575,6 +584,17 @@
 				10904CBE2EEEDFF700528437 /* RemoteVideoService.swift */,
 			);
 			path = RemoteVideoService;
+			sourceTree = "<group>";
+		};
+		109498892F31E76200619A32 /* StotiesView */ = {
+			isa = PBXGroup;
+			children = (
+				109498852F31E76200619A32 /* StoriesView.swift */,
+				109498862F31E76200619A32 /* StoryCell.swift */,
+				109498872F31E76200619A32 /* StoryDetailView.swift */,
+				109498882F31E76200619A32 /* StoryModel.swift */,
+			);
+			path = StotiesView;
 			sourceTree = "<group>";
 		};
 		10C7DA152F2EB8FB00ACA897 /* AssistantDynamicService */ = {
@@ -879,6 +899,10 @@
 				10E75C7F2F05FBE000D28EB9 /* CreateDreamWaifuViewModel.swift in Sources */,
 				1061A2702DF0ECF400206F61 /* AIChatView.swift in Sources */,
 				1087316C2F01BFDC00DD3177 /* GamesViewController.swift in Sources */,
+				1094988A2F31E76200619A32 /* StoryDetailView.swift in Sources */,
+				1094988B2F31E76200619A32 /* StoryModel.swift in Sources */,
+				1094988C2F31E76200619A32 /* StoriesView.swift in Sources */,
+				1094988D2F31E76200619A32 /* StoryCell.swift in Sources */,
 				1061A3542DF2179500206F61 /* MainHelper.swift in Sources */,
 				10E75C7B2F05FAB400D28EB9 /* WaifuSlideData.swift in Sources */,
 				10DE77172E5E61280062F74D /* CoinsView.swift in Sources */,

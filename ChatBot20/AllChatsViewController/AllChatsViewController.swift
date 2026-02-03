@@ -5,24 +5,27 @@ import SnapKit
 class AllChatsViewController: UIViewController {
 
     private struct TelegramColors {
-        static let primary = UIColor(red: 0.20, green: 0.63, blue: 0.86, alpha: 1.0) // #3390DC
-        static let background = UIColor(red: 0.11, green: 0.11, blue: 0.12, alpha: 1.0) // #1C1C1E
-        static let cardBackground = UIColor(red: 0.17, green: 0.17, blue: 0.18, alpha: 1.0) // #2C2C2E
-        static let messageBackground = UIColor(red: 0.22, green: 0.22, blue: 0.24, alpha: 1.0) // #38383A
-        static let userMessageBackground = UIColor(red: 0.20, green: 0.63, blue: 0.86, alpha: 1.0) // #3390DC
+        static let background = UIColor(red: 0.11, green: 0.11, blue: 0.12, alpha: 1.0)
         static let textPrimary = UIColor.white
-        static let textSecondary = UIColor(red: 0.64, green: 0.64, blue: 0.66, alpha: 1.0) // #A4A4A8
-        static let separator = UIColor(red: 0.28, green: 0.28, blue: 0.29, alpha: 1.0) // #48484A
     }
     
-    private let allChatsView = AllChatsView()
+    private enum RowType {
+        case customHeader     // Твой единственный заголовок "Messages"
+        case stories          // Твои сторизы
+        case chat(index: Int) // Список чатов
+    }
+    
+    private let tableView = UITableView(frame: .zero, style: .plain)
+    private let storiesView = StoriesView()
     private let viewModel = AllChatsViewModel()
+    private var rows: [RowType] = []
 
     private lazy var feedbackFooter: TableFeedbackFooterView = {
         let footer = TableFeedbackFooterView()
         footer.configure()
         footer.button.addTarget(self, action: #selector(feedbackTapped), for: .touchUpInside)
         
+        // Твой родной расчет высоты футера, чтобы кнопка не сплющивалась
         let targetSize = CGSize(width: UIScreen.main.bounds.width, height: UIView.layoutFittingCompressedSize.height)
         let size = footer.systemLayoutSizeFitting(targetSize,
                                                   withHorizontalFittingPriority: .required,
@@ -36,58 +39,77 @@ class AllChatsViewController: UIViewController {
         setupViewModel()
     }
     
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
+    required init?(coder: NSCoder) { fatalError() }
     
-    override func loadView() {
-        view = allChatsView
-    }
-
     override func viewDidLoad() {
         super.viewDidLoad()
+        setupBaseUI()
+        setupNavigationBar()
         setupTableView()
         viewModel.loadChats()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        // Полностью убиваем системный бар, чтобы работал только наш кастомный заголовок
+        navigationController?.setNavigationBarHidden(true, animated: animated)
         viewModel.loadChats()
-        
-        if let id = MainHelper.shared.needOpenChatWithId {
-            MainHelper.shared.needOpenChatWithId = nil
-            
-            let selectedAssistant = AssistantsService().getAllConfigs().first(where: { $0.id == id })
-            MainHelper.shared.currentAssistant = selectedAssistant
-            MainHelper.shared.isFirstMessageInChat = true
-            
-            let aiChatViewController = MainChatVC()
-            aiChatViewController.modalPresentationStyle = .fullScreen
-            aiChatViewController.isModalInPresentation = true
-            present(aiChatViewController, animated: false)
+    }
+
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        // Возвращаем бар для экрана чата
+        navigationController?.setNavigationBarHidden(false, animated: animated)
+    }
+    
+    private func setupBaseUI() {
+        view.backgroundColor = TelegramColors.background
+        view.addSubview(tableView)
+        tableView.snp.makeConstraints { make in
+            make.edges.equalToSuperview()
         }
     }
     
+    private func setupNavigationBar() {
+        // Выключаем системные тайтлы
+        navigationItem.title = ""
+        navigationController?.navigationBar.prefersLargeTitles = false
+    }
+    
     private func setupTableView() {
-        allChatsView.tableView.delegate = self
-        allChatsView.tableView.dataSource = self
+        tableView.backgroundColor = .clear
+        tableView.separatorStyle = .none
+        tableView.delegate = self
+        tableView.dataSource = self
+        
+        tableView.register(ChatListItemCell.self, forCellReuseIdentifier: ChatListItemCell.identifier)
+        tableView.register(UITableViewCell.self, forCellReuseIdentifier: "HeaderCell")
+        tableView.register(UITableViewCell.self, forCellReuseIdentifier: "StoriesCell")
+        
+        // Инсеты: сверху 0 (так как хедер в таблице), снизу ТВОИ 100
+        tableView.contentInsetAdjustmentBehavior = .never
+        tableView.contentInset = UIEdgeInsets(top: 40, left: 0, bottom: 200, right: 0)
+    }
+
+    private func updateRows() {
+        rows = [.customHeader, .stories]
+        for i in 0..<viewModel.chats.count {
+            rows.append(.chat(index: i))
+        }
     }
 
     private func setupViewModel() {
-        viewModel.moveOnChatsTabHandler = { [weak self] in
-            self?.tabBarController?.selectedIndex = 0
-        }
         viewModel.onChatsUpdated = { [weak self] in
             DispatchQueue.main.async {
                 guard let self = self else { return }
+                self.updateRows()
+                self.tableView.reloadData()
                 
-                self.allChatsView.tableView.reloadData()
-                
-                // Управляем футером: если чаты есть — показываем, если нет — nil
+                // Футер только если есть чаты
                 if self.viewModel.chats.isEmpty {
-                    self.allChatsView.tableView.tableFooterView = nil
+                    self.tableView.tableFooterView = nil
                 } else {
-                    self.allChatsView.tableView.tableFooterView = self.feedbackFooter
+                    self.tableView.tableFooterView = self.feedbackFooter
                 }
             }
         }
@@ -95,75 +117,101 @@ class AllChatsViewController: UIViewController {
     
     @objc private func feedbackTapped() {
         let feedbackAlert = FeedbackAlertView()
-        
         feedbackAlert.onSendTapped = { [weak self] text in
-            AnalyticService.shared.logEvent(name: "feedback_sent", properties: ["text":text])
-            WebHookAnalyticsService.shared.sendAnalyticsReport(messageText: "Feedback Sent: \(text)")
-            print("✅ Анонимный отзыв: \(text)")
-            
             let toast = UIAlertController(title: nil, message: "FeedbackReceived".localize(), preferredStyle: .alert)
             self?.present(toast, animated: true)
-            DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
-                toast.dismiss(animated: true)
-            }
+            DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) { toast.dismiss(animated: true) }
         }
-        
         feedbackAlert.show(in: self.view)
     }
 }
 
-// MARK: - UITableViewDataSource, UITableViewDelegate
-
+// MARK: - UITableViewDataSource & Delegate
 extension AllChatsViewController: UITableViewDataSource, UITableViewDelegate {
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return viewModel.chats.count
+        return rows.count
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: ChatListItemCell.identifier, for: indexPath) as? ChatListItemCell else { return UITableViewCell() }
-        let chat = viewModel.chat(at: indexPath)
-        cell.configure(with: chat)
-        cell.setUnread(chat.isUnread)
+        let row = rows[indexPath.row]
         
-        return cell
-    }
-
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        var chat = viewModel.chat(at: indexPath)
-        
-        if chat.id == viewModel.unreadAssistantID {
-            chat.isUnread = false
-            viewModel.unreadAssistantID = ""
+        switch row {
+        case .customHeader:
+            let cell = tableView.dequeueReusableCell(withIdentifier: "HeaderCell", for: indexPath)
+            cell.backgroundColor = .clear
+            cell.selectionStyle = .none
+            
+            if cell.contentView.subviews.isEmpty {
+                let label = UILabel()
+                label.text = "Messages".localize()
+                label.font = .systemFont(ofSize: 34, weight: .bold)
+                label.textColor = .white
+                cell.contentView.addSubview(label)
+                label.snp.makeConstraints { make in
+                    make.leading.equalToSuperview().offset(16)
+                    make.bottom.equalToSuperview().offset(-10)
+                }
+            }
+            return cell
+            
+        case .stories:
+            let cell = tableView.dequeueReusableCell(withIdentifier: "StoriesCell", for: indexPath)
+            cell.backgroundColor = .clear
+            cell.selectionStyle = .none
+            if !cell.contentView.subviews.contains(storiesView) {
+                cell.contentView.addSubview(storiesView)
+                storiesView.setupMockStories()
+                storiesView.snp.makeConstraints { make in
+                    make.top.equalToSuperview().offset(5)
+                    make.leading.trailing.bottom.equalToSuperview()
+                }
+            }
+            return cell
+            
+        case .chat(let index):
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: ChatListItemCell.identifier, for: indexPath) as? ChatListItemCell else { return UITableViewCell() }
+            let chat = viewModel.chats[index]
+            cell.configure(with: chat)
+            cell.setUnread(chat.isUnread)
+            return cell
         }
-        
-        let selectedAssistant = AssistantsService().getAllConfigs().first(where: { $0.id == chat.id })
-        MainHelper.shared.currentAssistant = selectedAssistant
-        MainHelper.shared.isFirstMessageInChat = true
-        AnalyticService.shared.logEvent(name: "chat selected", properties: ["index:":"\(indexPath.row)", "name:":"\(selectedAssistant?.assistantName ?? "")"])
-        
-        let aiChatViewController = MainChatVC()
-        aiChatViewController.modalPresentationStyle = .fullScreen
-        aiChatViewController.isModalInPresentation = true
-        present(aiChatViewController, animated: false)
     }
 
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return view.isCurrentDeviceiPad() ? 150 : 100
+        let row = rows[indexPath.row]
+        switch row {
+        case .customHeader:
+            let topPadding = UIApplication.shared.windows.first?.safeAreaInsets.top ?? 44
+            return 50 + topPadding
+        case .stories:
+            return view.isCurrentDeviceiPad() ? 140 : 115
+        case .chat:
+            return view.isCurrentDeviceiPad() ? 150 : 100
+        }
     }
 
-    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        cell.alpha = 0
-        cell.transform = CGAffineTransform(translationX: 0, y: 20)
-        
-        UIView.animate(withDuration: 0.4, delay: 0.05 * Double(indexPath.row), options: .curveEaseOut, animations: {
-            cell.alpha = 1
-            cell.transform = .identity
-        })
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if case .chat(let index) = rows[indexPath.row] {
+            let chat = viewModel.chats[index]
+            let selectedAssistant = AssistantsService().getAllConfigs().first { $0.id == chat.id }
+            MainHelper.shared.currentAssistant = selectedAssistant
+            MainHelper.shared.isFirstMessageInChat = true
+            let aiChatViewController = MainChatVC()
+            aiChatViewController.modalPresentationStyle = .fullScreen
+            present(aiChatViewController, animated: false)
+        }
     }
-}
-
-extension AllChatsViewController: MFMailComposeViewControllerDelegate {
-    func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: Error?) {
-        controller.dismiss(animated: true)
-    }
+    
+//    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+//        // Твои анимации только для ячеек чата
+//        if case .chat = rows[indexPath.row] {
+//            cell.alpha = 0
+//            cell.transform = CGAffineTransform(translationX: 0, y: 20)
+//            UIView.animate(withDuration: 0.4, delay: 0.05 * Double(indexPath.row), options: .curveEaseOut, animations: {
+//                cell.alpha = 1
+//                cell.transform = .identity
+//            })
+//        }
+//    }
 }
