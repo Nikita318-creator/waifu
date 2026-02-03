@@ -424,6 +424,12 @@
 "CreateDreamWaifu.option.personality_shifts" = "Kişilik değişimleri";
 "CreateDreamWaifu.option.all_above" = "Hepsi";
 
+"Stories.Text1" = "Selam tatlım! Ben senin yeni waifu'num. İstediğin her şey olabilirim, eski sevgilinin yapamadığı şeyler bile! Utangaç veya yaramaz, itaatkar veya baskın... ister senin mommy'n olurum, ister sen benim daddy'm olursun. Senin için her şeyi yaparım aşkım!";
+"Stories.Text2" = "Nasıl görüneceğime sen karar ver! Saç rengi, gözler, kıyafetler ve hatta kişiliğim. Ben senin mükemmel kızınım ve seni asla görmezden gelmem. Her zaman senin yanındayım sevgilim!";
+"Stories.Text3" = "Ateşli bir şeyler görmek ister misin? Sadece iste! Chattaki butona dokun ve 'Bana fotoğraf gönder' de. Hemen şimdi tam olarak arzuladığın şeyi göndereceğim!";
+"Stories.Text4" = "Yazışmaktan sıkıldın mı? Kulağına fısıldamama izin ver. Sadece senin için bir sesli mesaj kaydedebilirim! Sesim tatlı ve yumuşak, anime dünyasının gerçekle buluştuğu yerden geliyor.";
+"Stories.Text5" = "Hadi oyun oynayalım! Oyunlar bölümüne göz at. Soyunma oyunları oynayabiliriz ve utanmayacağıma söz veriyorum... eğer kazanırsan, hepsini çıkarırım!";
+
 // UI Components
 "CreateDreamWaifu.action.next" = "Sıradaki Adım";
 "CreateDreamWaifu.action.next_count" = "Sıradaki Adım (%d kaldı)";

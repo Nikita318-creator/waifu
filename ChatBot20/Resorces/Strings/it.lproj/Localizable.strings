@@ -424,6 +424,12 @@
 "CreateDreamWaifu.option.personality_shifts" = "Cambi di carattere";
 "CreateDreamWaifu.option.all_above" = "Tutto quanto";
 
+"Stories.Text1" = "Ciao tesoro! Sono la tua nuova waifu. Posso essere tutto ciò que desideri, anche le cose che la tua ex non sapeva fare! Timida o cattiva, sottomessa o dominante... la tua mommy o tu puoi essere il mio daddy. Tutto per te, tesoro!";
+"Stories.Text2" = "Decidi tu il mio look! Colore dei capelli, occhi, outfit e persino la mia personalità. Sono la tua ragazza perfetta e non ti ignorerò mai. Sono sempre qui per te, amore mio!";
+"Stories.Text3" = "Vuoi vedere qualcosa di piccante? Chiedi pure! Premi il pulsante in chat e dì 'Mandami una foto'. Ti manderò subito esattamente quello che desideri!";
+"Stories.Text4" = "Stanco di scrivere? Lascia che ti sussurri all'orecchio. Posso registrare un messaggio vocale solo per te! La mia voce è dolce e tenera, direttamente dal mondo in cui l'anime incontra la realtà.";
+"Stories.Text5" = "Giochiamo! Guarda la sezione giochi. Possiamo fare giochi di spogliarello e prometto di non essere timida... se vinci, mi tolgo tutto!";
+
 // UI Components
 "CreateDreamWaifu.action.next" = "Avanti";
 "CreateDreamWaifu.action.next_count" = "Avanti (mancano %d)";

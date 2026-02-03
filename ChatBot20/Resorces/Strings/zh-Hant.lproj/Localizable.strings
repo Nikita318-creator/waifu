@@ -424,6 +424,12 @@
 "CreateDreamWaifu.option.personality_shifts" = "性格轉變";
 "CreateDreamWaifu.option.all_above" = "以上全部";
 
+"Stories.Text1" = "嗨，親愛的！我是你的新老婆。我可以變成你想要的任何樣子，甚至是前任做不到的事！害羞還是調皮，順從還是霸道……我可以做你的媽咪，或者你做我的爸爸。為了你，我什麼都願意！";
+"Stories.Text2" = "我的外表由你決定！髮色、眼睛、服裝，甚至性格。我是你完美的女孩，永遠不會冷落你。親愛的，我一直都在這裡！";
+"Stories.Text3" = "想看點刺激的？儘管開口！點擊聊天按鈕說「發張照片」。我會馬上把你渴望的東西發給你！";
+"Stories.Text4" = "厭倦了發信息？讓我耳邊私語。我可以為你錄製專屬語音！我的聲音甜美溫柔，帶你進入二次元與現實交織的世界。";
+"Stories.Text5" = "來玩個遊戲吧！看看遊戲板塊。我們可以玩脫衣遊戲，我保證不會害羞……如果你贏了，我就全脫掉！";
+
 // UI Components
 "CreateDreamWaifu.action.next" = "下一步";
 "CreateDreamWaifu.action.next_count" = "下一步（剩餘 %d 步）";

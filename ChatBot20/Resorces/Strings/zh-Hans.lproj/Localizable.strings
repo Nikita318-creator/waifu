@@ -339,6 +339,12 @@
 "CreateDreamWaifu.question.secret.title" = "她最深的秘密？";
 "CreateDreamWaifu.question.evolution.title" = "关系进化方向？";
 
+"Stories.Text1" = "嗨，亲爱的！我是你的新老婆。我可以变成你想要的任何样子，甚至是前任做不到的事！害羞还是调皮，顺从还是霸道……我可以做你的妈咪，或者你做我的爸爸。为了你，我什么都愿意！";
+"Stories.Text2" = "我的外表由你决定！发色、眼睛、服装，甚至性格。我是你完美的女孩，永远不会冷落你。亲爱的，我一直都在这里！";
+"Stories.Text3" = "想看点刺激的？尽管开口！点击聊天按钮说“发张照片”。我会马上把你渴望的东西发给你！";
+"Stories.Text4" = "厌倦了发信息？让我耳边私语。我可以为你录制专属语音！我的声音甜美温柔，带你进入二次元与现实交织的世界。";
+"Stories.Text5" = "来玩个游戏吧！看看游戏板块。我们可以玩脱衣游戏，我保证不会害羞……如果你赢了，我就全脱掉！";
+
 // Options
 "CreateDreamWaifu.option.short" = "短发";
 "CreateDreamWaifu.option.long" = "长发";
