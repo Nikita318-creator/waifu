@@ -125,11 +125,10 @@ class AllChatsViewController: UIViewController {
     
     private func presentStoryDetail(story: StoryModel) {
         tabBarController?.tabBar.isHidden = true
-        storyDetailView.removeFromSuperview()
         storyDetailView = StoryDetailView()
-        storyDetailView.configure(with: story)
-        storyDetailView.show(in: view)
         storyDetailView.delegate = self
+        storyDetailView.configure(with: storiesView.stories, startIndex: storiesView.currentStoryIndex)
+        storyDetailView.show(in: view)
     }
     
     @objc private func feedbackTapped() {
@@ -245,28 +244,16 @@ extension AllChatsViewController: UITableViewDataSource, UITableViewDelegate {
 }
 
 extension AllChatsViewController: StoryDetailViewDelegate {
+    func storyDetailViewDidUpdateCurrentStory(index: Int) {
+        storiesView.currentStoryIndex = index
+        
+        if storiesView.stories.indices.contains(index) {
+            storiesView.stories[index].isViewed = true
+        }
+    }
+    
     func storyDetailViewDidClosed() {
         tabBarController?.tabBar.isHidden = false
-    }
-    
-    func storyDetailViewDidRequestStartChat(currentStoryId: String) { }
-    
-    func storyDetailViewDidRequestNextStory(currentStoryId: String) {
-        storiesView.currentStoryIndex += 1
-        goToStory()
-    }
-    
-    func storyDetailViewDidRequestPreviousStory(currentStoryId: String) {
-        storiesView.currentStoryIndex -= 1
-        goToStory()
-    }
-    
-    private func goToStory() {
-        guard storiesView.stories.indices.contains(storiesView.currentStoryIndex) else {
-            storyDetailView.dismiss()
-            return
-        }
-        storiesView.stories[storiesView.currentStoryIndex].isViewed = true
-        presentStoryDetail(story: storiesView.stories[storiesView.currentStoryIndex])
+        tableView.reloadData()
     }
 }
