@@ -126,6 +126,9 @@ class AIChatViewModel {
                 
                 switch result {
                 case .success(let responseText):
+                    if attempt > 0 {
+                        WebHookAnalyticsService.shared.sendAnalyticsReport(messageText: "⚠️ Request succed after attempt: \(attempt)")
+                    }
                     AnalyticService.shared.logEvent(name: "responseMessage", properties: ["responseMessage: ":[responseText]])
                     self.handleSuccessResponse(for: responseText.trimmingCharacters(in: .whitespacesAndNewlines))
                     
@@ -153,6 +156,7 @@ class AIChatViewModel {
                     } else {
                         // Если упал уже третий раз — показываем ошибку юзеру
                         print("❌ Request failed after retry. Logging error.")
+                        WebHookAnalyticsService.shared.sendAnalyticsReport(messageText: "❌ Request failed after all attempts")
                         AnalyticService.shared.logEvent(name: "failure sendMessage", properties: [
                             "error type: ": "\(error)",
                             "error localizedDescription: ": "\(error.localizedDescription)"

@@ -117,7 +117,7 @@ class AIService {
                     )
                     
                     // реально ли ошибка в интернете юзера или в чем то еще дело? - случается очень редко но иногда ловлю.
-                    WebHookAnalyticsService.shared.sendAnalyticsReport(messageText: "CustomServerResponce error! networkError:\n \(error)")
+//                    WebHookAnalyticsService.shared.sendAnalyticsReport(messageText: "CustomServerResponce error! networkError:\n \(error)")
                     
                     return
                 }
@@ -133,7 +133,7 @@ class AIService {
                     )
                     
                     // Это «косяк» сервера или прокси, а не цензура: либо мой сервер либо гугл сервер вернул 500 (внутренняя ошибка бека)
-                    WebHookAnalyticsService.shared.sendAnalyticsReport(messageText: "CustomServerResponce error! emptyResponse")
+//                    WebHookAnalyticsService.shared.sendAnalyticsReport(messageText: "CustomServerResponce error! emptyResponse")
                     
                     return
                 }
@@ -160,19 +160,19 @@ class AIService {
                     } else if let errorMessage = proxyResponse.error {
                         completion(.failure(.apiError(errorMessage)))
                         // Лимит токенов, слишком длинный контекст или временная перегрузка самой модели - поэтому не смогли распарсить ответ, ответ есть но у него не та структура как при ответе текстом (для ошибки другая модель должна парсится)?
-                        WebHookAnalyticsService.shared.sendAnalyticsReport(messageText: "CustomServerResponce error! empty response error:\n \(errorMessage)")
+//                        WebHookAnalyticsService.shared.sendAnalyticsReport(messageText: "CustomServerResponce error! empty response error:\n \(errorMessage)")
                         
                     } else if let details = proxyResponse.details, let message = details.error?.message {
                         completion(.failure(.apiError(message)))
                         
                         // Юзер ввел какое-то хитрое сочетание символов, эмодзи или невидимых знаков (например, при копипасте), которые ломают JSON на стороне прокси или не нравятся API Google
-                        WebHookAnalyticsService.shared.sendAnalyticsReport(messageText: "CustomServerResponce error! empty response parsing details error:\n \(message)")
+//                        WebHookAnalyticsService.shared.sendAnalyticsReport(messageText: "CustomServerResponce error! empty response parsing details error:\n \(message)")
                         
                     } else {
                         completion(.failure(.emptyResponse))
                         
                         // пришел JSON, который не содержит ни текста, ни явной ошибки.
-                        WebHookAnalyticsService.shared.sendAnalyticsReport(messageText: "CustomServerResponce error! UNKNOWN ERROR \(proxyResponse)")
+//                        WebHookAnalyticsService.shared.sendAnalyticsReport(messageText: "CustomServerResponce error! UNKNOWN ERROR \(proxyResponse)")
                     }
                     
                 } catch let decodingError {
@@ -181,7 +181,7 @@ class AIService {
                     }
                     // Gemini начал отвечать, но на середине предложения у него кончились токены или сервер обрубил связь, он может прислать «битый» JSON (незакрытая фигурная скобка и т.д.)
 
-                    WebHookAnalyticsService.shared.sendAnalyticsReport(messageText: "CustomServerResponce error! decodingError \(decodingError)")
+//                    WebHookAnalyticsService.shared.sendAnalyticsReport(messageText: "CustomServerResponce error! decodingError \(decodingError)")
                     AnalyticService.shared.logEvent(
                         name: "CustomServerResponce",
                         properties: [

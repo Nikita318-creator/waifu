@@ -90,7 +90,7 @@ class RemotePhotoService {
             guard let data = data, error == nil else {
                 print("Error downloading image: \(error?.localizedDescription ?? "unknown error")")
                 AnalyticService.shared.logEvent(name: "Error downloading image", properties: ["error: ":"\(error?.localizedDescription ?? "unknown error")"])
-                WebHookAnalyticsService.shared.sendAnalyticsReport(messageText: "Error downloading image: \(error?.localizedDescription ?? "unknown error")")
+//                WebHookAnalyticsService.shared.sendAnalyticsReport(messageText: "Error downloading image: \(error?.localizedDescription ?? "unknown error")")
                 completion(nil)
                 return
             }
