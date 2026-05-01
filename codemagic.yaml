@@ -11,7 +11,7 @@ workflows:
         XCODE_PROJECT: "ChatBot20.xcodeproj"
         XCODE_SCHEME: "ChatBot20"
       
-      xcode: latest # Используем последнюю версию Xcode
+      xcode: 26.1.1 # Используем последнюю версию Xcode
       
     scripts:
       
